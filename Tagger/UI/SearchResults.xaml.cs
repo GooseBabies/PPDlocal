@@ -612,15 +612,22 @@ namespace Tagger.UI
                 for(int i = 1; i <= SearchPanel.Children.Count - 1; i++)
                 {
                     p = (Grid)SearchPanel.Children[i];
-                    for(int j = 1; j <= 4; j++)
-                    {
+                    b = (Button)p.Children[1];
+                    for (int j = 1; j <= 4; j++)
+                    {                        
                         if(p.Children[j].Visibility == Visibility.Visible)
                         {
                             switch (j)
                             {
                                 case 1: // Operator
-                                    b = (Button)p.Children[j];
-                                    search += b.Content.ToString() + " ";
+                                    if (b.Content.ToString() == "Or")
+                                    {
+                                        search += "Or ";
+                                    }
+                                    else
+                                    {
+                                        search += "And ";
+                                    }                                    
                                     break;
                                 case 2: // Open Paren
                                     h = (Label)p.Children[j];
@@ -635,6 +642,10 @@ namespace Tagger.UI
                                     else if (h.Content.ToString().StartsWith("Extension:"))
                                     {
                                         search += "Filetype Like '%" + h.Content.ToString().Replace("Extension: ", "").Replace(@"'", "''") + "' ";
+                                    }
+                                    else if(b != null & b.Content.ToString() == "Not")
+                                    {
+                                        search += "Tags Not Like '%;" + h.Content.ToString().Replace(@"'", "''") + ";%' ";
                                     }
                                     else
                                     {
