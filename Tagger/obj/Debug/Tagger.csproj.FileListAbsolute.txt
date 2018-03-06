@@ -1,0 +1,98 @@
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\bin\Debug\Tagger.exe.config
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\bin\Debug\Tagger.exe
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\bin\Debug\Tagger.pdb
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.csprojResolveAssemblyReference.cache
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\obj\Debug\MainWindow.g.cs
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\obj\Debug\App.g.cs
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger_MarkupCompile.cache
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger_MarkupCompile.lref
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\obj\Debug\MainWindow.baml
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.g.resources
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.Properties.Resources.resources
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.csproj.GenerateResource.Cache
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.exe
+c:\users\chris\documents\visual studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.pdb
+C:\Users\chris\Documents\Visual Studio 2015\Projects\Tagger\Tagger\bin\Debug\WpfAnimatedGif.dll
+C:\Users\chris\Documents\Visual Studio 2015\Projects\Tagger\Tagger\bin\Debug\WpfAnimatedGif.xml
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\bin\Debug\Tagger.exe.config
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.exe
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.pdb
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\bin\Debug\Tagger.exe
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\bin\Debug\Tagger.pdb
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\bin\Debug\WpfAnimatedGif.dll
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\bin\Debug\WpfAnimatedGif.xml
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.csprojResolveAssemblyReference.cache
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\MainWindow.g.cs
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\App.g.cs
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger_MarkupCompile.cache
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger_MarkupCompile.lref
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\MainWindow.baml
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.g.resources
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.Properties.Resources.resources
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.csproj.GenerateResource.Cache
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\bin\Debug\Tagger.exe.manifest
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\bin\Debug\Tagger.application
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.exe.manifest
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\Tagger.application
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\SlideShow.g.cs
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\SlideShowSelect.g.cs
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\SlideShow.baml
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\SlideShowSelect.baml
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\RemoveTag.g.cs
+C:\Users\Christopher\Documents\Visual Studio 2015\Projects\Tagger\Tagger\obj\Debug\RemoveTag.baml
+E:\Tagger\Tagger\bin\Debug\Tagger.exe.config
+E:\Tagger\Tagger\obj\Debug\Tagger.exe
+E:\Tagger\Tagger\obj\Debug\Tagger.pdb
+E:\Tagger\Tagger\obj\Debug\Tagger.csprojResolveAssemblyReference.cache
+E:\Tagger\Tagger\obj\Debug\App.g.cs
+E:\Tagger\Tagger\obj\Debug\Tagger_MarkupCompile.cache
+E:\Tagger\Tagger\obj\Debug\Tagger_MarkupCompile.lref
+E:\Tagger\Tagger\obj\Debug\Tagger.g.resources
+E:\Tagger\Tagger\obj\Debug\Tagger.Properties.Resources.resources
+E:\Tagger\Tagger\obj\Debug\Tagger.csproj.GenerateResource.Cache
+E:\Tagger\Tagger\bin\Debug\Tagger.exe.manifest
+E:\Tagger\Tagger\bin\Debug\Tagger.application
+E:\Tagger\Tagger\bin\Debug\Tagger.exe
+E:\Tagger\Tagger\bin\Debug\Tagger.pdb
+E:\Tagger\Tagger\bin\Debug\WpfAnimatedGif.dll
+E:\Tagger\Tagger\bin\Debug\WpfAnimatedGif.xml
+E:\Tagger\Tagger\obj\Debug\Tagger.exe.manifest
+E:\Tagger\Tagger\obj\Debug\Tagger.application
+E:\Tagger\Tagger\bin\Debug\AngleSharp.dll
+E:\Tagger\Tagger\bin\Debug\IqdbApi.dll
+E:\Tagger\Tagger\bin\Debug\System.Collections.Immutable.dll
+E:\Tagger\Tagger\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+E:\Tagger\Tagger\bin\Debug\System.ValueTuple.dll
+E:\Tagger\Tagger\bin\Debug\AngleSharp.xml
+E:\Tagger\Tagger\bin\Debug\System.Collections.Immutable.xml
+E:\Tagger\Tagger\obj\Debug\UI\Iqdb Results.g.cs
+E:\Tagger\Tagger\obj\Debug\UI\MainWindow.g.cs
+E:\Tagger\Tagger\obj\Debug\UI\NewDatabase.g.cs
+E:\Tagger\Tagger\obj\Debug\UI\Settings.g.cs
+E:\Tagger\Tagger\obj\Debug\UI\SlideShow.g.cs
+E:\Tagger\Tagger\obj\Debug\UI\SlideShowSelect.g.cs
+E:\Tagger\Tagger\obj\Debug\UI\Iqdb Results.baml
+E:\Tagger\Tagger\obj\Debug\UI\MainWindow.baml
+E:\Tagger\Tagger\obj\Debug\UI\NewDatabase.baml
+E:\Tagger\Tagger\obj\Debug\UI\Settings.baml
+E:\Tagger\Tagger\obj\Debug\UI\SlideShow.baml
+E:\Tagger\Tagger\obj\Debug\UI\SlideShowSelect.baml
+E:\Tagger\Tagger\obj\Debug\UI\InputWindow.g.cs
+E:\Tagger\Tagger\obj\Debug\UI\InputWindow.baml
+E:\Tagger\Tagger\obj\Debug\UI\MediaFullscreen.g.cs
+E:\Tagger\Tagger\obj\Debug\UI\MediaFullscreen.baml
+E:\Tagger\Tagger\obj\Debug\UI\MediaList.g.cs
+E:\Tagger\Tagger\obj\Debug\UI\MediaList.baml
+E:\Tagger\Tagger\obj\Debug\UI\TagManager.g.cs
+E:\Tagger\Tagger\obj\Debug\UI\TagManager.baml
+E:\Tagger\Tagger\obj\Debug\Tagger.csproj.CoreCompileInputs.cache
+E:\Tagger\Tagger\obj\Debug\UI\ImportDatabase.g.cs
+E:\Tagger\Tagger\obj\Debug\UI\ImportDatabase.baml
+E:\Tagger\Tagger\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\Tagger\Tagger\obj\Debug\UI\SearchResults.g.cs
+E:\Tagger\Tagger\obj\Debug\UI\SearchResults.baml
+E:\Tagger\Tagger\bin\Debug\XamlAnimatedGif.dll
+E:\Tagger\Tagger\bin\Debug\Vlc.DotNet.Core.dll
+E:\Tagger\Tagger\bin\Debug\Vlc.DotNet.Core.Interops.dll
+E:\Tagger\Tagger\bin\Debug\Vlc.DotNet.Forms.dll
+E:\Tagger\Tagger\bin\Debug\Vlc.DotNet.Wpf.dll

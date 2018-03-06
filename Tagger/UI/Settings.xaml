@@ -1,0 +1,108 @@
+﻿<Window x:Class="Tagger.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tagger"
+        mc:Ignorable="d"
+        Title="Options" Height="500" Width="360" ResizeMode="NoResize" WindowStartupLocation="Manual">
+    <Grid>
+        <TabControl x:Name="Tabs">
+            <TabItem Header="General">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Column="0" Grid.Row="0">
+                        <Label Content="Profile: " Margin="20,0,0,0" />
+                        <ComboBox x:Name="Profiles" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60" SelectionChanged="Profiles_SelectionChanged"/>
+                        <Button x:Name="RenameProfile" VerticalAlignment="Center" Content="Rename" Margin="24,0,10,0" Click="RenameProfile_Click"/>
+                        <Button x:Name="DeleteProfile" VerticalAlignment="Center" Content="Delete" Margin="12,0,10,0" Click="DeleteProfile_Click"/>
+                    </DockPanel>
+                    
+                    <CheckBox x:Name="Shuffle" Grid.Column="0" Grid.Row="1" Content="Shuffle"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" Checked="Shuffle_Click" Unchecked="Shuffle_Click"/>
+                    <CheckBox x:Name="ShuffleRepeat" Grid.Column="0" Grid.Row="2" Content="Repeating Shuffle"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="30,0,0,0"/>
+                    <DockPanel Grid.Row="3" Margin="20,0,0,0">
+                        <Label Content="Slideshow Interval: " HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                        <TextBox Name="SlideshowInterval" HorizontalAlignment="Center" Width="40" Height="20" VerticalAlignment="Center" HorizontalContentAlignment="Center" Text="3"/>
+                        <Label Content="seconds" VerticalAlignment="Center"/>
+                    </DockPanel>
+                    <CheckBox x:Name="ViewCategories" Grid.Column="0" Grid.Row="4" Content="View Catergories Text" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                    <Grid Grid.Column="0" Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Iqdb Loop Source Booru" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <ComboBox x:Name="Booru" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <ComboBoxItem Tag="0">Danbooru</ComboBoxItem>
+                            <ComboBoxItem Tag="1">Konachan</ComboBoxItem>
+                            <ComboBoxItem Tag="2">Yandere</ComboBoxItem>
+                            <ComboBoxItem Tag="3">Gelbooru</ComboBoxItem>
+                            <ComboBoxItem Tag="4">Sankaku Channel</ComboBoxItem>
+                            <ComboBoxItem Tag="5">Eshuushuu</ComboBoxItem>
+                            <ComboBoxItem Tag="6">The Anime Gallery</ComboBoxItem>
+                            <ComboBoxItem Tag="7">Zerochan</ComboBoxItem>
+                            <ComboBoxItem Tag="8">Anime Pictures</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                    <Grid Grid.Column="0" Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Booru Similarity Threshold:" Grid.Column="0" VerticalAlignment="Center" Margin="20,0,0,0" HorizontalAlignment="Left"/>
+                        <TextBox x:Name="BooruThreshold" Text="60" Width="40" Height="20" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    </Grid>                    
+                    <WrapPanel Grid.Row="7">
+                        <CheckBox Name="png" Content=".png" VerticalAlignment="Center" Margin="20,1,1,1" IsChecked="True"/>
+                        <CheckBox Name="jpeg" Content=".jpeg" VerticalAlignment="Center" Margin="1" IsChecked="True"/>
+                        <CheckBox Name="jpg" Content=".jpg" VerticalAlignment="Center" Margin="1" IsChecked="True"/>
+                        <CheckBox Name="bmp" Content=".bmp" VerticalAlignment="Center" Margin="1" IsChecked="True"/>
+                        <CheckBox Name="gif" Content=".gif" VerticalAlignment="Center" Margin="1" IsChecked="True"/>
+                        <CheckBox Name="mp4" Content=".mp4" VerticalAlignment="Center" Margin="1,1,1,1" IsChecked="True"/>
+                        <CheckBox Name="avi" Content=".avi" VerticalAlignment="Center" Margin="1" IsChecked="True"/>
+                        <CheckBox Name="mpg" Content=".mpg" VerticalAlignment="Center" Margin="20,1,1,1" IsChecked="True"/>
+                        <CheckBox Name="mkv" Content=".mkv" VerticalAlignment="Center" Margin="1" IsChecked="True"/>
+                        <CheckBox Name="wmv" Content=".wmv" VerticalAlignment="Center" Margin="1" IsChecked="True"/>
+                    </WrapPanel>
+                    <DockPanel Grid.Row="8" Margin="20,0,0,0">
+                        <Label Content="Mouse Disappear Delay: " HorizontalAlignment="Left"  VerticalAlignment="Center"/>
+                        <TextBox Name="MouseDelay" HorizontalAlignment="Center" Width="40" Height="20" VerticalAlignment="Center" HorizontalContentAlignment="Center" Text="4"/>
+                        <Label Content="seconds" VerticalAlignment="Center"/>
+                    </DockPanel>
+                    <CheckBox x:Name="VisibleNav" Grid.Row="9" Content="Visible Navigation Controls" VerticalAlignment="Center" Margin="20,0,0,0" IsChecked="True"/>
+                    <DockPanel Grid.Row="10">
+                        <Button x:Name="DefaultSettings" Content="Default Settings" Width="100" Margin="10,5,5,5" Click="DefaultSettings_Click"/>
+                        <Button x:Name="SaveSettings" Content="Save" Width="50" Margin="30,5,5,5" Click="SaveSettings_Click"/>
+                        <Button x:Name="Cancel" Content="Cancel" Width="50" Margin="25,5,10,5" Click="Cancel_Click"/>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Database">
+                <Grid>
+                    <Button Content="Flush" Click="Button_Click" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Slideshow">
+                
+            </TabItem>
+            <TabItem Header="IQDB">
+                
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

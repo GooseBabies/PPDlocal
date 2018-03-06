@@ -1,0 +1,14 @@
+﻿<Window x:Class="Tagger.Iqdb_Results"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tagger"
+        mc:Ignorable="d"
+        Title="IQDB Results" SizeToContent="WidthAndHeight" WindowState="Normal" WindowStartupLocation="Manual" ShowInTaskbar="False" Loaded="Window_Loaded" MaxHeight="900">
+    <Grid x:Name="ExpanderGrid">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            
+        </ScrollViewer>
+    </Grid>
+</Window>

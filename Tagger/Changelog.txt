@@ -1,0 +1,41 @@
+Version 0.0.0.3 - 5/14/17
+-Added Rating Buttons and code to update image rating in Database
+-Added support for choosing Image directory
+-Added debug button to clear database completely
+-Added Undo Button to remove last tag from database and update Counts correctly
+
+Bugfixes
+-Reset imgTagCounter on new image load
+-Handles improper wrapping when going to previous image
+-Handle Visual Rating Indicator Better
+
+Version 0.0.0.4 - 5/15/17
+-Added SaveTags table to recall directory, last image opened, and images tagged in current directory count (saves on closing and if pressint save under file menu)
+-Added progress bar for tracking how many images are tagged in directory
+-Update Rating code to allow seamless rating changes
+-Added directory field in ImageTags to coorespond image to directory
+-Changed filename textbox to label to make it look better
+-Changed Database_Connection to cutoff end of qry string when retrieving all column values ( Note: Possible future issue Table names have to be 8 or 9 letters !!!)
+-Added Dlete button to remove files from directory
+-Added Move button to cut+paste files to a new directory
+
+Bugfixes
+-Next and previous buttons clear out TagAdd textbox
+-Solved memory leak bitmapImage issue for files
+
+Bugs
+-Down key to pick labels from textbox works oddly
+-Need to update Progress bar text when opening new directory
+
+Version 0.0.1.0 - 5/15/17
+-Picking Labels from Search results works correctly now
+-Progress Bar properly updates
+-Added Debug mode
+	-Currently only toggles visibility of clear button
+
+Version 0.0.1.1 - 5/15/17
+-Removed Name from added labels for tag search
+-Window Maximizes on Load
+
+To Add
+- Sort Tags list by alphabetical order before adding each tag
