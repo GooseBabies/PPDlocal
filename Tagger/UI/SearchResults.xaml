@@ -31,6 +31,7 @@
                     <Button x:Name="SubitSearchParameter" Grid.Column="1" Content="Add" Margin="2" Click="SubitSearchParameter_Click"/>
                 </Grid>
             </StackPanel>
+            <Label x:Name="ResultsCountLabel" Content="Results Count: 0" Margin="2"/>
             <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>

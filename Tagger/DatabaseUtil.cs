@@ -581,6 +581,11 @@ namespace Tagger
             return db.ExecuteQuery<ImageDataTableDef>(searchstring).OrderByDescending(r => r.Rating).ThenBy(j => j.Filename).Select(x => x.Filename.ApostrepheDefix()).ToList();
         }
 
+        public int SearchCount(DBTable db, string searchstring)
+        {
+            return db.ExecuteQuery<ImageDataTableDef>(searchstring).OrderByDescending(r => r.Rating).ThenBy(j => j.Filename).Select(x => x.Filename.ApostrepheDefix()).Count();
+        }
+
         public List<string> GetTagsContaining(DBTable db, string chars, int limit)
         {
             try
