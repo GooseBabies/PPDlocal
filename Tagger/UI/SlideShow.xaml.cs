@@ -36,6 +36,7 @@ namespace Tagger
         string currentImage = "";
         List<string> filepaths = new List<string>();
         string[] currentimagpath;
+        Stack<int> ImageHistory = new Stack<int>();
 
         public string ReturnFile {get; set;}
 
@@ -165,25 +166,17 @@ namespace Tagger
                         else
                         {
                             currentImage = FI[Counter].Name;
-                            if(ext == "gif")
-                            {
-                                myImage.Source = null;
-                                AnimationBehavior.SetSourceUri(myImage, new Uri(FI[Counter].FullName));
-                            }
-                            else
-                            {
-                                Dispic = BitmapImageFromFile(FI[Counter].FullName, myImage);
-                                myImage.Source = Dispic;
-                                timerImageChange.Start();
-                            }                            
+                            ImageHistory.Push(Counter);
+                            LoadImage(FI, Counter, ext);
+
                             label.Content = (Counter+1).ToString() + "/" + FI.Count.ToString();
                             Counter++;
                         }
                     }
                     else //If random repeat is on
                     {
-                        int randint = r.Next(FI.Count - 1);
-                        string ext = FI[randint].Extension;
+                        Counter = r.Next(FI.Count - 1);
+                        string ext = FI[Counter].Extension;
                         if (ext == ".mkv" || ext == ".mpg" || ext == ".mp4" || ext == ".wmv" || ext == ".avi" || ext == ".webm" || !File.Exists(FI[Counter].FullName))
                         {
                             PlaySlideShow();
@@ -191,19 +184,11 @@ namespace Tagger
                         }
                         else
                         {
-                            currentImage = FI[randint].Name;
-                            if (ext == "gif")
-                            {
-                                myImage.Source = null;
-                                AnimationBehavior.SetSourceUri(myImage, new Uri(FI[randint].FullName));
-                            }
-                            else
-                            {
-                                Dispic = BitmapImageFromFile(FI[randint].FullName, myImage);
-                                myImage.Source = Dispic;
-                                timerImageChange.Start();
-                            }
-                            label.Content = (randint+1).ToString() + "/" + FI.Count.ToString();
+                            currentImage = FI[Counter].Name;
+                            ImageHistory.Push(Counter);
+                            LoadImage(FI, Counter, ext);
+
+                            label.Content = (Counter+1).ToString() + "/" + FI.Count.ToString();
                         }
                     }
                     
@@ -225,17 +210,9 @@ namespace Tagger
                     else
                     {
                         currentImage = FI[Counter].Name;
-                        if (ext == "gif")
-                        {
-                            myImage.Source = null;
-                            AnimationBehavior.SetSourceUri(myImage, new Uri(FI[Counter].FullName));
-                        }
-                        else
-                        {
-                            Dispic = BitmapImageFromFile(FI[Counter].FullName, myImage);
-                            myImage.Source = Dispic;
-                            timerImageChange.Start();
-                        }
+                        ImageHistory.Push(Counter);
+                        LoadImage(FI, Counter, ext);
+
                         label.Content = (Counter+1).ToString() + "/" + FI.Count.ToString();
                         Counter++;
                     }
@@ -263,45 +240,29 @@ namespace Tagger
                         else
                         {
                             currentImage = main[Counter];
-                            if (ext == "gif")
-                            {
-                                myImage.Source = null;
-                                AnimationBehavior.SetSourceUri(myImage, new Uri(main[Counter]));
-                            }
-                            else
-                            {
-                                Dispic = BitmapImageFromFile(main[Counter], myImage);
-                                myImage.Source = Dispic;
-                                timerImageChange.Start();
-                            }
+                            ImageHistory.Push(Counter);
+                            LoadImage(main, Counter, ext);
+
                             label.Content = (Counter + 1).ToString() + "/" + main.Length.ToString();
                             Counter++;
                         }                        
                     }
                     else //If Random repeat is on
                     {
-                        int rando = r.Next(0, main.Length - 1);
-                        string ext = main[rando].Split('.').Last();
-                        if (ext == "mkv" || ext == "mpg" || ext == "mp4" || ext == "wmv" || ext == "avi" || ext == "webm" || !File.Exists(main[rando]))
+                        Counter = r.Next(0, main.Length - 1);
+                        string ext = main[Counter].Split('.').Last();
+                        if (ext == "mkv" || ext == "mpg" || ext == "mp4" || ext == "wmv" || ext == "avi" || ext == "webm" || !File.Exists(main[Counter]))
                         {
                             PlaySlideShow();
                             timerImageChange.Start();
                         }
                         else
                         {
-                            currentImage = main[rando];
-                            if (ext == "gif")
-                            {
-                                myImage.Source = null;
-                                AnimationBehavior.SetSourceUri(myImage, new Uri(main[rando]));                              
-                            }
-                            else
-                            {
-                                Dispic = BitmapImageFromFile(main[rando], myImage);
-                                myImage.Source = Dispic;
-                                timerImageChange.Start();
-                            }
-                            label.Content = (rando + 1).ToString() + "/" + main.Length.ToString();
+                            currentImage = main[Counter];
+                            ImageHistory.Push(Counter);
+                            LoadImage(main, Counter, ext);
+
+                            label.Content = (Counter + 1).ToString() + "/" + main.Length.ToString();
                         }                        
                     }
                 }
@@ -321,23 +282,44 @@ namespace Tagger
                     else
                     {
                         currentImage = main[Counter];
-                        if (ext == "gif")
-                        {
-                            myImage.Source = null;
-                            AnimationBehavior.SetSourceUri(myImage, new Uri(main[Counter]));                            
-                        }
-                        else
-                        {
-                            Dispic = BitmapImageFromFile(main[Counter], myImage);
-                            myImage.Source = Dispic;
-                            timerImageChange.Start();
-                        }
+                        ImageHistory.Push(Counter);
+                        LoadImage(main, Counter, ext);
+                        
                         label.Content = (Counter + 1).ToString() + "/" + main.Length.ToString();
                         Counter++;
                     }                    
                 }                
+            }            
+        }
+
+        private void LoadImage(string[] files, int index, string extension)
+        {
+            if (extension == "gif")
+            {
+                myImage.Source = null;
+                AnimationBehavior.SetSourceUri(myImage, new Uri(files[index]));
             }
-            
+            else
+            {
+                Dispic = BitmapImageFromFile(files[index], myImage);
+                myImage.Source = Dispic;
+                timerImageChange.Start();
+            }
+        }
+
+        private void LoadImage(List<FileInfo> files, int index, string extension)
+        {
+            if (extension == "gif")
+            {
+                myImage.Source = null;
+                AnimationBehavior.SetSourceUri(myImage, new Uri(files[index].FullName));
+            }
+            else
+            {
+                Dispic = BitmapImageFromFile(files[index].FullName, myImage);
+                myImage.Source = Dispic;
+                timerImageChange.Start();
+            }
         }
 
         private void AnimationBehavior_OnLoaded(object sender, RoutedEventArgs e)
@@ -389,13 +371,58 @@ namespace Tagger
                     paused = false;
                 }
             }
-            else if(e.Key == Key.F12)
+            else if (e.Key == Key.F12)
             {
                 currentimagpath = currentImage.Split('\\');
                 currentImage = currentimagpath[currentimagpath.Length - 1];
                 timerImageChange.Stop();
                 ReturnFile = currentImage;
                 this.Close();
+            }
+            else if (e.Key == Key.Left)
+            {
+                //Goto Previous Image
+                timerImageChange.Stop();
+                Counter = ImageHistory.Pop();
+                Counter = ImageHistory.Pop();
+                PlaySlideShow();
+                timerImageChange.Start();
+            }
+            else if (e.Key == Key.Right)
+            {
+                //Goto Next Image
+                if (!randomrepeat) //If Randomrepeat is off
+                {
+                    timerImageChange.Stop();
+                    Counter++;
+                    PlaySlideShow();
+                    timerImageChange.Start();
+                }
+                else
+                {
+                    timerImageChange.Stop();
+                    PlaySlideShow();
+                    timerImageChange.Start();
+                }
+            }
+            else if(e.Key == Key.Up)
+            {
+                IntervalTimer++;
+                timerImageChange.Interval = new TimeSpan(0, 0, IntervalTimer);
+            }
+            else if(e.Key == Key.Down)
+            {
+                IntervalTimer--;
+                if (IntervalTimer < 1)
+                {
+                    IntervalTimer = 1;
+                }
+                timerImageChange.Interval = new TimeSpan(0, 0, IntervalTimer);
+            }
+            else if(e.Key == Key.Back)
+            {
+                IntervalTimer = savesettings.Slideshowinterval;
+                timerImageChange.Interval = new TimeSpan(0, 0, IntervalTimer);
             }
         }
 
