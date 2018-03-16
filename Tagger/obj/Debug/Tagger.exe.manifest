@@ -138,14 +138,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Tagger.exe" size="268288">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Tagger.exe" size="269824">
       <assemblyIdentity name="Tagger" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>g+UyACOFHVmcNNK9Xz19sCqz+lrHKVfUtMyB9aH+i9s=</dsig:DigestValue>
+        <dsig:DigestValue>rJ8AqRkSoO7X4gy1Zc5bSJx2JF+/tAtJwBYXYLqsbEs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

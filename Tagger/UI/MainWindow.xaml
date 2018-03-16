@@ -514,7 +514,7 @@
                     </StackPanel>                        
                         <Border x:Name="MediaBorder" BorderBrush="Black" BorderThickness="2" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MouseEnter="PreviewMedia_MouseEnter" MouseLeave="PreviewMedia_MouseLeave" Panel.ZIndex="1">
                         <!--<MediaElement x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrubbingEnabled="True" Margin="0,0,0,0" LoadedBehavior="Manual" MediaOpened="PreviewMedia_MediaOpened" MediaEnded="PreviewMedia_MediaEnded"/>-->
-                        <wpf:VlcPlayer x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LibVlcPath="..\..\libvlc"/>
+                        <wpf:VlcPlayer x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LibVlcPath="..\..\libvlc" VideoSourceChanged="PreviewMedia_VideoSourceChanged" />
                     </Border>
                 </Grid>                              
                 <Border x:Name="ImageBorder" Grid.Row="1" BorderBrush="Black" BorderThickness="2" Background="Black">                    

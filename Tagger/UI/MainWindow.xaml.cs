@@ -123,9 +123,9 @@ namespace Tagger
             //Don't show image icon in windows taskbar           
             Application.Current.MainWindow.ShowInTaskbar = false;
             timer.Interval = progressupdate;
-            //timer.Tick += new EventHandler(Update_progress);
-            //mousewheeldonetimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
-            //mousewheeldonetimer.Tick += new EventHandler(MouseWheel_Done);
+            timer.Tick += new EventHandler(Update_progress);
+            mousewheeldonetimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            mousewheeldonetimer.Tick += new EventHandler(MouseWheel_Done);
             IQDBTimer.Interval = new TimeSpan(0, 0, 15);
             IQDBTimer.Tick += new EventHandler(IQDB_Tick);
 
@@ -886,36 +886,14 @@ namespace Tagger
                 FullMediaControls.Visibility = Visibility.Collapsed;
                 TagAdd.Focus();
             }
-        }        
+        }
 
-        private void PreviewMedia_MediaOpened(object sender, RoutedEventArgs e)
+        private void PreviewMedia_VideoSourceChanged(object sender, Meta.Vlc.Wpf.VideoSourceChangedEventArgs e)
         {
-            mediaTotalTime = PreviewMedia.Time.TotalMilliseconds;
-            VideoProgress.Maximum = mediaTotalTime;
-            var RemainingMilliseconds = mediaTotalTime - PreviewMedia.Time.Milliseconds;
-            var RemainingSeconds = Math.Floor((RemainingMilliseconds / 1000) % 60);
-            var RemainingMinutes = Math.Floor((RemainingMilliseconds / 60000) % 60);
-            var RemainingHours = Math.Floor((RemainingMilliseconds / 3600000) % 60);
-            MediaLength = RemainingHours.ToString("00.") + ":" + RemainingMinutes.ToString("00.") + ":" + RemainingSeconds.ToString("00.");
-            if (mediaTotalTime > 30000)
+            this.Dispatcher.Invoke(() =>
             {
-                skipInterval = (long)Math.Floor(mediaTotalTime / 30);
-            }
-            if (mediaTotalTime < 10000)
-            {
-                lessthan10seconds = true;
-            }
-            else
-            {
-                lessthan10seconds = false;
-            }
-            RemainingMediaTime.Content = MediaLength;
-
-            settingprogressbar = true;
-            VideoProgress.Value = 0;
-            settingprogressbar = false;
-            PreviewMedia.Volume = (int)Volume.Value;
-            mediaopened = true;
+                
+            });            
         }
 
         private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -1702,8 +1680,34 @@ namespace Tagger
                 Pause.Visibility = Visibility.Visible;
                 Pause2.Visibility = Visibility.Visible;
                 PreviewMedia.Play();
-                //PreviewMedia.MediaPlayer.Play();
                 timer.Start();
+
+                mediaTotalTime = PreviewMedia.Time.TotalMilliseconds;
+                VideoProgress.Maximum = mediaTotalTime;
+                var RemainingMilliseconds = mediaTotalTime - PreviewMedia.Time.Milliseconds;
+                var RemainingSeconds = Math.Floor((RemainingMilliseconds / 1000) % 60);
+                var RemainingMinutes = Math.Floor((RemainingMilliseconds / 60000) % 60);
+                var RemainingHours = Math.Floor((RemainingMilliseconds / 3600000) % 60);
+                MediaLength = RemainingHours.ToString("00.") + ":" + RemainingMinutes.ToString("00.") + ":" + RemainingSeconds.ToString("00.");
+                if (mediaTotalTime > 30000)
+                {
+                    skipInterval = (long)Math.Floor(mediaTotalTime / 30);
+                }
+                if (mediaTotalTime < 10000)
+                {
+                    lessthan10seconds = true;
+                }
+                else
+                {
+                    lessthan10seconds = false;
+                }
+                RemainingMediaTime.Content = MediaLength;
+
+                settingprogressbar = true;
+                VideoProgress.Value = 0;
+                settingprogressbar = false;
+                PreviewMedia.Volume = 0;
+                mediaopened = true;
             }
             else
             {
@@ -2981,6 +2985,6 @@ namespace Tagger
             db.DeleteImageData(data, currentImageName);
             UpdateTagDisplay();
             TagAdd.Focus();
-        }
+        }        
     }
 }

@@ -1033,3 +1033,1817 @@ core debug: removing module "vmem"
 core debug: removing module "freetype"
 core debug: removing module "yuvp"
 core debug: removing module "swscale"
+﻿-- logger module started --
+core debug: VLC media player - 2.2.0-xZune Weatherwax
+core debug: Copyright © 1996-2015 the VideoLAN team
+core debug: revision 2.2.0-0-g1349ef2
+core debug: configured with ../extras/package/win32/../../../configure  '--enable-update-check' '--enable-lua' '--enable-faad' '--enable-flac' '--enable-theora' '--enable-twolame' '--enable-quicktime' '--enable-avcodec' '--enable-merge-ffmpeg' '--enable-dca' '--enable-mpc' '--enable-libass' '--enable-x264' '--enable-schroedinger' '--enable-realrtsp' '--enable-live555' '--enable-dvdread' '--enable-shout' '--enable-goom' '--enable-caca' '--disable-sdl' '--enable-qt' '--enable-skins2' '--enable-sse' '--enable-mmx' '--enable-libcddb' '--enable-zvbi' '--disable-telx' '--enable-nls' '--host=i686-w64-mingw32' '--disable-nls' '--disable-upnp' 'host_alias=i686-w64-mingw32' 'PKG_CONFIG_PATH=/mingw32/lib/pkgconfig:/mingw32/share/pkgconfig'
+core debug: using interface module "logger"
+core debug: creating VLM
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 6 candidates
+directsound debug: found 4 devices
+core debug: using audio output module "directsound"
+core debug: keeping audio output
+ccoreore debug:  debug: looking for Creating an input for 'meta fetcherVlhx3bi.mp4'
+ module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Vlhx3bi.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Vlhx3bi.mp4
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Vlhx3bi.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Vlhx3bi.mp4
+corecore debug:  debug: Creating an input for 'lKooking for atie Kox BZ.wmvmeta fetcher module m'atching "
+any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: Creating an input for 'Katie Kox BZ.wmv'
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\Chris\AppData\Local\Temp'
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' gives access `file' demux `' path `/E:/Media/Katie Kox BZ.wmv'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access_demux module matching "file": 12 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/E:/Media/Katie Kox BZ.wmv', path='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access module matching "file": 21 candidates
+filesystem debug: opening file `E:\Media\Katie Kox BZ.wmv'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 1000000 KiB/s
+core debug: looking for stream_filter module matching "any": 6 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 6 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for demux module matching "asf": 66 candidates
+asf warning: unknown asf object (not loaded): 0xd9aade20-0x7c17-0x4f9c-0xbc288555dd98e2a2
+asf debug: + 'Root'
+asf debug: |   + 'Header'
+asf debug: |   |   + 'File Properties'
+asf debug: |   |   + 'Header Extension'
+asf debug: |   |   |   + 'Language List'
+asf debug: |   |   |   + 'Object Compatibility'
+asf debug: |   |   |   + 'Metadata'
+asf debug: |   |   |   + 'Padding'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Index Placeholder'
+asf debug: |   |   + 'Extended content description'
+asf debug: |   |   + 'Codec List'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Bitrate Properties'
+asf debug: |   + 'Data'
+asf debug: |   + 'Simple Index'
+asf debug: found 2 streams
+asf debug: added new audio stream(codec:0x161,ID:1)
+core debug: selecting program id=0
+asf debug: added new video stream(ID:2)
+core debug: using demux module "asf"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: avcodec codec (Windows Media Audio 2) started
+core debug: using decoder module "avcodec"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: avcodec codec (Windows Media Video 9) started
+core debug: using decoder module "avcodec"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\reader
+core debug: no meta reader modules matched
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' successfully opened
+core debug: Buffering 0%
+corea debug: vcBuffering avcodec0%o
+dec warning:  Physical channel configuration nocdtore ebugset : guessing debug: :
+Buffe rcaoreing vailable  debug: 16hardware decoder output format%r eusing audi
+o output61
+ (dxva2_vdirectcorel debugsound:  debug: dBuff)ering Opening DirectSound Audio72
+% Ou
+tputavcodec
+ debug: available coresoftware debug decoder output format :0 ( yuv420p)Stream buffering done (
+378 ms inc ore2 ms) debug: 
+looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+core debug: looking for text renderer module matching "any": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscaledirectsound debug:  debug: 32Windows speaker config: xStereo and stream has 32 (2 channel32xs, using 32) chroma: 2 channelsYUVA -> 
+16x16 (16x16) chroma: RGBA with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: looking for video filter2 module matching "any": 58 candidates
+core debug: output 'f32l' 44100 Hz Stereo frame=1 samples/8 bytes
+coreyuvp debug:  debulooking for gaudio volume module matching "any": 2 candidates
+: YUVP to YUVA converter
+core debug: coreusing  debug: video using filter2 module "audio volume moduyuvp"
+le "float_mixer"
+core debug: coreDeinterlacing available debug
+: input core' debug: f32l' deinterlace 44100 0, mode Hz blend, is_needed Stereo frame=0
+1 samples/8 bytes
+core debug: looking focorer  debug: audio filter module matching "Opening vout display wrapper
+scaletempo": core14 candidates debug: 
+looking for vout display module matching "vscaletempomem debug: ": format: 1144100 rate candidates, 
+2 nch, 4 bps, fl32
+scaletempo debug: params: 30 stride, 0.200 overlap, 14 search
+scaletempo debug: 1.000 scale, 1323.000 stride_in, 1323 stride_out, 1059 standing, 264 overlap, 617 search, 2204 queue, fl32 mode
+core debug: using audio filter module "scaletempo"
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "samplerate"
+core debug: End of audio preroll
+core debug: VoutDisplayEvent 'fullscreen' 0
+core debug: VoutDisplayEvent 'resize' 768x448 window
+core debug: using vout display module "vmem"
+core debug: A filter to adapt decoder to display is needed
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 768x432 (768x448) chroma: I420 -> 768x448 (768x448) chroma: RV32 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (17afcde4) appended to chain
+core debug: original format sz 768x448, of (0,0), vsz 768x432, 4cc I420, sar 1:1, msk r0x0 g0x0 b0x0
+corecore debug error: : removing module "Failed to change zoom
+freetype"core
+ error: Failed to set coreon top debug: 
+looking for coretext renderer module matching " error: any": Failed to change source AR
+2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 50 ms
+corecore warning:  wbuffer too late (arning: -140000 us): dropped
+picture is too late to be displayed (missing 74 ms)
+core warning: picture is too late to be displayed (missing 46 ms)
+core debug: picture might be displayed late (missing 14 ms)
+core warning: playback too late (87038): up-sampling
+core debug: control: stopping input
+core debug: removing module "avcodec"
+avcodec debug: ffmpeg codec (Windows Media Audio 2) stopped
+core debug: killing decoder fourcc `WMA2', 0 PES in FIFO
+core debug: removing module "samplerate"
+core debug: removing module "scaletempo"
+directsound debug: closing audio device
+core debug: removing module "float_mixer"
+core debug: keeping audio output
+core warning: can't get output picture
+core warning: can't get output picture
+core debug: removing module "avcodec"
+avcodec debug: ffmpeg codec (Windows Media Video 9) stopped
+core debug: killing decoder fourcc `WMV3', 16 PES in FIFO
+core debug: saving a free vout
+core debug: reusing provided vout
+core ecore debug: rroremoving module "rasf: "
+Failed to change zoomc
+ore debug: coreProgram doesn't conta error: in anymore ES
+Failed to corechange source AR debug: 
+removing module "record"
+core debug: removing module "filesystem"
+core debug: removing module "directsound"
+core debug: destroying useless vout
+core debug: Filter 17afcde4 removed from chain
+core debug: removing module "swscale"
+core debug: removing module "vmem"
+core debug: removing module "freetype"
+core debug: removing module "yuvp"
+core debug: removing module "swscale"
+﻿-- logger module started --
+core debug: VLC media player - 2.2.0-xZune Weatherwax
+core debug: Copyright © 1996-2015 the VideoLAN team
+core debug: revision 2.2.0-0-g1349ef2
+core debug: configured with ../extras/package/win32/../../../configure  '--enable-update-check' '--enable-lua' '--enable-faad' '--enable-flac' '--enable-theora' '--enable-twolame' '--enable-quicktime' '--enable-avcodec' '--enable-merge-ffmpeg' '--enable-dca' '--enable-mpc' '--enable-libass' '--enable-x264' '--enable-schroedinger' '--enable-realrtsp' '--enable-live555' '--enable-dvdread' '--enable-shout' '--enable-goom' '--enable-caca' '--disable-sdl' '--enable-qt' '--enable-skins2' '--enable-sse' '--enable-mmx' '--enable-libcddb' '--enable-zvbi' '--disable-telx' '--enable-nls' '--host=i686-w64-mingw32' '--disable-nls' '--disable-upnp' 'host_alias=i686-w64-mingw32' 'PKG_CONFIG_PATH=/mingw32/lib/pkgconfig:/mingw32/share/pkgconfig'
+core debug: using interface module "logger"
+core debug: creating VLM
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 6 candidates
+directsound debug: found 4 devices
+core debug: using audio output module "directsound"
+core debug: keeping audio output
+core debugc: oreCreating an input for ' debug:Katie Kox BZ.wmv' 
+looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: Creating an input for 'Katie Kox BZ.wmv'
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\Chris\AppData\Local\Temp'
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' gives access `file' demux `' path `/E:/Media/Katie Kox BZ.wmv'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access_demux module matching "file": 12 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/E:/Media/Katie Kox BZ.wmv', path='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access module matching "file": 21 candidates
+filesystem debug: opening file `E:\Media\Katie Kox BZ.wmv'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 1000000 KiB/s
+core debug: looking for stream_filter module matching "any": 6 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 6 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for demux module matching "asf": 66 candidates
+asf warning: unknown asf object (not loaded): 0xd9aade20-0x7c17-0x4f9c-0xbc288555dd98e2a2
+asf debug: + 'Root'
+asf debug: |   + 'Header'
+asf debug: |   |   + 'File Properties'
+asf debug: |   |   + 'Header Extension'
+asf debug: |   |   |   + 'Language List'
+asf debug: |   |   |   + 'Object Compatibility'
+asf debug: |   |   |   + 'Metadata'
+asf debug: |   |   |   + 'Padding'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Index Placeholder'
+asf debug: |   |   + 'Extended content description'
+asf debug: |   |   + 'Codec List'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Bitrate Properties'
+asf debug: |   + 'Data'
+asf debug: |   + 'Simple Index'
+asf debug: found 2 streams
+asf debug: added new audio stream(codec:0x161,ID:1)
+core debug: selecting program id=0
+asf debug: added new video stream(ID:2)
+core debug: using demux module "asf"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: avcodec codec (Windows Media Audio 2) started
+core debug: using decoder module "avcodec"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: avcodec codec (Windows Media Video 9) started
+core debug: using decoder module "avcodec"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\reader
+core debug: no meta reader modules matched
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' successfully opened
+core debug: Buffering 0%
+caorevc debugodec:  Buffering a0%debug
+vcodec:  available whardware decoder output formaat rning: core6Physica1 ( debug: dxva2_vld)l channel configurati
+on not set : guessingB
+ufferianvcocg decore debug:  debug: 16available reusing audio output%soft
+
+ware decoder output format directsoucore0 ( debug: yuv420p)ndBuffering  debug: 72Opening %DirectSound Audio Output
+
+
+core debug: looking for core debug: hw decoderS module matching "tream bufferinnong done (e": 378 ms in 1 candidates3 ms)
+
+core debug: no hw decoder modules matched
+core debug: looking for text renderer module matching "any": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 32x32 (32x32) chroma: YUVA -> 16x16 (16x16) chroma: RGBA with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+coredirectsound debug:  debug: looking for Windows speaker config: video filter2 module matching "any": S5tereo and stream has 8 candidates2 channels, using 
+2 channels
+yuvp debug: YUVP to YUVA converter
+core debug: using video filter2 module "yuvp"
+core dcoreebug debug: : output 'Deinterlacing available
+f32l' 44100core Hz  debug: Stereo frame=deinterlace 1 samples/08 bytes, mode 
+blend, is_needed core0 debug: looking for 
+audio volume module matching "any": 2 candidatescore
+ debug: Opening vout display wrapper
+corecore debug:  debug: using looking for auvout displaydio volume module " module matching "float_mixer"vmem": 
+11 cacore ndidatesdebug: 
+input 'f32l' 44100 Hz Stereo frame=1 samples/8 bytes
+core debug: looking for audio filter module matching "scaletempo": 14 candidates
+scaletempo debug: format: 44100 rate, 2 nch, 4 bps, fl32
+scaletempo debug: params: 30 stride, 0.200 overlap, 14 search
+scaletempo debug: 1.000 scale, 1323.000 stride_in, 1323 stride_out, 1059 standing, 264 overlap, 617 search, 2204 queue, fl32 mode
+core debug: using audio filter module "scaletempo"
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "samplerate"
+core debug: End of audio preroll
+core debug: VoutDisplayEvent 'fullscreen' 0
+core debug: VoutDisplayEvent 'resize' 768x448 window
+core debug: using vout display module "vmem"
+core debug: A filter to adapt decoder to display is needed
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 768x432 (768x448) chroma: I420 -> 768x448 (768x448) chroma: RV32 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (0d43a3a4) appended to chain
+core debug: original format sz 768x448, of (0,0), vsz 768x432, 4cc I420, sar 1:1, msk r0x0 g0x0 b0x0
+ccoreore debug:  error: removing mFailed to change zoomodule "
+freecoretype"
+ error: Failed to set on topcore
+ debugcore:  error: looking for Failed to change source ARtext renderer module matching "an
+y": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core debug: End of video preroll
+core debug: Received first picture
+﻿-- logger module started --
+core debug: VLC media player - 2.2.0-xZune Weatherwax
+core debug: Copyright © 1996-2015 the VideoLAN team
+core debug: revision 2.2.0-0-g1349ef2
+core debug: configured with ../extras/package/win32/../../../configure  '--enable-update-check' '--enable-lua' '--enable-faad' '--enable-flac' '--enable-theora' '--enable-twolame' '--enable-quicktime' '--enable-avcodec' '--enable-merge-ffmpeg' '--enable-dca' '--enable-mpc' '--enable-libass' '--enable-x264' '--enable-schroedinger' '--enable-realrtsp' '--enable-live555' '--enable-dvdread' '--enable-shout' '--enable-goom' '--enable-caca' '--disable-sdl' '--enable-qt' '--enable-skins2' '--enable-sse' '--enable-mmx' '--enable-libcddb' '--enable-zvbi' '--disable-telx' '--enable-nls' '--host=i686-w64-mingw32' '--disable-nls' '--disable-upnp' 'host_alias=i686-w64-mingw32' 'PKG_CONFIG_PATH=/mingw32/lib/pkgconfig:/mingw32/share/pkgconfig'
+core debug: using interface module "logger"
+core debug: creating VLM
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 6 candidates
+directsound debug: found 4 devices
+core debug: using audio output module "directsound"
+core debug: keeping audio output
+core debcoreug debug: : Creating an input for 'looking for Katie Kox BZ.wmv'meta fetcher module matching "
+any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: Creating an input for 'Katie Kox BZ.wmv'
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\Chris\AppData\Local\Temp'
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' gives access `file' demux `' path `/E:/Media/Katie Kox BZ.wmv'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access_demux module matching "file": 12 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/E:/Media/Katie Kox BZ.wmv', path='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access module matching "file": 21 candidates
+filesystem debug: opening file `E:\Media\Katie Kox BZ.wmv'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 999 KiB/s
+core debug: looking for stream_filter module matching "any": 6 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 6 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for demux module matching "asf": 66 candidates
+asf warning: unknown asf object (not loaded): 0xd9aade20-0x7c17-0x4f9c-0xbc288555dd98e2a2
+asf debug: + 'Root'
+asf debug: |   + 'Header'
+asf debug: |   |   + 'File Properties'
+asf debug: |   |   + 'Header Extension'
+asf debug: |   |   |   + 'Language List'
+asf debug: |   |   |   + 'Object Compatibility'
+asf debug: |   |   |   + 'Metadata'
+asf debug: |   |   |   + 'Padding'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Index Placeholder'
+asf debug: |   |   + 'Extended content description'
+asf debug: |   |   + 'Codec List'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Bitrate Properties'
+asf debug: |   + 'Data'
+asf debug: |   + 'Simple Index'
+asf debug: found 2 streams
+asf debug: added new audio stream(codec:0x161,ID:1)
+core debug: selecting program id=0
+asf debug: added new video stream(ID:2)
+core debug: using demux module "asf"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: avcodec codec (Windows Media Audio 2) started
+core debug: using decoder module "avcodec"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: avcodec codec (Windows Media Video 9) started
+core debug: using decoder module "avcodec"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\reader
+core debug: no meta reader modules matched
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' successfully opened
+core debug: Buffering 0%
+coreavcode debug: cBuff debug: ering avcodecavail warning: aPhysical channel configuration not set : guessing
+0b%lecore  debug: 
+reusing audio output
+hardcowredarirectsounde decoder output  debug: format  debug6Opening Dire: 1Buffering  (16dxva2_vld)%
+
+ctSavcodec debug: ound Audio Oacoreutput debug: 
+vailable Buffering software decoder output format 07 (2yuv420p)%
+
+core debug: looking focorer  debug: hw decoder module Smatching "tnone": ream buffering done 1( candidates378
+ ms in 4 ms)c
+ore debug: no hw decoder modules matched
+core debug: looking for text renderer module matching "any": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+core debug: looking for video filter2 module matching "any": 58 candidates
+directsound debug: Windows speaker config: Stereo and stream hsas wscale2 channels, using  debug: 2 channels32
+x32 (32x32) chroma: YUVA -> 16x16 (16x16) chroma: RGBA with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: looking for video filter2 module matching "any": 58 candidates
+core debug: output 'f32l' 44100 Hz Stereo frame=1 samples/8 bytes
+core debug: looking for audio volume module matching "any": 2 candidates
+yuvp debug: YUVP to YUVA converter
+core debug: coreusing  debug: audio volume module "using float_mixer"
+video filter2 module "coyuvp"re debug: 
+input 'f32l' 44100 Hz coreStereo frame= 1 samples/8 bytesdebug: 
+Deinterlaccoreing available debug: 
+looking fcoreor  debug: audio filterdeinterlace  module matching "0, mode scaletempo": blend, is_needed 140
+ candidates
+core debug: Opening vout display wrappers
+caletempo debug: core debug: format: looking for 44100 rate, 2 nch, v4 bps, out displayfl32 modul
+e matching "svmem": caletempo11 candidates debug: 
+params: 30 stride, 0.200 overlap, 14 search
+scaletempo debug: 1.000 scale, 1323.000 stride_in, 1323 stride_out, 1059 standing, 264 overlap, 617 search, 2204 queue, fl32 mode
+core debug: using audio filter module "scaletempo"
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "samplerate"
+core debug: End of audio preroll
+core debug: VoutDisplayEvent 'fullscreen' 0
+core debug: VoutDisplayEvent 'resize' 768x448 window
+core debug: using vout display module "vmem"
+core debug: A filter to adapt decoder to display is needed
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 768x432 (768x448) chroma: I420 -> 768x448 (768x448) chroma: RV32 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (0e28c224) appended to chain
+core debug: original format sz 768x448, of (0,0), vsz 768x432, 4cc I420, sar 1:1, msk r0x0 g0x0 b0x0
+corecore error:  debug: Failed to change zoomre
+moving module "corefreetype" er
+ror: Failed to set on topc
+ore debugc: ore error: looking for Failed tot change source AR
+ext renderer module matching "any": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core debug: End of video preroll
+core debug: Received first picture
+﻿-- logger module started --
+core debug: VLC media player - 2.2.0-xZune Weatherwax
+core debug: Copyright © 1996-2015 the VideoLAN team
+core debug: revision 2.2.0-0-g1349ef2
+core debug: configured with ../extras/package/win32/../../../configure  '--enable-update-check' '--enable-lua' '--enable-faad' '--enable-flac' '--enable-theora' '--enable-twolame' '--enable-quicktime' '--enable-avcodec' '--enable-merge-ffmpeg' '--enable-dca' '--enable-mpc' '--enable-libass' '--enable-x264' '--enable-schroedinger' '--enable-realrtsp' '--enable-live555' '--enable-dvdread' '--enable-shout' '--enable-goom' '--enable-caca' '--disable-sdl' '--enable-qt' '--enable-skins2' '--enable-sse' '--enable-mmx' '--enable-libcddb' '--enable-zvbi' '--disable-telx' '--enable-nls' '--host=i686-w64-mingw32' '--disable-nls' '--disable-upnp' 'host_alias=i686-w64-mingw32' 'PKG_CONFIG_PATH=/mingw32/lib/pkgconfig:/mingw32/share/pkgconfig'
+core debug: using interface module "logger"
+core debug: creating VLM
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 6 candidates
+directsound debug: found 4 devices
+core debug: using audio output module "directsound"
+core debug: keeping audio output
+core core debudebugg::  looking for Creating an inputmeta fetcher module matching for ' "any": Katie Kox BZ.wmv'
+1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: Creating an input for 'Katie Kox BZ.wmv'
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\Chris\AppData\Local\Temp'
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' gives access `file' demux `' path `/E:/Media/Katie Kox BZ.wmv'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access_demux module matching "file": 12 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/E:/Media/Katie Kox BZ.wmv', path='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access module matching "file": 21 candidates
+filesystem debug: opening file `E:\Media\Katie Kox BZ.wmv'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 1000000 KiB/s
+core debug: looking for stream_filter module matching "any": 6 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 6 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for demux module matching "asf": 66 candidates
+asf warning: unknown asf object (not loaded): 0xd9aade20-0x7c17-0x4f9c-0xbc288555dd98e2a2
+asf debug: + 'Root'
+asf debug: |   + 'Header'
+asf debug: |   |   + 'File Properties'
+asf debug: |   |   + 'Header Extension'
+asf debug: |   |   |   + 'Language List'
+asf debug: |   |   |   + 'Object Compatibility'
+asf debug: |   |   |   + 'Metadata'
+asf debug: |   |   |   + 'Padding'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Index Placeholder'
+asf debug: |   |   + 'Extended content description'
+asf debug: |   |   + 'Codec List'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Bitrate Properties'
+asf debug: |   + 'Data'
+asf debug: |   + 'Simple Index'
+asf debug: found 2 streams
+asf debug: added new audio stream(codec:0x161,ID:1)
+core debug: selecting program id=0
+asf debug: added new video stream(ID:2)
+core debug: using demux module "asf"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: avcodec codec (Windows Media Audio 2) started
+core debug: using decoder module "avcodec"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: avcodec codec (Windows Media Video 9) started
+core debug: using decoder module "avcodec"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\reader
+core debug: no meta reader modules matched
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' successfully opened
+core debug: Buffering 0%
+coreavcodecavcodec debug: warning:  debug: P Buffering ah0ysical channel configuration novt seailable %hardware decoder o
+tutput format  : guessicngore6 debug: 1
+Buffe (corering dx debug16%: 
+reusing audio output
+va2_vcdirectsoundldore) debug: 
+ debug: avcodecOpening DirectSound Audio Outp debug: ut
+Baufferving ailable 72%soft
+ware decoder output format core0 ( debug: yuv420p)Stream buffering done (
+378 ms icn ore0 ms) debu
+g: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+core debug: looking for text renderer module matching "any": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+core debug: looking for video filter2 module matching "any": 58 candidates
+directsound debug: Windows speaker config: Stereo and stream has 2 channels, using s2wscale channels debug
+: 32x32 (32x32) chroma: YUVA -> 16x16 (16x16) chroma: RGBA with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: looking for video filter2 module matching "any": 58 candidates
+core debug: output 'f32l' 44100 Hz Stereo frame=1 samples/8 bytes
+core debug: looking for audio volume module matching yuvp" debug: any": YUVP to 2 candidatesYUVA converter
+
+core debug: using video filter2 module "core debug: yuvp"using 
+audio volume module "corefloat_mixer" debug
+: Deicore debug: nterlacingi availablenput '
+f32l' 44100 Hz Stereo frame=c1 samples/8 bytesore
+ debug: decoreinterlace  debug0, mode : bllooking for end, is_needed audio filter module matching "0scaletempo": 
+14 candidates
+core debug: Opening vout display wrapper
+scaletempocore debug:  debug: format: looking for 44100 rate, vout display module matching "2 nch, 4 bps, vmem": fl32
+11 candiscaletempodates debug: 
+params: 30 stride, 0.200 overlap, 14 search
+scaletempo debug: 1.000 scale, 1323.000 stride_in, 1323 stride_out, 1059 standing, 264 overlap, 617 search, 2204 queue, fl32 mode
+core debug: using audio filter module "scaletempo"
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "samplerate"
+core debug: End of audio preroll
+core debug: VoutDisplayEvent 'fullscreen' 0
+core debug: VoutDisplayEvent 'resize' 768x448 window
+core debug: using vout display module "vmem"
+core debug: A filter to adapt decoder to display is needed
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 768x432 (768x448) chroma: I420 -> 768x448 (768x448) chroma: RV32 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (0dea2edc) appended to chain
+core debug: original format sz 768x448, of (0,0), vsz 768x432, 4cc I420, sar 1:1, msk r0x0 g0x0 b0x0
+corec error: oreFailed to change zoom
+ debugcore:  error: removing module "Failed to set on topfreetype"
+
+core error: core debug: Failed to change source ARlooking for 
+text renderer module matching "any": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 45 ms
+ccoreore warning:  warpicture is too late to be displayed (missing n7ing: 4 ms)
+buffer too late (-140000 us): dropped
+core warning: picture is too late to be displayed (missing 45 ms)
+core debug: picture might be displayed late (missing 12 ms)
+core debug: control: stopping input
+core debug: removing module "avcodec"
+avcodec debug: ffmpeg codec (Windows Media Audio 2) stopped
+core debug: killing decoder fourcc `WMA2', 0 PES in FIFO
+core debug: removing module "samplerate"
+core debug: removing module "scaletempo"
+directsound debug: closing audio device
+core debug: removing module "float_mixer"
+core debug: keeping audio output
+core warning: can't get output picture
+core warning: can't get output picture
+core debug: removing module "avcodec"
+avcodec debug: ffmpeg codec (Windows Media Video 9) stopped
+core debug: killing decoder fourcc `WMV3', 24 PES in FIFO
+core debug: saving a free vout
+core debug: reusing provided vout
+ccoreore error:  debug: Failed to change zoomremoving module "
+asf"core
+ error: Failed to change source ARcore
+ debug: Program doesn't contain anymore ES
+core debug: removing module "record"
+core debug: removing module "filesystem"
+core debug: removing module "directsound"
+core debug: destroying useless vout
+core debug: Filter 0dea2edc removed from chain
+core debug: removing module "swscale"
+core debug: removing module "vmem"
+core debug: removing module "freetype"
+core debug: removing module "yuvp"
+core debug: removing module "swscale"
+core debug: Creatingcore an input for ' debugKatie K: ox BZ.wmv'looking for 
+meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fecoretcher debug:  modules matchedmeta ok for 
+(null), need to fetch art
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: art not found for Katie Kox BZ.wmv
+core debug: looking for coremeta fetcher module matching "any":  debug1:  cCreating an input for 'andidatesKatie Kox BTAS BZ.wmv'
+
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BTAS BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BTAS BZ.wmv
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BTAS BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BTAS BZ.wmv
+core debug: lookingcore for  debug: meta fetcher module matching "any": C1reating an input for ' candidatesKatie Kox DA BZ.wmv'
+
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox DA BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox DA BZ.wmv
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox DA BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox DA BZ.wmv
+core debug: Creating an input for 'Katie Kox DA BZ.wmv'
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\Chris\AppData\Local\Temp'
+core debug: `file:///E:/Media/Katie Kox DA BZ.wmv' gives access `file' demux `' path `/E:/Media/Katie Kox DA BZ.wmv'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox DA BZ.wmv' file='E:\Media\Katie Kox DA BZ.wmv'
+core debug: looking for access_demux module matching "file": 12 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/E:/Media/Katie Kox DA BZ.wmv', path='E:\Media\Katie Kox DA BZ.wmv'
+core debug: looking for access module matching "file": 21 candidates
+filesystem debug: opening file `E:\Media\Katie Kox DA BZ.wmv'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 1000000 KiB/s
+core debug: looking for stream_filter module matching "any": 6 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 6 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox DA BZ.wmv' file='E:\Media\Katie Kox DA BZ.wmv'
+core debug: looking for demux module matching "asf": 66 candidates
+asf warning: unknown asf object (not loaded): 0xd9aade20-0x7c17-0x4f9c-0xbc288555dd98e2a2
+asf debug: + 'Root'
+asf debug: |   + 'Header'
+asf debug: |   |   + 'File Properties'
+asf debug: |   |   + 'Header Extension'
+asf debug: |   |   |   + 'Language List'
+asf debug: |   |   |   + 'Object Compatibility'
+asf debug: |   |   |   + 'Metadata'
+asf debug: |   |   |   + 'Padding'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Index Placeholder'
+asf debug: |   |   + 'Extended content description'
+asf debug: |   |   + 'Codec List'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Bitrate Properties'
+asf debug: |   + 'Data'
+asf debug: |   + 'Simple Index'
+asf debug: found 2 streams
+asf debug: added new audio stream(codec:0x161,ID:1)
+core debug: selecting program id=0
+asf debug: added new video stream(ID:2)
+core debug: using demux module "asf"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: avcodec codec (Windows Media Audio 2) started
+core debug: using decoder module "avcodec"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: avcodec codec (Windows Media Video 9) started
+core debug: using decoder module "avcodec"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\reader
+core debug: no meta reader modules matched
+core debug: `file:///E:/Media/Katie Kox DA BZ.wmv' successfully opened
+core debug: Buffering 0%
+coravcodec debug: avcodecava warning: ePilabh debug: ysical channel configuBuffering 0%
+ration not set : guescoresingl
+e  debug:ch orBuffering e31%
+ debug: ardware decoder output format cor61 (cdxva2_vld)reating audio ou
+etput
+avcodec debug:  debug:core B debug: auffering looking for vailable software daudio output module matching "any": e6 candidates
+7coder output format 0 6(%yuv420p)
+
+directsoundcore debug:  debug: founlooking for d hw decoder m4 devices
+ocoredule matching " debug: none": using 1 candidatesaudio output module "
+direccoretsound debug: "no 
+hw decoder modules madirectsoundtched debug: 
+Opening DirectSound Audio Output
+core debug: looking for text renderer module matching "any": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 32x32 (32x32) chroma: YUVA -> 16x16 (16x16) chroma: RGBA with scaling using Bicubic (good quality)
+core debug: using video filter2 dmirectsound debug: oWindows speaker config: dStereo and stream has 2 channels, using u2 channelsle "
+swscale"
+core debug: looking for video filter2 module matching "any": 58 candidates
+yuvp debug: YUVP to YUVA converter
+core debug: using video filter2 module "yuvp"
+core debug: Deinterlacing available
+core debug: deinterlace 0, mode blend, is_needed 0
+core debug: Opening vout display wrapper
+core debug: looking for vout display module matching "vmem": 11 candidates
+core debug: output 'f32l' 44100 Hz Stereo frame=1 samples/8 bytes
+core debug: looking for audio volume module matching "any": 2 candidates
+core debug: using audio volume module "float_mixer"
+core debug: input 'f32l' 44100 Hz Stereo frame=1 samples/8 bytes
+core debug: looking for audio filter module matching "scaletempo": 14 candidates
+scaletempo debug: format: 44100 rate, 2 nch, 4 bps, fl32
+scaletempo debug: params: 30 stride, 0.200 overlap, 14 search
+scaletempo debug: 1.000 scale, 1323.000 stride_in, 1323 stride_out, 1059 standing, 264 overlap, 617 search, 2204 queue, fl32 mode
+core debug: using audio filter module "scaletempo"
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "samplerate"
+core debug: End of audio preroll
+core debug: VoutDisplayEvent 'fullscreen' 0
+core debug: VoutDisplayEvent 'resize' 768x448 window
+core debug: using vout display module "vmem"
+core debug: A filter to adapt decoder to display is needed
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 768x432 (768x448) chroma: I420 -> 768x448 (768x448) chroma: RV32 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (0de4507c) appended to chain
+core debug: original format sz 768x448, of (0,0), vsz 768x432, 4cc I420, sar 1:1, msk r0x0 g0x0 b0x0
+core errorcore debug: :removing module " freetype"Failed to change zoom
+
+core error: Failed to set onco retop debug: 
+looking for coretext renderer module matching "any":  error: 2 candidates
+Failed to change source AR
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+core debug: Stream buffering done (394 ms in 50 ms)
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 3145 ms
+core warning: buffer too late (core-129000 warning:  us): droppedpicture is too late to be disp
+layed (missing 64 ms)
+core error:core  warning: ES_OUTbuffer too late (_-837282 us): dropped
+SET_(GROUP_)PCR  is called too late (pts_delay increased to 300 ms)
+core error: ES_OUT_RESET_PCR called
+core warning: early picture skipped
+core debug: cBuffering ore0 debug: %
+End of audio preroll
+core debug: Buffering 46%
+core debug: Buffering 93%
+core debug: Stream buffering done (418 ms in 2 ms)
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 1262 ms
+core warning: buffer too late (-129000 us): droppedcore
+ warning: picture is too late to be displayed (missing 45 ms)
+core debug: picture might be displayed late (missing 16 ms)
+core warning: picture is too late to be displayed (micoressin warning: g buffer too late (755 ms)-347681 us): dropped
+
+core error: ES_OUT_SET_(GROUP_)PCR  is called too late (pts_delay increased to 556 ms)
+core error: ES_OUT_RESET_PCR called
+core warning: early picture skipped
+core debcoreug debug: : End of audio preroll
+Buffering 0%
+core debug: Buffering 25%
+core debug: Buffering 41%
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Buffering 66%
+core debug: Buffering 91%
+core debug: Stream buffering done (672 ms in 959 ms)
+core debug: Decoder wait done in 4 ms
+core warning: buffer too late (-129000 us): dropped
+core warning: picture is too late to be displayed (missing 326 ms)
+core warning: picture is too late to be displayed (missing 449 ms)
+core error: ES_OUT_ScoreEcoreT_(GROUP_)PCR  is called warni  warning: ng: tpicture is too late to bebuffer displayed (missing too late ( -527443 us): droppedo1o 
+952late  ms)(pts_delay increased to 
+919 ms)
+core error: ES_OUT_RESET_PCR called
+core warning: early picture skipped
+core debug: Bcoreuffering  d0ebug: %End of audio prerol
+l
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Buffering 20%
+core debug: Buffering 40%
+core debug: Buffering 65%
+core debug: Buffering 85%
+core debug: Stream buffering done (976 ms in 176 ms)
+core debug: Decoder wait done in 192 ms
+core warning: buffer too late (-175000 us): dropped
+core warning: picture is too late to be displayed (missing 96 ms)
+core warning: picture is too late to be displayed (missing 269 ms)
+core warning: picture is too late to be displayed (missing 241 ms)
+core warning: picture is too late to be displayed (missing 212 ms)
+core warning: picture is too late to be displayed (missing 617 ms)
+avcodec warning: More than 4 late frames, dropping frame
+avcodec warning: More than 4 late frames, dropping frame
+avcodec warning: More than 4 late frames, dropping frame
+avcodec warning: More than 4 late frames, dropping frame
+avcodec warning: More than 4 late frames, dropping frame
+avcodec warning: More than 4 late frames, dropping frame
+avcodec warning: More than 4 late frames, dropping frame
+avcodec warning: More than 4 late frames, dropping frame
+avcodec warning: More than 4 late frames, dropping frame
+avcodec warning: More than 4 late frames, dropping frame
+avcodec warning: More than 4 late frames, dropping frame
+avcodec warning: More than 4 late frames, dropping frame
+avcodec error: more than 5 seconds of late video -> dropping frame (computer too slow ?)
+avcodec error: more than 5 seconds of late video -> dropping frame (computer too slow ?)
+avcodec error: more than 5 seconds of late video -> dropping frame (computer too slow ?)
+avcodec error: more than 5 seconds of late video -> dropping frame (computer too slow ?)
+avcodec error: more than 5 seconds of late video -> dropping frame (computer too slow ?)
+avcodec error: more than 5 seconds of late video -> dropping frame (computer too slow ?)
+avcodec error: more than 5 seconds of late video -> dropping frame (computer too slow ?)
+avcodec error: more than 5 seconds of late video -> dropping frame (computer too slow ?)
+avcodec error: more than 5 seconds of late video -> dropping frame (computer too slow ?)
+avcodec error: more than 5 seconds of late video -> dropping frame (computer too slow ?)
+avcodec error: more than 5 seconds of late video -> dropping frame (computer too slow ?)
+avcodec error: more than 5 seconds of late video -> dropping frame (computer too slow ?)
+core warning: picture is too late to be displayed (missing 4680 ms)
+core warning: picture is too late to be displayed (missing 5007 ms)
+core warning: picture is too late to be displayed (missing 4976 ms)
+core warning: picture is too late to be displayed (missing 5342 ms)
+core warning: picture is too late to be displayed (missing 5313 ms)
+core error: ES_OUT_SET_(GROUP_)PCR  is called too late (pts_delay increased to core1091 ms) warning: 
+buffcoreer too late (-684 error572:  us): droppedE
+S_OUT_RESET_PCR called
+core debug: cBuffering ore0 debug: %End of audio preroll
+
+core debug: Buffering 21%
+core debug: Buffering 38%
+core debug: Buffering 56%
+core debug: Buffering 76%
+core debug: Buffering 93%
+core debug: Stream buffering done (1208 ms in 2 ms)
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 5745 ms
+core warning: buffer too late (-129000 us): dropped
+﻿-- logger module started --
+core debug: VLC media player - 2.2.0-xZune Weatherwax
+core debug: Copyright © 1996-2015 the VideoLAN team
+core debug: revision 2.2.0-0-g1349ef2
+core debug: configured with ../extras/package/win32/../../../configure  '--enable-update-check' '--enable-lua' '--enable-faad' '--enable-flac' '--enable-theora' '--enable-twolame' '--enable-quicktime' '--enable-avcodec' '--enable-merge-ffmpeg' '--enable-dca' '--enable-mpc' '--enable-libass' '--enable-x264' '--enable-schroedinger' '--enable-realrtsp' '--enable-live555' '--enable-dvdread' '--enable-shout' '--enable-goom' '--enable-caca' '--disable-sdl' '--enable-qt' '--enable-skins2' '--enable-sse' '--enable-mmx' '--enable-libcddb' '--enable-zvbi' '--disable-telx' '--enable-nls' '--host=i686-w64-mingw32' '--disable-nls' '--disable-upnp' 'host_alias=i686-w64-mingw32' 'PKG_CONFIG_PATH=/mingw32/lib/pkgconfig:/mingw32/share/pkgconfig'
+core debug: using interface module "logger"
+core debug: creating VLM
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 6 candidates
+directsound debug: found 4 devices
+core debug: using audio output module "directsound"
+core debug: keeping audio output
+core debug: coreloo debug: king for Creating an input for 'meta fetcher mKatie Kox BZ.wmv'
+odule matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: Creating an input for 'Katie Kox BZ.wmv'
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\Chris\AppData\Local\Temp'
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' gives access `file' demux `' path `/E:/Media/Katie Kox BZ.wmv'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access_demux module matching "file": 12 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/E:/Media/Katie Kox BZ.wmv', path='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access module matching "file": 21 candidates
+filesystem debug: opening file `E:\Media\Katie Kox BZ.wmv'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 1000000 KiB/s
+core debug: looking for stream_filter module matching "any": 6 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 6 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for demux module matching "asf": 66 candidates
+asf warning: unknown asf object (not loaded): 0xd9aade20-0x7c17-0x4f9c-0xbc288555dd98e2a2
+asf debug: + 'Root'
+asf debug: |   + 'Header'
+asf debug: |   |   + 'File Properties'
+asf debug: |   |   + 'Header Extension'
+asf debug: |   |   |   + 'Language List'
+asf debug: |   |   |   + 'Object Compatibility'
+asf debug: |   |   |   + 'Metadata'
+asf debug: |   |   |   + 'Padding'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Index Placeholder'
+asf debug: |   |   + 'Extended content description'
+asf debug: |   |   + 'Codec List'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Bitrate Properties'
+asf debug: |   + 'Data'
+asf debug: |   + 'Simple Index'
+asf debug: found 2 streams
+asf debug: added new audio stream(codec:0x161,ID:1)
+core debug: selecting program id=0
+asf debug: added new video stream(ID:2)
+core debug: using demux module "asf"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: avcodec codec (Windows Media Audio 2) started
+core debug: using decoder module "avcodec"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: avcodec codec (Windows Media Video 9) started
+core debug: using decoder module "avcodec"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\reader
+core debug: no meta reader modules matched
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' successfully opened
+core debug: Buffering 0%
+caorevcodec debu debgug: avcodec: Buffering a0vailable  warning: %Physical channel con
+hfiguration not set : guesacoresingrd
+ware d debug: coreecoder ouBu debug: tput formatffering reusing audio output
+16% 
+6d1irectsound debug:  core debug: (Buffering Odxva2_vldpening DirectSound A)udio Output
+
+72%
+avcodec debug: available software decoder output format c0 (oreyuv420p) debug: 
+Stream buffering done (core378 ms in  debug: 0 ms)l
+ooking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+core debug: looking for text renderer module matching "any": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+core debug: looking for video filter2 module matching "any": 58 candidates
+directsound debug: Windows speaker config: Stereo and stream has 2 channels, using 2 channels
+swscale debug: 32x32 (32x32) chroma: YUVA -> 16x16 (16x16) chroma: RGBA with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: looking for video filter2 module matching "any": 58 candidates
+core debug: output 'f32l' 44100 Hz Stereo frame=1 samples/8 bytes
+core debug: looking for audio volume module matching "any": 2 candidates
+yuvp debug: YUVP to YUVA convertercore
+ debcoreug debug::  using using audio volume module "video filter2float_mixer"
+ module "cyuvpore" debug: 
+input 'f32l' 44100 Hcz oreStereo frame= debug: 1 samples/Deinterlacing available
+8 bytes
+core debugc: oredeinterlace  debug: 0, mode looking for audio filter module matching "blend, is_needed s0caletempo": 
+14 candidates
+core debug: Opening vout display wrapperscaletempo
+ debug: fcoreormat:  debug: 44100looking for  rate, vout display module matching "2 nch, vmem": 4 bps, 11fl32 candidates
+
+scaletempo debug: params: 30 stride, 0.200 overlap, 14 search
+scaletempo debug: 1.000 scale, 1323.000 stride_in, 1323 stride_out, 1059 standing, 264 overlap, 617 search, 2204 queue, fl32 mode
+core debug: using audio filter module "scaletempo"
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "samplerate"
+core debug: End of audio preroll
+core debug: VoutDisplayEvent 'fullscreen' 0
+core debug: VoutDisplayEvent 'resize' 768x448 window
+core debug: using vout display module "vmem"
+core debug: A filter to adapt decoder to display is needed
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 768x432 (768x448) chroma: I420 -> 768x448 (768x448) chroma: RV32 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (0d507a44) appended to chain
+core debug: original format sz 768x448, of (0,0), vsz 768x432, 4cc I420, sar 1:1, msk r0x0 g0x0 b0x0
+corec debug: oreremoving module " error: freetype"Failed to change zoom
+
+core error: core debug: Faloiled to set on top
+okincoreg for  error: text rFailed to change source AR
+enderer module matching "any": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 50 ms
+ccore warning: orebuffer too late ( warning: -140000 us): droppedpicture is too late to be displayed (missing 
+74 ms)
+core warning: picture is too late to be displayed (missing 45 ms)
+core debug: picture might be displayed late (missing 12 ms)
+core debug: control: stopping input
+core debug: removing module "avcodec"
+avcodec debug: ffmpeg codec (Windows Media Audio 2) stopped
+core debug: killing decoder fourcc `WMA2', 0 PES in FIFO
+core debug: removing module "samplerate"
+core debug: removing module "scaletempo"
+directsound debug: closing audio device
+core debug: removing module "float_mixer"
+core debug: keeping audio output
+core warning: can't get output picture
+core debug: removing module "avcodec"
+avcodec debug: ffmpeg codec (Windows Media Video 9) stopped
+core debug: killing decoder fourcc `WMV3', 10 PES in FIFO
+core debug: saving a free vout
+core debug: reusing provided vout
+cocreore error:  debug: Failed to change zoom
+removing module "coreasf" error: 
+Failed to change source AR
+core debug: Program doesn't contain anymore ES
+core debug: removing module "record"
+core debug: removing module "filesystem"
+core debug: removing module "directsound"
+core debug: destroying useless vout
+core debug: Filter 0d507a44 removed from chain
+core debug: removing module "swscale"
+core debug: removing module "vmem"
+core debug: removing module "freetype"
+core debug: removing module "yuvp"
+core debug: removing module "swscale"
+﻿-- logger module started --
+core debug: VLC media player - 2.2.0-xZune Weatherwax
+core debug: Copyright © 1996-2015 the VideoLAN team
+core debug: revision 2.2.0-0-g1349ef2
+core debug: configured with ../extras/package/win32/../../../configure  '--enable-update-check' '--enable-lua' '--enable-faad' '--enable-flac' '--enable-theora' '--enable-twolame' '--enable-quicktime' '--enable-avcodec' '--enable-merge-ffmpeg' '--enable-dca' '--enable-mpc' '--enable-libass' '--enable-x264' '--enable-schroedinger' '--enable-realrtsp' '--enable-live555' '--enable-dvdread' '--enable-shout' '--enable-goom' '--enable-caca' '--disable-sdl' '--enable-qt' '--enable-skins2' '--enable-sse' '--enable-mmx' '--enable-libcddb' '--enable-zvbi' '--disable-telx' '--enable-nls' '--host=i686-w64-mingw32' '--disable-nls' '--disable-upnp' 'host_alias=i686-w64-mingw32' 'PKG_CONFIG_PATH=/mingw32/lib/pkgconfig:/mingw32/share/pkgconfig'
+core debug: using interface module "logger"
+core debug: creating VLM
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 6 candidates
+directsound debug: found 4 devices
+core debug: using audio output module "directsound"
+core debug: keeping audio output
+corecore debug:  debug: looking for Creating an input for 'meta fetcherKatie Kox BZ.wmv' mod
+ule matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: Creating an input for 'Katie Kox BZ.wmv'
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\Chris\AppData\Local\Temp'
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' gives access `file' demux `' path `/E:/Media/Katie Kox BZ.wmv'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access_demux module matching "file": 12 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/E:/Media/Katie Kox BZ.wmv', path='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access module matching "file": 21 candidates
+filesystem debug: opening file `E:\Media\Katie Kox BZ.wmv'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 1000000 KiB/s
+core debug: looking for stream_filter module matching "any": 6 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 6 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for demux module matching "asf": 66 candidates
+asf warning: unknown asf object (not loaded): 0xd9aade20-0x7c17-0x4f9c-0xbc288555dd98e2a2
+asf debug: + 'Root'
+asf debug: |   + 'Header'
+asf debug: |   |   + 'File Properties'
+asf debug: |   |   + 'Header Extension'
+asf debug: |   |   |   + 'Language List'
+asf debug: |   |   |   + 'Object Compatibility'
+asf debug: |   |   |   + 'Metadata'
+asf debug: |   |   |   + 'Padding'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Index Placeholder'
+asf debug: |   |   + 'Extended content description'
+asf debug: |   |   + 'Codec List'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Bitrate Properties'
+asf debug: |   + 'Data'
+asf debug: |   + 'Simple Index'
+asf debug: found 2 streams
+asf debug: added new audio stream(codec:0x161,ID:1)
+core debug: selecting program id=0
+asf debug: added new video stream(ID:2)
+core debug: using demux module "asf"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: avcodec codec (Windows Media Audio 2) started
+core debug: using decoder module "avcodec"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: avcodec codec (Windows Media Video 9) started
+core debug: using decoder module "avcodec"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\reader
+core debug: no meta reader modules matched
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' successfully opened
+core debug: Buffering 0%
+core debugavcodec d:ebug:  aavailavcodecBuffering  warningb: 0%Physical chann
+el configuration not set : guesslincgore
+ debueg: core Buffering  debug: hardwar16ereusing audio output
+ decoder d%irectsound
+ debug: output format Opening DirectSound Audio Outputc
+o6re1 debug:  (Buffering dxva2_vld)72
+%
+avcodec debug: available core debug: software decoder oStream buffering done (utput for378ma t ms in 00 ( ms)yuv420p)
+
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+core debug: looking for text renderer module matching "any": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+core debug: looking for video filter2 module matching "any": 58 candidates
+directsound debug: Windows speaker config: Stereo and stream has 2 channels, using 2 channels
+swscale debug: 32x32 (32x32) chroma: YUVA -> 16x16 (16x16) chroma: RGBA with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: looking for video filter2 module matching "any": 58 candidates
+core debug: output 'f32l' 44100 Hz Stereo frame=1 samples/8 bytes
+core debugyuvp:  debug: looking for YUVP to audio volume module matching "YUVA converterany": 
+2 cancore debug: didatesusing 
+video filter2 module "yuvp"
+core debucoreg:  debug: using Deinterlacing availableaudio volume module "
+float_mixer"core
+ debugcore:  debug: deinterlace input '0,f32l'  mode 44100 Hz blend, is_needed Stereo frame=01 samples/8 bytes
+
+core debug: looking for audio filter module matching "corescaletempo":  debug: 14 candidatesOpening vout display wrapper
+
+core debug: looking for vout display module matching "scaletempovmem":  debug: 11 candidatesformat: 
+44100 rate, 2 nch, 4 bps, fl32
+scaletempo debug: params: 30 stride, 0.200 overlap, 14 search
+scaletempo debug: 1.000 scale, 1323.000 stride_in, 1323 stride_out, 1059 standing, 264 overlap, 617 search, 2204 queue, fl32 mode
+core debug: using audio filter module "scaletempo"
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "samplerate"
+core debug: End of audio preroll
+core debug: VoutDisplayEvent 'fullscreen' 0
+core debug: VoutDisplayEvent 'resize' 768x448 window
+core debug: using vout display module "vmem"
+core debug: A filter to adapt decoder to display is needed
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 768x432 (768x448) chroma: I420 -> 768x448 (768x448) chroma: RV32 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (0e676f74) appended to chain
+core debug: original format sz 768x448, of (0,0), vsz 768x432, 4cc I420, sar 1:1, msk r0x0 g0x0 b0x0
+ccoreore debug:  error: removing module "Failed to change zoom
+freetypecore" error: 
+Failed to set on topcore
+ debug:core error:  Failed tlooking for o change source Atext renderer module matching "any": R2 candidates
+
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 60 ms
+ccoreore warning:  warning: picture is too late to be displayed (missing b7uffer too l4 ate (ms)
+-140000 us): dropped
+core warning: picture is too late to be displayed (missing 40 ms)
+core debug: picture might be displayed late (missing 12 ms)
+core debug: control: stopping input
+core debug: removing module "avcodec"
+avcodec debug: ffmpeg codec (Windows Media Audio 2) stopped
+core debug: killing decoder fourcc `WMA2', 0 PES in FIFO
+core debug: removing module "samplerate"
+core debug: removing module "scaletempo"
+directsound debug: closing audio device
+core debug: removing module "float_mixer"
+core debug: keeping audio output
+core warning: can't get output picture
+core warning: can't get output picture
+core debug: removing module "avcodec"
+avcodec debug: ffmpeg codec (Windows Media Video 9) stopped
+core debug: killing decoder fourcc `WMV3', 24 PES in FIFO
+core debug: saving a free vout
+core debug: reusing provided vout
+core debug: removing module "asf"
+core debug: Program doesn't contain anymore ES
+core debug: removing module "record"
+core debug: removing module "filesystem"
+core debug: removing module "directsound"
+core debug: destroying useless vout
+core debug: Filter 0e676f74 removed from chain
+core debug: removing module "swscale"
+core debug: removing module "vmem"
+core debug: removing module "freetype"
+core debug: removing module "yuvp"
+core debug: removing module "swscale"
+core debug: Creating an input for 'Katie Kox BZ.wmv'
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\Chris\AppData\Local\Temp'
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' gives access `file' demux `' path `/E:/Media/Katie Kox BZ.wmv'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access_demux module matching "file": 12 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/E:/Media/Katie Kox BZ.wmv', path='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access module matching "file": 21 candidates
+filesystem debug: opening file `E:\Media\Katie Kox BZ.wmv'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 1000000 KiB/s
+core debug: looking for stream_filter module matching "any": 6 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 6 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for demux module matching "asf": 66 candidates
+asf warning: unknown asf object (not loaded): 0xd9aade20-0x7c17-0x4f9c-0xbc288555dd98e2a2
+asf debug: + 'Root'
+asf debug: |   + 'Header'
+asf debug: |   |   + 'File Properties'
+asf debug: |   |   + 'Header Extension'
+asf debug: |   |   |   + 'Language List'
+asf debug: |   |   |   + 'Object Compatibility'
+asf debug: |   |   |   + 'Metadata'
+asf debug: |   |   |   + 'Padding'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Index Placeholder'
+asf debug: |   |   + 'Extended content description'
+asf debug: |   |   + 'Codec List'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Bitrate Properties'
+asf debug: |   + 'Data'
+asf debug: |   + 'Simple Index'
+asf debug: found 2 streams
+asf debug: added new audio stream(codec:0x161,ID:1)
+core debug: selecting program id=0
+asf debug: added new video stream(ID:2)
+core debug: using demux module "asf"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: avcodec codec (Windows Media Audio 2) started
+core debug: using decoder module "avcodec"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: avcodec codec (Windows Media Video 9) started
+core debug: using decoder module "avcodec"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\reader
+core debug: no meta reader modules matched
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' successfully opened
+core debug: Buffering 0%
+coreaavcodecvcodec  debug:  warning: debugavailable : Physical channel configuratioBuffering n0hardware decoder output forma%
+t  not set : guessing6
+1cor coree(  debug: debug: creating audio Buffering outputdxva2_vld)1
+
+6%
+avcodecc debug: oreavailable csoftware decoder ouoretput f debug: ormat  0Budebug:  (lookinyuv420pg for ff)audio outpuet module matching "ring 
+any": 762c%ore
+ d candidatesebug: 
+looking for corehw decoder module matching " debug: none": dStream buffering done (irects378 mounds in  debug5 ms)
+: 1 candidatesf
+oundcore  debug: 4 devicesno 
+hw decodercore modules matched debug: 
+using audio output module "directsound"
+directsoundcore debug:  debug: Opening DirectSound Audio Output
+looking for text renderer module matching "any": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 32x32 (32x32) chroma: YUVA -> 16x16 (16x16) chroma: RGBA with scaling using directsoundBicubic (good quality) debug: 
+Wicndowsore speaker config:  debug: Stereo and stream has 2 channels, using 2 channelsu
+sing video filter2 module "swscale"
+core debug: looking for video filter2 module matching "any": 58 candidates
+yuvp debug: YUVP to YUVA converter
+core debug: using video filter2 module "yuvp"
+core debug: Deinterlacing available
+core debug: deinterlace 0, mode blend, is_needed 0
+core debug: Opening vout display wrapper
+core debug: looking for vout display module matching "vmem": 11 candidates
+core debug: output 'f32l' 44100 Hz Stereo frame=1 samples/8 bytes
+core debug: looking for audio volume module matching "any": 2 candidates
+core debug: using audio volume module "float_mixer"
+core debug: input 'f32l' 44100 Hz Stereo frame=1 samples/8 bytes
+core debug: looking for audio filter module matching "scaletempo": 14 candidates
+scaletempo debug: format: 44100 rate, 2 nch, 4 bps, fl32
+scaletempo debug: params: 30 stride, 0.200 overlap, 14 search
+scaletempo debug: 1.000 scale, 1323.000 stride_in, 1323 stride_out, 1059 standing, 264 overlap, 617 search, 2204 queue, fl32 mode
+core debug: using audio filter module "scaletempo"
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "samplerate"
+core debug: End of audio preroll
+core debug: VoutDisplayEvent 'fullscreen' 0
+core debug: VoutDisplayEvent 'resize' 768x448 window
+core debug: using vout display module "vmem"
+core debug: A filter to adapt decoder to display is needed
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 768x432 (768x448) chroma: I420 -> 768x448 (768x448) chroma: RV32 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (084563b4) appended to chain
+core debug: original format sz 768x448, of (0,0), vsz 768x432, 4cc I420, sar 1:1, msk r0x0 g0x0 b0x0
+core errorcor:e  debug: Failed to charemoving module "nge zoom
+freetypecore" error: 
+Failed to set on topcore
+ debug: corelooking for  error: text renderer module matching "Failed to chanage source ARny
+": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 5083 ms
+corecore warning warning: : buffer too late (pictu-140000r us): dropped
+e is too late to be displayed (missing 74 ms)
+core warning: picture is too late to be displayed (missing 45 ms)
+﻿-- logger module started --
+core debug: VLC media player - 2.2.0-xZune Weatherwax
+core debug: Copyright © 1996-2015 the VideoLAN team
+core debug: revision 2.2.0-0-g1349ef2
+core debug: configured with ../extras/package/win32/../../../configure  '--enable-update-check' '--enable-lua' '--enable-faad' '--enable-flac' '--enable-theora' '--enable-twolame' '--enable-quicktime' '--enable-avcodec' '--enable-merge-ffmpeg' '--enable-dca' '--enable-mpc' '--enable-libass' '--enable-x264' '--enable-schroedinger' '--enable-realrtsp' '--enable-live555' '--enable-dvdread' '--enable-shout' '--enable-goom' '--enable-caca' '--disable-sdl' '--enable-qt' '--enable-skins2' '--enable-sse' '--enable-mmx' '--enable-libcddb' '--enable-zvbi' '--disable-telx' '--enable-nls' '--host=i686-w64-mingw32' '--disable-nls' '--disable-upnp' 'host_alias=i686-w64-mingw32' 'PKG_CONFIG_PATH=/mingw32/lib/pkgconfig:/mingw32/share/pkgconfig'
+core debug: using interface module "logger"
+core debug: creating VLM
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 6 candidates
+directsound debug: found 4 devices
+core debug: using audio output module "directsound"
+core debug: keeping audio output
+corec debug: oreCreating an input for ' debug:Katie Kox BZ.wmv' 
+looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Katie Kox BZ.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Katie Kox BZ.wmv
+core debug: Creating an input for 'Katie Kox BZ.wmv'
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\Chris\AppData\Local\Temp'
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' gives access `file' demux `' path `/E:/Media/Katie Kox BZ.wmv'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access_demux module matching "file": 12 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/E:/Media/Katie Kox BZ.wmv', path='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for access module matching "file": 21 candidates
+filesystem debug: opening file `E:\Media\Katie Kox BZ.wmv'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 999 KiB/s
+core debug: looking for stream_filter module matching "any": 6 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 6 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Katie Kox BZ.wmv' file='E:\Media\Katie Kox BZ.wmv'
+core debug: looking for demux module matching "asf": 66 candidates
+asf warning: unknown asf object (not loaded): 0xd9aade20-0x7c17-0x4f9c-0xbc288555dd98e2a2
+asf debug: + 'Root'
+asf debug: |   + 'Header'
+asf debug: |   |   + 'File Properties'
+asf debug: |   |   + 'Header Extension'
+asf debug: |   |   |   + 'Language List'
+asf debug: |   |   |   + 'Object Compatibility'
+asf debug: |   |   |   + 'Metadata'
+asf debug: |   |   |   + 'Padding'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Extended Stream Properties'
+asf debug: |   |   |   + 'Index Placeholder'
+asf debug: |   |   + 'Extended content description'
+asf debug: |   |   + 'Codec List'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Properties'
+asf debug: |   |   + 'Stream Bitrate Properties'
+asf debug: |   + 'Data'
+asf debug: |   + 'Simple Index'
+asf debug: found 2 streams
+asf debug: added new audio stream(codec:0x161,ID:1)
+core debug: selecting program id=0
+asf debug: added new video stream(ID:2)
+core debug: using demux module "asf"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: avcodec codec (Windows Media Audio 2) started
+core debug: using decoder module "avcodec"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: available hardware decoder output format 61 (dxva2_vld)
+avcodec debug: available software decoder output format 0 (yuv420p)
+core debug: looking for hw decoder module matching "none": 1 candidates
+core debug: no hw decoder modules matched
+avcodec debug: avcodec codec (Windows Media Video 9) started
+core debug: using decoder module "avcodec"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\reader
+core debug: no meta reader modules matched
+core debug: `file:///E:/Media/Katie Kox BZ.wmv' successfully opened
+core debug: Buffering 0%
+coreavcode debug:c avcodec debug: Buffering  warningavailabl: e Physical chhardware decoder output for0mat%a
+ nnel configuration not set : guessinc6g1ore (
+ debugc: oredxva2_Buffering vld debug: )reusing audio outpu
+16%t
+avcodec
+ debug: directsoacoreundvailable  debug: software dOpening DirectSound Audio Output
+ecoder output format  debug: 0Buffering  (72%
+yuv420p)
+core debug: clooking for orehw decoder module matching " debug: nStream buffering done (one378":  1ms in  candidates3 ms)
+
+core debug: no hw decoder modules matched
+core debug: looking for text renderer module matching "any": 2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+core debug: looking for video filter2 module matching "any": 58 candidates
+directsound debug: Windows speaker config: Stereo and stream swscalehas  debug: 2 channels, using 32x2 channe32ls (
+32x32) chroma: YUVA -> 16x16 (16x16) chroma: RGBA with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: looking for video filter2 module matching "any": 58 candidates
+core debug: output 'f32l' 44100yuvp Hz  debug: Stereo frame=YUVP to 1 samples/YUVA converter8 bytes
+
+core dcoreebug:  debug: ulooking for sing audio volume module matching "video filter2 module "any": yuvp"
+2 candidates
+core debug: Deinterlacing available
+core decorebug:  debug: using deinterlace audio volume module "0, mode float_mixer"blend, is_needed 
+0
+core debug: input 'f32l' 44100 Hz Stereo frame=c1ore samples/8 bytes debug: 
+Opening vout dispcore debug: lay wrapperlooking for 
+audio filtercore debug:  module matching "looking for scaletempo": vout display module matching "14 candidatesvmem": 
+11 candidates
+scaletempo debug: format: 44100 rate, 2 nch, 4 bps, fl32
+scaletempo debug: params: 30 stride, 0.200 overlap, 14 search
+scaletempo debug: 1.000 scale, 1323.000 stride_in, 1323 stride_out, 1059 standing, 264 overlap, 617 search, 2204 queue, fl32 mode
+core debug: using audio filter module "scaletempo"
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: conversion: 'f32l'->'f32l' 44100 Hz->44100 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "samplerate"
+core debug: End of audio preroll
+core debug: VoutDisplayEvent 'fullscreen' 0
+core debug: VoutDisplayEvent 'resize' 768x448 window
+core debug: using vout display module "vmem"
+core debug: A filter to adapt decoder to display is needed
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 768x432 (768x448) chroma: I420 -> 768x448 (768x448) chroma: RV32 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (0de07a44) appended to chain
+core debug: original format sz 768x448, of (0,0), vsz 768x432, 4cc I420, sar 1:1, msk r0x0 g0x0 b0x0
+corecore error:  debug: Failed to change zoom
+removing modcoreule " error: freetype"
+Failed to set on topcore
+ debug: corelooking for  errortext renderer module matching "a:ny":  2 candidates
+Failed to change source AR
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 54 ms
+corec warning: orebuffer too late ( warning: -140000 us): droppedpicture is too late to be displayed (missing 
+74 ms)
+core warning: picture is too late to be displayed (missing 48 ms)
+core debug: picture might be displayed late (missing 19 ms)
+core debug: control: stopping input
+core debug: removing module "avcodec"
+avcodec debug: ffmpeg codec (Windows Media Audio 2) stopped
+core debug: killing decoder fourcc `WMA2', 0 PES in FIFO
+core debug: removing module "samplerate"
+core debug: removing module "scaletempo"
+directsound debug: closing audio device
+core debug: removing module "float_mixer"
+core debug: keeping audio output
+core warning: can't get output picture
+core warning: can't get output picture
+core debug: removing module "avcodec"
+avcodec debug: ffmpeg codec (Windows Media Video 9) stopped
+core debug: killing decoder fourcc `WMV3', 14 PES in FIFO
+core debug: saving a free vout
+core debug: reusing provided vout
+core debug: removing module "asf"
+core debug: Program doesn't contain anymore ES
+core debug: removing module "record"
+core debug: removing module "filesystem"
+core debug: removing module "directsound"
+core debug: destroying useless vout
+core debug: Filter 0de07a44 removed from chain
+core debug: removing module "swscale"
+core debug: removing module "vmem"
+core debug: removing module "freetype"
+core debug: removing module "yuvp"
+core debug: removing module "swscale"
