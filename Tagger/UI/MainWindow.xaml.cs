@@ -15,7 +15,8 @@ using System.Windows.Navigation;
 using System.IO;
 using IqdbApi;
 using XamlAnimatedGif;
-using Vlc.DotNet.Wpf;
+//using Vlc.DotNet.Wpf;
+using Meta.Vlc;
 
 
 // Tagger Software
@@ -680,7 +681,7 @@ namespace Tagger
                 Pause2.Visibility = Visibility.Hidden;
                 EventExpander.Visibility = Visibility.Visible;
                 mediaplaying = false;
-                PreviewMedia.Source = new Uri(currentImage.FullName);
+                PreviewMedia.LoadMedia(new Uri(currentImage.FullName));
                 //PreviewMedia.MediaPlayer.SetMedia(currentImage);
                 currentImageWidth = (short)PreviewMedia.ActualWidth;
                 currentImageHeight = (short)PreviewMedia.ActualHeight;
@@ -889,34 +890,27 @@ namespace Tagger
 
         private void PreviewMedia_MediaOpened(object sender, RoutedEventArgs e)
         {
-            if (PreviewMedia.NaturalDuration.HasTimeSpan)
+            mediaTotalTime = PreviewMedia.Time.TotalMilliseconds;
+            VideoProgress.Maximum = mediaTotalTime;
+            var RemainingMilliseconds = mediaTotalTime - PreviewMedia.Time.Milliseconds;
+            var RemainingSeconds = Math.Floor((RemainingMilliseconds / 1000) % 60);
+            var RemainingMinutes = Math.Floor((RemainingMilliseconds / 60000) % 60);
+            var RemainingHours = Math.Floor((RemainingMilliseconds / 3600000) % 60);
+            MediaLength = RemainingHours.ToString("00.") + ":" + RemainingMinutes.ToString("00.") + ":" + RemainingSeconds.ToString("00.");
+            if (mediaTotalTime > 30000)
             {
-                mediaTotalTime = PreviewMedia.NaturalDuration.TimeSpan.TotalMilliseconds;
-                //mediaTotalTime = PreviewMedia.MediaPlayer.GetCurrentMedia().Duration.TotalMilliseconds;             
-                VideoProgress.Maximum = mediaTotalTime;
-                var RemainingMilliseconds = mediaTotalTime - PreviewMedia.Position.TotalMilliseconds;
-                var RemainingSeconds = Math.Floor((RemainingMilliseconds / 1000) % 60);
-                var RemainingMinutes = Math.Floor((RemainingMilliseconds / 60000) % 60);
-                var RemainingHours = Math.Floor((RemainingMilliseconds / 3600000) % 60);
-                MediaLength = RemainingHours.ToString("00.") + ":" + RemainingMinutes.ToString("00.") + ":" + RemainingSeconds.ToString("00.");
-                if (mediaTotalTime > 30000)
-                {
-                    skipInterval = (long)Math.Floor(mediaTotalTime / 30);
-                }
-                if(mediaTotalTime < 10000)
-                {
-                    lessthan10seconds = true;
-                }
-                else
-                {
-                    lessthan10seconds = false;
-                }
-                RemainingMediaTime.Content = MediaLength;
+                skipInterval = (long)Math.Floor(mediaTotalTime / 30);
+            }
+            if (mediaTotalTime < 10000)
+            {
+                lessthan10seconds = true;
             }
             else
             {
-                //VideoProgress.Maximum = 0;
+                lessthan10seconds = false;
             }
+            RemainingMediaTime.Content = MediaLength;
+
             settingprogressbar = true;
             VideoProgress.Value = 0;
             settingprogressbar = false;
@@ -928,7 +922,7 @@ namespace Tagger
         {
             if (mediaopened)
             {
-                PreviewMedia.Volume = Volume.Value;
+                PreviewMedia.Volume = (int)Volume.Value;
                 //PreviewMedia.MediaPlayer.Audio.Volume = (int)Volume.Value;
             }
             settings.Volume = Volume.Value;
@@ -943,35 +937,29 @@ namespace Tagger
         {
             if (!isdragging)
             {
+                var MediaMilliseconds = PreviewMedia.Time.Milliseconds;
+                var MediaSeconds = PreviewMedia.Time.Seconds;
+                var MediaMinutes = PreviewMedia.Time.Minutes;
+                var MediaHours = PreviewMedia.Time.Hours;
+                var RemainingMilliseconds = (PreviewMedia.Time.TotalMilliseconds - PreviewMedia.Time.TotalMilliseconds < 0 ? 0 : PreviewMedia.Time.TotalMilliseconds - PreviewMedia.Time.Milliseconds);
+                var RemainingSeconds = Math.Floor((RemainingMilliseconds / 1000) % 60);
+                var RemainingMinutes = Math.Floor((RemainingMilliseconds / 60000) % 60);
+                var RemainingHours = Math.Floor((RemainingMilliseconds / 3600000) % 60);
 
-                if (PreviewMedia.NaturalDuration.HasTimeSpan)
-                {
-                    var MediaMilliseconds = PreviewMedia.Position.TotalMilliseconds;
-                    var MediaSeconds = PreviewMedia.Position.TotalSeconds;
-                    var MediaMinutes = PreviewMedia.Position.TotalMinutes;
-                    var MediaHours = PreviewMedia.Position.TotalHours;
-                    var RemainingMilliseconds = (PreviewMedia.NaturalDuration.TimeSpan.TotalMilliseconds - PreviewMedia.Position.TotalMilliseconds < 0 ? 0 : PreviewMedia.NaturalDuration.TimeSpan.TotalMilliseconds - PreviewMedia.Position.TotalMilliseconds);
-                    var RemainingSeconds = Math.Floor((RemainingMilliseconds / 1000) % 60);
-                    var RemainingMinutes = Math.Floor((RemainingMilliseconds / 60000) % 60);
-                    var RemainingHours = Math.Floor((RemainingMilliseconds / 3600000) % 60);
-
-                    settingprogressbar = true;
-                    VideoProgress.Value = PreviewMedia.Position.TotalMilliseconds;
-                    settingprogressbar = false;
-                    mediatime.Content = (MediaHours >= 1 ? Math.Floor(MediaHours).ToString("00.") + ":" : "00:") + Math.Floor(MediaMinutes % 60).ToString("00.") + ":" + Math.Floor(MediaSeconds % 60).ToString("00.");
-                    RemainingMediaTime.Content = RemainingHours.ToString("00.") + ":" + RemainingMinutes.ToString("00.") + ":" + RemainingSeconds.ToString("00.");
-
-                }
+                settingprogressbar = true;
+                VideoProgress.Value = PreviewMedia.Time.TotalMilliseconds;
+                settingprogressbar = false;
+                mediatime.Content = (MediaHours >= 1 ? Math.Floor((double)MediaHours).ToString("00.") + ":" : "00:") + Math.Floor((double)MediaMinutes % 60).ToString("00.") + ":" + Math.Floor((double)MediaSeconds % 60).ToString("00.");
+                RemainingMediaTime.Content = RemainingHours.ToString("00.") + ":" + RemainingMinutes.ToString("00.") + ":" + RemainingSeconds.ToString("00.");
             }
         }
 
         private void PreviewMedia_MediaEnded(object sender, RoutedEventArgs e)
         {
-            if (lessthan10seconds || !PreviewMedia.NaturalDuration.HasTimeSpan)
+            if (lessthan10seconds)
             {
                 timer.Stop();
-                PreviewMedia.Stop();
-                PreviewMedia.Play();
+                PreviewMedia.Replay();
                 timer.Start();
             }
             else
@@ -990,7 +978,7 @@ namespace Tagger
         {
             if (mediaplaying && !isdragging && !settingprogressbar)
             {
-                PreviewMedia.Position = new TimeSpan(0, 0, 0, 0, (int)VideoProgress.Value);
+                PreviewMedia.Time = new TimeSpan(0, 0, 0, 0, (int)VideoProgress.Value);
             }
         }
 
@@ -1002,7 +990,7 @@ namespace Tagger
         private void VideoProgress_DragCompleted(object sender, RoutedEventArgs e)
         {
             isdragging = false;
-            PreviewMedia.Position = new TimeSpan(0, 0, 0, 0, (int)VideoProgress.Value);
+            PreviewMedia.Time = new TimeSpan(0, 0, 0, 0, (int)VideoProgress.Value);
             UpdateProgressBar();
         }
 
@@ -1028,7 +1016,7 @@ namespace Tagger
         private void MouseWheel_Done(object sender, EventArgs e)
         {
             mousewheeldonetimer.Stop();
-            PreviewMedia.Position = PreviewMedia.Position.Add(new TimeSpan(0, 0, mousewheelcounter * 10));
+            PreviewMedia.Time = PreviewMedia.Time.Add(new TimeSpan(0, 0, mousewheelcounter * 10));
             UpdateProgressBar();
             mousewheelcounter = 0;
         }
@@ -1773,10 +1761,10 @@ namespace Tagger
             long skipAmount = 0;
             if (mediaplaying)
             {
-                skipAmount = (long)PreviewMedia.Position.TotalMilliseconds + skipInterval;
+                skipAmount = (long)PreviewMedia.Time.TotalMilliseconds + skipInterval;
                 if (skipAmount < mediaTotalTime)
                 {
-                    PreviewMedia.Position = PreviewMedia.Position.Add(new TimeSpan(0, 0, 0, 0, (int)skipInterval));
+                    PreviewMedia.Time = PreviewMedia.Time.Add(new TimeSpan(0, 0, 0, 0, (int)skipInterval));
                 }
                 UpdateProgressBar();
             }
@@ -1799,14 +1787,14 @@ namespace Tagger
             long skipAmount = 0;
             if (mediaplaying)
             {
-                skipAmount = (long)PreviewMedia.Position.TotalMilliseconds - skipInterval;
+                skipAmount = (long)PreviewMedia.Time.TotalMilliseconds - skipInterval;
                 if (skipAmount > 0)
                 {
-                    PreviewMedia.Position = PreviewMedia.Position.Subtract(new TimeSpan(0, 0, 0, 0, (int)skipInterval));
+                    PreviewMedia.Time = PreviewMedia.Time.Subtract(new TimeSpan(0, 0, 0, 0, (int)skipInterval));
                 }
                 else
                 {
-                    PreviewMedia.Position = new TimeSpan(0, 0, 0, 0, 0);
+                    PreviewMedia.Time = new TimeSpan(0, 0, 0, 0, 0);
                 }
                 UpdateProgressBar();
             }
@@ -1826,7 +1814,7 @@ namespace Tagger
 
         private void FullscreenExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            UI.MediaFullscreen mf = new UI.MediaFullscreen(currentImage.FullName, PreviewMedia.Position, settings, db.GetImageTags(data, currentImageName), mediaplaying);
+            UI.MediaFullscreen mf = new UI.MediaFullscreen(currentImage.FullName, PreviewMedia.Time, settings, db.GetImageTags(data, currentImageName), mediaplaying);
             PreviewMedia.Stop();
             timer.Stop();
             mf.ShowDialog();
@@ -1845,7 +1833,7 @@ namespace Tagger
                 Pause.Visibility = Visibility.Hidden;
                 Pause2.Visibility = Visibility.Hidden;
             }
-            PreviewMedia.Position = mf.returnposition;
+            PreviewMedia.Time = mf.returnposition;
             Volume.Value = mf.VolumeOut;
 
             UpdateProgressBar();
@@ -2908,7 +2896,7 @@ namespace Tagger
 
         private void GrabCurrentPosition_Click(object sender, RoutedEventArgs e)
         {
-            EventPosition.Text = Math.Floor(PreviewMedia.Position.TotalMilliseconds).ToString();
+            EventPosition.Text = Math.Floor(PreviewMedia.Time.TotalMilliseconds).ToString();
         }
 
         private void AddEvent_Click(object sender, RoutedEventArgs e)
@@ -2944,7 +2932,7 @@ namespace Tagger
             {
                 if (eventindex < EventList.Count - 1)
                 {
-                    PreviewMedia.Position = new TimeSpan(0, 0, 0, 0, EventList[eventindex]);
+                    PreviewMedia.Time = new TimeSpan(0, 0, 0, 0, EventList[eventindex]);
                 }
             }
         }

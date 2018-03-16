@@ -7,14 +7,14 @@
     <framework targetVersion="4.5.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Tagger.exe.manifest" size="11598">
+    <dependentAssembly dependencyType="install" codebase="Tagger.exe.manifest" size="148791">
       <assemblyIdentity name="Tagger.exe" version="1.0.0.40" publicKeyToken="0000000000000000" language="en" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xQpUCrpyuG85tyEzwOn7w3Z/d/9fbjmmM9YhI1L8t+A=</dsig:DigestValue>
+        <dsig:DigestValue>5Ktw3Cztv04BFHMFo9UhNFNjHQnREkmqISTyL7IZsJA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

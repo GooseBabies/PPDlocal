@@ -152,3 +152,8 @@ E:\Tagger\PPD\Tagger\obj\Debug\Tagger.exe.manifest
 E:\Tagger\PPD\Tagger\obj\Debug\Tagger.application
 E:\Tagger\PPD\Tagger\obj\Debug\Tagger.exe
 E:\Tagger\PPD\Tagger\obj\Debug\Tagger.pdb
+E:\Tagger\PPD\Tagger\bin\Debug\Meta.Vlc.dll
+E:\Tagger\PPD\Tagger\bin\Debug\Meta.Vlc.Wpf.dll
+E:\Tagger\PPD\Tagger\bin\Debug\Meta.Vlc.xml
+E:\Tagger\PPD\Tagger\bin\Debug\Meta.Vlc.Wpf.xml
+E:\Tagger\PPD\Tagger\obj\Debug\Tagger_Content.g.cs

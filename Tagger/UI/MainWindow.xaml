@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:behavs="clr-namespace:Tagger"
-        xmlns:Vlc="clr-namespace:Vlc.DotNet.Wpf;assembly=Vlc.DotNet.Wpf"
+        xmlns:wpf="clr-namespace:Meta.Vlc.Wpf;assembly=Meta.Vlc.Wpf"
         mc:Ignorable="d"
         Title="PPD" Height="900" Width="1200" WindowState="Maximized" Closing="Window_Closing" behavs:InputBindingsBehavior.TakesInputBindingPrecedence="True" Loaded="Window_Loaded" MouseWheel="Window_MouseWheel">
     <Window.Resources>
@@ -513,8 +513,8 @@
                         </WrapPanel>
                     </StackPanel>                        
                         <Border x:Name="MediaBorder" BorderBrush="Black" BorderThickness="2" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MouseEnter="PreviewMedia_MouseEnter" MouseLeave="PreviewMedia_MouseLeave" Panel.ZIndex="1">
-                        <MediaElement x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrubbingEnabled="True" Margin="0,0,0,0" LoadedBehavior="Manual" MediaOpened="PreviewMedia_MediaOpened" MediaEnded="PreviewMedia_MediaEnded"/>
-                        <!--<Vlc:VlcControl x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>-->
+                        <!--<MediaElement x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrubbingEnabled="True" Margin="0,0,0,0" LoadedBehavior="Manual" MediaOpened="PreviewMedia_MediaOpened" MediaEnded="PreviewMedia_MediaEnded"/>-->
+                        <wpf:VlcPlayer x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LibVlcPath="..\..\libvlc"/>
                     </Border>
                 </Grid>                              
                 <Border x:Name="ImageBorder" Grid.Row="1" BorderBrush="Black" BorderThickness="2" Background="Black">                    

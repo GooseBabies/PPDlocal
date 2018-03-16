@@ -1,0 +1,1035 @@
+﻿-- logger module started --
+core debug: VLC media player - 2.2.0-xZune Weatherwax
+core debug: Copyright © 1996-2015 the VideoLAN team
+core debug: revision 2.2.0-0-g1349ef2
+core debug: configured with ../extras/package/win32/../../../configure  '--enable-update-check' '--enable-lua' '--enable-faad' '--enable-flac' '--enable-theora' '--enable-twolame' '--enable-quicktime' '--enable-avcodec' '--enable-merge-ffmpeg' '--enable-dca' '--enable-mpc' '--enable-libass' '--enable-x264' '--enable-schroedinger' '--enable-realrtsp' '--enable-live555' '--enable-dvdread' '--enable-shout' '--enable-goom' '--enable-caca' '--disable-sdl' '--enable-qt' '--enable-skins2' '--enable-sse' '--enable-mmx' '--enable-libcddb' '--enable-zvbi' '--disable-telx' '--enable-nls' '--host=i686-w64-mingw32' '--disable-nls' '--disable-upnp' 'host_alias=i686-w64-mingw32' 'PKG_CONFIG_PATH=/mingw32/lib/pkgconfig:/mingw32/share/pkgconfig'
+core debug: using interface module "logger"
+core debug: creating VLM
+core debug: creating audio output
+core debug: looking for audio output module matching "any": 6 candidates
+directsound debug: found 4 devices
+core debug: using audio output module "directsound"
+core debug: keeping audio output
+core debug: corelooking for  debug: meta fetcher module matching "Creating an input for 'any": SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4'1
+ candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4
+core debug: Creating an input for 'SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4'
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\Chris\AppData\Local\Temp'
+core debug: `file:///E:/Media/SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4' gives access `file' demux `' path `/E:/Media/SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/E:/Media/SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4' file='E:\Media\SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4'
+core debug: looking for access_demux module matching "file": 12 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/E:/Media/SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4', path='E:\Media\SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4'
+core debug: looking for access module matching "file": 21 candidates
+filesystem debug: opening file `E:\Media\SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 1000000 KiB/s
+core debug: looking for stream_filter module matching "any": 6 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 6 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/E:/Media/SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4' file='E:\Media\SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4'
+core debug: looking for demux module matching "mp4": 66 candidates
+mp4 warning: unknown box type Xtra (incompletely loaded)
+mp4 debug: added fragment moov
+mp4 debug: dumping root Box "root"
+mp4 debug: |   + ftyp size 32 offset 0
+mp4 debug: |   + free size 8 offset 32
+mp4 debug: |   + mdat size 2244401805 offset 40
+mp4 debug: |   + moov size 1189370 offset -2050565451
+mp4 debug: |   |   + mvhd size 108 offset -2050565443
+mp4 debug: |   |   + trak size 461188 offset -2050565335
+mp4 debug: |   |   |   + tkhd size 92 offset -2050565327
+mp4 debug: |   |   |   + edts size 36 offset -2050565235
+mp4 debug: |   |   |   |   + elst size 28 offset -2050565227
+mp4 debug: |   |   |   + mdia size 461052 offset -2050565199
+mp4 debug: |   |   |   |   + mdhd size 32 offset -2050565191
+mp4 debug: |   |   |   |   + hdlr size 45 offset -2050565159
+mp4 debug: |   |   |   |   + minf size 460967 offset -2050565114
+mp4 debug: |   |   |   |   |   + vmhd size 20 offset -2050565106
+mp4 debug: |   |   |   |   |   + dinf size 36 offset -2050565086
+mp4 debug: |   |   |   |   |   |   + dref size 28 offset -2050565078
+mp4 debug: |   |   |   |   |   |   |   + url  size 12 offset -2050565062
+mp4 debug: |   |   |   |   |   + stbl size 460903 offset -2050565050
+mp4 debug: |   |   |   |   |   |   + stsd size 179 offset -2050565042
+mp4 debug: |   |   |   |   |   |   |   + avc1 size 163 offset -2050565026
+mp4 debug: |   |   |   |   |   |   |   |   + avcC size 61 offset -2050564940
+mp4 debug: |   |   |   |   |   |   |   |   + pasp size 16 offset -2050564879
+mp4 debug: |   |   |   |   |   |   + stts size 24 offset -2050564863
+mp4 debug: |   |   |   |   |   |   + stss size 9420 offset -2050564839
+mp4 debug: |   |   |   |   |   |   + stsc size 28 offset -2050555419
+mp4 debug: |   |   |   |   |   |   + stsz size 225624 offset -2050555391
+mp4 debug: |   |   |   |   |   |   + stco size 225620 offset -2050329767
+mp4 debug: |   |   + trak size 727960 offset -2050104147
+mp4 debug: |   |   |   + tkhd size 92 offset -2050104139
+mp4 debug: |   |   |   + edts size 36 offset -2050104047
+mp4 debug: |   |   |   |   + elst size 28 offset -2050104039
+mp4 debug: |   |   |   + mdia size 727824 offset -2050104011
+mp4 debug: |   |   |   |   + mdhd size 32 offset -2050104003
+mp4 debug: |   |   |   |   + hdlr size 45 offset -2050103971
+mp4 debug: |   |   |   |   + minf size 727739 offset -2050103926
+mp4 debug: |   |   |   |   |   + smhd size 16 offset -2050103918
+mp4 debug: |   |   |   |   |   + dinf size 36 offset -2050103902
+mp4 debug: |   |   |   |   |   |   + dref size 28 offset -2050103894
+mp4 debug: |   |   |   |   |   |   |   + url  size 12 offset -2050103878
+mp4 debug: |   |   |   |   |   + stbl size 727679 offset -2050103866
+mp4 debug: |   |   |   |   |   |   + stsd size 103 offset -2050103858
+mp4 debug: |   |   |   |   |   |   |   + mp4a size 87 offset -2050103842
+mp4 debug: |   |   |   |   |   |   |   |   + esds size 51 offset -2050103806
+mp4 debug: |   |   |   |   |   |   + stts size 32 offset -2050103755
+mp4 debug: |   |   |   |   |   |   + stsc size 60820 offset -2050103723
+mp4 debug: |   |   |   |   |   |   + stsz size 441096 offset -2050042903
+mp4 debug: |   |   |   |   |   |   + stco size 225620 offset -2049601807
+mp4 debug: |   |   + udta size 106 offset -2049376187
+mp4 debug: |   |   |   + meta size 90 offset -2049376179
+mp4 debug: |   |   |   |   + hdlr size 33 offset -2049376167
+mp4 debug: |   |   |   |   + ilst size 45 offset -2049376134
+mp4 debug: |   |   |   |   |   + ctoo size 37 offset -2049376126
+mp4 debug: |   |   |   + Xtra size 8 offset -2049376089
+mp4 debug: ISO Media file (isom) version 512.
+mp4 debug: found 2 tracks
+mp4 warning: elst box found
+mp4 debug:    - [0] duration=2352392ms media time=0ms) rate=1.0
+mp4 debug: track[Id 0x1] read 56401 chunk
+mp4 warning: STTS table of 1 entries
+mp4 debug: track[Id 0x1] read 56401 samples length:2352s
+core debug: selecting program id=0
+mp4 debug: adding track[Id 0x1] video (enable) language undef
+mp4 warning: elst box found
+mp4 debug:    - [0] duration=2352392ms media time=0ms) rate=1.0
+mp4 debug: track[Id 0x2] read 56401 chunk
+mp4 warning: STTS table of 2 entries
+mp4 debug: track[Id 0x2] read 110269 samples length:2352s
+mp4 debug: adding track[Id 0x2] audio (enable) language undef
+mp4 debug: fragment offset 2244401845, data 48<->2244401845, duration 0
+core debug: using demux module "mp4"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: avcodec codec (H264 - MPEG-4 AVC (part 10)) started
+avcodec debug: using frame thread mode with 4 threads
+core debug: using decoder module "avcodec"
+core debug: looking for decoder module matching "any": 43 candidates
+core debug: using decoder module "faad"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\reader
+core debug: no meta reader modules matched
+core debug: `file:///E:/Media/SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4' successfully opened
+mp4 debug: elst (0) gives 0ms (movie)-> 0ms (track)
+mp4 debug: track[Id 0x1] using Sync Sample Box (stss)
+mp4 debug: stss gives 0 --> 0 (sample number)
+mp4 debug: elst (0) gives 0ms (movie)-> 0ms (track)
+mp4 debug: track[Id 0x2] does not provide Sync Sample Box (stss)
+core debug: Buffering 0%
+core debug: Buffering 0%
+coref debug: aadBuffering  warning: 7%
+decodcore debug: ed zero sampleB
+auffering vcodec13 debug: %available core debug: hardware reusing audio output
+
+decoder output formatcoredirectsound debug:  debugBuffering  : 1461Opening DirectSound Audio Out pu(%dxva2_vld)
+
+t
+acore debug: vcodecBuffering  debug: 21available %
+software decoder output format core0 ( debug: yuv420p)
+Buffering core27 debug: %looking for 
+hw decocored debug: erBuffering  module matching "28%none": 
+1 candidatesc
+ore debug: coBuffering re debug: 35no hw decoder m%odules matched
+
+core debug: Buffering 41%
+corec doreebug:  debug: Blooking for uffering text renderer module matching "any": 422 candidates%
+
+core debug: Buffering 49%
+core debug: Buffering 55%
+core debug: Buffering 56%
+core debug: Buffering 64%
+core debugf: reetypeBuffering  debu69%g: 
+Using Arial as font from file coreC:\WINDOWS\Fonts\arial.ttf debug: 
+Bufffreetypeering  debug: 71%Using 
+Courier New as mono-font from file cC:\WINDOWS\oreFonts\cour.ttf
+ debug: Buffering 78%
+core debug: Buffering 83%
+core debug: Buffering 85%
+core debug: Buffering 92%
+core debug: Buffering 97%
+core debug: Buffering 99%
+core defbug: reetypeStream buffering done ( debug: 320 msusing fontsize:  in 9 m2s)
+
+core debug: using text renderer module "freetype"
+core debug: looking for video filter2 module matching "any": 58 candidates
+directsound debug: Windows speaker config: swscaleStereo and stream has  debug: 2 channels, using 322 channelsx
+32 (32x32) chroma: YUVA -> 16x16 (16x16) chroma: RGBA with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: looking for video filter2 module matching "any": 58 candidates
+core debug: output 'f32l' 48000 Hz Stereo frame=1 samples/8 bytes
+core debug: looking for audio volume module matching "yany": uvp2 candidates debug: 
+YUVP to YUVA converter
+core debug: core debug: using using video filter2 module "audio volume module "yuvp"
+float_mixer"
+corecore debug:  debug: input 'Deinterlacing availablef32l' 
+48000 Hz Stereo frame=core1 samples/8 bytes
+ debug: deinterlace core0, mode  debug: blend, is_needed looking for 0audio filte
+r module matching "scaletempo": 14 candidates
+core debug: Opening vout display wrapperscaletempo
+ debug: format: core48000 rate,  debug: 2 nch, 4 bps, looking for fl32vout display module matching "
+vmem": 11 candidatesscaletemp
+o debug: params: 30 stride, 0.200 overlap, 14 search
+scaletempo debug: 1.000 scale, 1440.000 stride_in, 1440 stride_out, 1152 standing, 288 overlap, 672 search, 2400 queue, fl32 mode
+core debug: using audio filter module "scaletempo"
+core debug: conversion: 'f32l'->'f32l' 48000 Hz->48000 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: conversion: 'f32l'->'f32l' 48000 Hz->48000 Hz Stereo->Stereo
+core debug: conversion pipeline complete
+core debug: looking for audio resampler module matching "any": 3 candidates
+core debug: using audio resampler module "samplerate"
+core debug: End of audio preroll
+core debug: VoutDisplayEvent 'fullscreen' 0
+core debug: VoutDisplayEvent 'resize' 1280x738 window
+core debug: using vout display module "vmem"
+core debug: A filter to adapt decoder to display is needed
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 1280x720 (1280x738) chroma: I420 -> 1280x738 (1280x738) chroma: RV32 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (18e8caa4) appended to chain
+core debug: original format sz 1280x738, of (0,0), vsz 1280x720, 4cc I420, sar 1:1, msk r0x0 g0x0 b0x0
+corec debug: oreremoving module " error: freetype"Failed to change zoom
+
+core error: Failecored to set on top debug: 
+looking for coretext renderer module matching "any":  error: 2Failed to change source candidates
+ AR
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 43 ms
+core debug: control: stopping input
+core debug: removing module "avcodec"
+core warning: can't get output picture
+avcodec debug: ffmpeg codec (H264 - MPEG-4 AVC (part 10)) stopped
+core debug: killing decoder fourcc `h264', 0 PES in FIFO
+core debug: saving a free vout
+core debug: reusing provided vout
+core debug: removing module "faad"
+core debug: killing decoder fourcc `mp4a', 0 PES in FIFO
+core debug: removing module "samplerate"
+core debug: removing module "scaletempo"
+directsound debug: closing audio device
+core debug: removing module "float_mixer"
+core debug: keeping audio output
+core debug: removing module "mp4"
+mp4 debug: freeing all memory
+core debug: removing module "record"
+core debug: removing module "filesystem"
+core debug: Program doesn't contain anymore ES
+core debug: removing module "directsound"
+core debug: destroying useless vout
+core debug: Filter 18e8caa4 removed from chain
+core debug: removing module "swscale"
+core debug: removing module "vmem"
+core debug: removing module "freetype"
+core debug: removing module "yuvp"
+core debug: removing module "swscale"
+core debug: Creating an input for 'SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4'
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\Chris\AppData\Local\Temp'
+core debug: `file:///E:/Media/SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4' gives access `file' demux `' path `/E:/Media/SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/E:/Media/SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4' file='E:\Media\SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4'
+core debug: looking for access_demux module matching "file": 12 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/E:/Media/SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4', path='E:\Media\SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4'
+core debug: looking for access module matching "file": 21 candidates
+filesystem debug: opening file `E:\Media\SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 1000000 KiB/s
+core debug: looking for stream_filter module matching "any": 6 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 6 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/E:/Media/SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4' file='E:\Media\SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4'
+core debug: looking for demux module matching "mp4": 66 candidates
+mp4 warning: unknown box type Xtra (incompletely loaded)
+mp4 debug: added fragment moov
+mp4 debug: dumping root Box "root"
+mp4 debug: |   + ftyp size 32 offset 0
+mp4 debug: |   + free size 8 offset 32
+mp4 debug: |   + mdat size 2244401805 offset 40
+mp4 debug: |   + moov size 1189370 offset -2050565451
+mp4 debug: |   |   + mvhd size 108 offset -2050565443
+mp4 debug: |   |   + trak size 461188 offset -2050565335
+mp4 debug: |   |   |   + tkhd size 92 offset -2050565327
+mp4 debug: |   |   |   + edts size 36 offset -2050565235
+mp4 debug: |   |   |   |   + elst size 28 offset -2050565227
+mp4 debug: |   |   |   + mdia size 461052 offset -2050565199
+mp4 debug: |   |   |   |   + mdhd size 32 offset -2050565191
+mp4 debug: |   |   |   |   + hdlr size 45 offset -2050565159
+mp4 debug: |   |   |   |   + minf size 460967 offset -2050565114
+mp4 debug: |   |   |   |   |   + vmhd size 20 offset -2050565106
+mp4 debug: |   |   |   |   |   + dinf size 36 offset -2050565086
+mp4 debug: |   |   |   |   |   |   + dref size 28 offset -2050565078
+mp4 debug: |   |   |   |   |   |   |   + url  size 12 offset -2050565062
+mp4 debug: |   |   |   |   |   + stbl size 460903 offset -2050565050
+mp4 debug: |   |   |   |   |   |   + stsd size 179 offset -2050565042
+mp4 debug: |   |   |   |   |   |   |   + avc1 size 163 offset -2050565026
+mp4 debug: |   |   |   |   |   |   |   |   + avcC size 61 offset -2050564940
+mp4 debug: |   |   |   |   |   |   |   |   + pasp size 16 offset -2050564879
+mp4 debug: |   |   |   |   |   |   + stts size 24 offset -2050564863
+mp4 debug: |   |   |   |   |   |   + stss size 9420 offset -2050564839
+mp4 debug: |   |   |   |   |   |   + stsc size 28 offset -2050555419
+mp4 debug: |   |   |   |   |   |   + stsz size 225624 offset -2050555391
+mp4 debug: |   |   |   |   |   |   + stco size 225620 offset -2050329767
+mp4 debug: |   |   + trak size 727960 offset -2050104147
+mp4 debug: |   |   |   + tkhd size 92 offset -2050104139
+mp4 debug: |   |   |   + edts size 36 offset -2050104047
+mp4 debug: |   |   |   |   + elst size 28 offset -2050104039
+mp4 debug: |   |   |   + mdia size 727824 offset -2050104011
+mp4 debug: |   |   |   |   + mdhd size 32 offset -2050104003
+mp4 debug: |   |   |   |   + hdlr size 45 offset -2050103971
+mp4 debug: |   |   |   |   + minf size 727739 offset -2050103926
+mp4 debug: |   |   |   |   |   + smhd size 16 offset -2050103918
+mp4 debug: |   |   |   |   |   + dinf size 36 offset -2050103902
+mp4 debug: |   |   |   |   |   |   + dref size 28 offset -2050103894
+mp4 debug: |   |   |   |   |   |   |   + url  size 12 offset -2050103878
+mp4 debug: |   |   |   |   |   + stbl size 727679 offset -2050103866
+mp4 debug: |   |   |   |   |   |   + stsd size 103 offset -2050103858
+mp4 debug: |   |   |   |   |   |   |   + mp4a size 87 offset -2050103842
+mp4 debug: |   |   |   |   |   |   |   |   + esds size 51 offset -2050103806
+mp4 debug: |   |   |   |   |   |   + stts size 32 offset -2050103755
+mp4 debug: |   |   |   |   |   |   + stsc size 60820 offset -2050103723
+mp4 debug: |   |   |   |   |   |   + stsz size 441096 offset -2050042903
+mp4 debug: |   |   |   |   |   |   + stco size 225620 offset -2049601807
+mp4 debug: |   |   + udta size 106 offset -2049376187
+mp4 debug: |   |   |   + meta size 90 offset -2049376179
+mp4 debug: |   |   |   |   + hdlr size 33 offset -2049376167
+mp4 debug: |   |   |   |   + ilst size 45 offset -2049376134
+mp4 debug: |   |   |   |   |   + ctoo size 37 offset -2049376126
+mp4 debug: |   |   |   + Xtra size 8 offset -2049376089
+mp4 debug: ISO Media file (isom) version 512.
+mp4 debug: found 2 tracks
+mp4 warning: elst box found
+mp4 debug:    - [0] duration=2352392ms media time=0ms) rate=1.0
+mp4 debug: track[Id 0x1] read 56401 chunk
+mp4 warning: STTS table of 1 entries
+mp4 debug: track[Id 0x1] read 56401 samples length:2352s
+core debug: selecting program id=0
+mp4 debug: adding track[Id 0x1] video (enable) language undef
+mp4 warning: elst box found
+mp4 debug:    - [0] duration=2352392ms media time=0ms) rate=1.0
+mp4 debug: track[Id 0x2] read 56401 chunk
+mp4 warning: STTS table of 2 entries
+mp4 debug: track[Id 0x2] read 110269 samples length:2352s
+mp4 debug: adding track[Id 0x2] audio (enable) language undef
+mp4 debug: fragment offset 2244401845, data 48<->2244401845, duration 0
+core debug: using demux module "mp4"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: avcodec codec (H264 - MPEG-4 AVC (part 10)) started
+avcodec debug: using frame thread mode with 4 threads
+core debug: using decoder module "avcodec"
+core debug: looking for decoder module matching "any": 43 candidates
+core debug: using decoder module "faad"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\reader
+core debug: no meta reader modules matched
+core debug: `file:///E:/Media/SB - Oct 09, 2017 - Olive Glass, Syren De Mer, Matt Williams high.mp4' successfully opened
+mp4 debug: elst (0) gives 0ms (movie)-> 0ms (track)
+mp4 debug: track[Id 0x1] using Sync Sample Box (stss)
+mp4 debug: stss gives 0 --> 0 (sample number)
+mp4 debug: elst (0) gives 0ms (movie)-> 0ms (track)
+mp4 debug: track[Id 0x2] does not provide Sync Sample Box (stss)
+core debug: Buffering 0%
+core debug: Buffering 0faad% warning: 
+decodedc zero sampleore
+ debugavcodec:  debug: Buffeavailable ringhardware decoder output format  61 (7dxva2_vld)
+%
+avcodec coredebug:  debug: available coreBsoftware decoder output formuffering  debug: at creating audio outp0 1ut
+3(%y
+uv420p)core
+c debcougreore debug: : looking for  debuaudio output gBmodule matching ":uffer ing any": l6 candidates14ooking for 
+hw decoder module matching "%no
+ne": dcore1irectsound candidates debug
+ : dfounceored  debug: 4 devices
+no bugh: corew decoder debug: Buffeusing  audio output module "ring modules matcheddirectsound"
+21
+%
+core debug: Bdirectsoundu ffering core27debug debug: : looking for Opetex%tning 
+DirectS ound Audio Outputcrendore
+ debug: ererBuffering  module matching "2any": 82 candidates%
+
+core debug: Buffering 35%
+core debug: Buffering 41freetype% debug: 
+Using Acorerial debug:  as font from file Buffering C:\WINDOWS\Fonts\arial.ttf42%
+
+freetypecore debug:  debug: Using Buffering Courier New as mono-font from file 4C:\WINDOWS\Fonts\cour.ttf
+9%
+core debug: Buffering 55%
+core debug: Bufreetypeffering  debug: 56using fontsize: %2
+
+cocorere debug:  debug: Buffering using 64text renderer module "%
+freetycorepe debug: "Buffering 
+69%
+corecore debug:  debug: lBuffering ooking for 71video filter2 module matching "any": %5
+8 candidatescore
+ debug: Buffering 78%
+directsoundcore debug:  debug: Windows speaker config: BStereo and stream has us2 channels, using ffering w83scale% debug: 232x
+32 channels 
+core( d32xebug: 32)Buffering  chroma: 85YUVA -> 16x%16 (
+16x16) chroma: core debug: RGBA with scaling using Buffering Bicubic (good quality)92
+%
+corec debug: oreusing  video filter2 module "debug: swscale"Buffering 
+97%
+ccoreore debug:  debug: looking for Buffering video filter2 module matching "any": 995%8 candidates
+
+yuvpcore debug:  debug: YUVP to Stream buffering done (YUVA conv320 ms in 16 ms)
+erter
+core debug: using video filter2 module "yuvp"
+core debug: Deinterlacing available
+core debug: deinterlace 0, mode blend, is_needed 0
+core debug: output core debug: 'Opening vout display wrapperf32l' 
+48000 Hz Stcoreereo debug:  frame=looking for 1 samples/vout display module matching "8 bytesvmem": 
+11 candcoreidates debug: 
+looking for audio volume module matching "any": 2 candidates
+core debug: using audio volume module "float_mixer"
+core debug: input 'f32l' 48000 Hz Stereo frame=1 samples/core8 bytes debug: 
+VoutDisplayEcorevent 'fullscreen'  debug: 0looking for 
+audio filter module matching "scaletempo": core14 debug:  candidates
+VoutDisplayEvent 'resize' scaletempo debug1280x: 738 format: window48000 rate, 
+2 nch, core4 bps,  debug: fl32using 
+vout dscaletempoisplay debug:  module "params: vmem"30 stride, 
+0.200 overlap, core14 search debug: 
+A filter to adapt decoder to display is scaletemponeeded
+ debug: core1 debug: .000looking for  scale, video filter2 module matching "any": 14405.0008 stride_in,  candi1440 stride_out, dates
+1152 standing, 288 overlap, 672 search, 2400 queue, fl32 mode
+core debug: using audio filter module "scaletempo"
+core debug: conversion: 'swscalef32l'->' debug: f32l' 1280x48000 Hz->720 (48000 Hz 1280xStereo->738) chroma: StereoI420 ->
+ 1280xcore738 ( debug: 1280xconversion pipeline complete738) chroma: 
+RV32 with scaling using coreBicubic (good quality) debug: 
+conversion: 'coref32l'->' debug: f32l' u48000 Hz->sing 48000 Hz video filter2 module "swscale"Stereo->Stereo
+
+corecore debug:  debug: Filter 'conversion pipeline complete
+Swscaleco' (re debug: 1f6fb474) appended to chainlooking for 
+audio resampler module matching "any": 3 candidates
+core debug: coreusing  debug: audio resampler module "original format sz samplerate"
+1280x738, of (core0,0), vsz  debug: 1End of audio preroll
+280x720, 4cc I420, sar 1:1, msk r0x0 g0x0 b0x0
+core debug: cremoving module "orefreetype"
+ error: Failed to change zoomcore
+ debug: corelooking for  errortext renderer module matching ":any":  2 candidates
+Failed to set on top
+core error: Failed to change source AR
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 28 ms
+mp4 debug: elst (0) gives 2ms (movie)-> 2ms (track)
+mp4 debug: track[Id 0x1] using Sync Sample Box (stss)
+mp4 debug: stss gives 0 --> 0 (sample number)
+mp4 debug: elst (0) gives 2ms (movie)-> 2ms (track)
+mp4 debug: track[Id 0x2] does not provide Sync Sample Box (stss)
+core debug: Buffering 0%
+core debug: Buffering 0%
+core debug: Buffering avcodec6% debug: 
+available corehardware decoder  output format core61 (debug: dxva2_vld)Buff
+ debugeavcodecring  debug: : avaiEnd of audio prerlable 13software dollecoder output forma
+t %0 (
+yuv420p)
+core debug:c oreBuffering  debug: 13looking for %hw decoder module matching "
+none": core1 debug:  candidatBuffering es20
+%
+corecore debug:  debug: no Buffering hw decoder modules matched27
+%
+core debug: Buffering 27%
+core debug: Buffering 34%
+core debug: Buffering 41%
+core debug: Buffering 42%
+core debug: Buffering 49%
+core debug: Buffering 54%
+core debug: Buffering 56%
+core debug: Buffering 63%
+core debug: Buffering 68%
+core debucoreg debug: : End of video preroll
+Buffering c70ore% debug: 
+Received first picturecore
+ debug: Buffering 77%
+core debug: Buffering 82%
+core debug: Buffering 84%
+core debug: Buffering 91%
+core debug: Buffering 96%
+core debug: Buffering 98%
+core debug: Stream buffering done (318 ms in 11 ms)
+core debug: Decoder wait done in 2 ms
+mp4 debug: elst (0) gives 4ms (movie)-> 4ms (track)
+mp4 debug: track[Id 0x1] using Sync Sample Box (stss)
+mp4 debug: stss gives 0 --> 0 (sample number)
+mp4 debug: elst (0) gives 4ms (movie)-> 4ms (track)
+mp4 debug: track[Id 0x2] does not provide Sync Sample Box (stss)
+core debug: Buffering 0%
+core debug: Buffering 0%
+core debug: Buffering 5a%v
+codec debugcore:  debug: avBuffeailable corering  debuh12g: %End of audio preroll
+ardware decoder output format 
+61 (dxvacore2_vld debug: )Buffering 
+12%
+avcodec debugc: oreavailable  debug: software decoder output format Buffering0 ( yuv420p)20
+%
+core debug: corelooking for  debug: hw decoder module matching "Buffering none": 26%1 candidates
+
+core decorebug debug: : Buffering no 27hw decoder modules matched%
+
+core debug: Buffering 34%
+core debug: Buffering 40%
+core debug: Buffering 41%
+core debug: Buffering 48%
+core debug: Buffering 54%
+core debug: Buffering 55%
+core debug: Buffering 62%
+core debug: Buffering 68%
+core debug: Buffering 69%
+core debug: Buffering 76%
+core debug: Buffering 82%
+core debug: Buffering 84%
+core debug: Buffering 91%
+cocorere debug:  debug: End of video prerollBuffering 
+95%
+core debug: Received first picture
+core debug: Buffering 98%
+core debug: Stream buffering done (316 ms in 9 ms)
+core debug: Decoder wait done in 3 ms
+core debug: control: stopping input
+core debug: removing module "avcodec"
+core warning: can't get output picture
+avcodec debug: ffmpeg codec (H264 - MPEG-4 AVC (part 10)) stopped
+core debug: killing decoder fourcc `h264', 0 PES in FIFO
+core debug: saving a free vout
+core debug: reusing provided vout
+core debug: removing module "faad"
+core debug: killing decoder fourcc `mp4a', 0 PES in FIFO
+core debug: removing module "samplerate"
+core debug: removing module "scaletempo"
+directsound debug: closing audio device
+core debug: removing module "float_mixer"
+core debug: keeping audio output
+core debug: removing module "mp4"
+mp4 debug: freeing all memory
+core error: Failed to change zoom
+core error: Failed to change source AR
+core debug: removing module "record"
+core debug: removing module "filesystem"
+core debug: Program doesn't contain anymore ES
+core debug: removing module "directsound"
+core debug: destroying useless vout
+core debug: Filter 1f6fb474 removed from chain
+core debug: removing module "swscale"
+core debug: removing module "vmem"
+core debug: removing module "freetype"
+core debug: removing module "yuvp"
+core debug: removing module "swscale"
+core debug: looking for cmeta fetcher module matching "oreany":  debug: 1 candidatesCreating an input for '
+Chanell Heart - Dog Fart - Inlterracial Group Sex Therapy with Chanell.aviu'a
+ debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Chanell Heart - Dog Fart - Interracial Group Sex Therapy with Chanell.avi
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Chanell Heart - Dog Fart - Interracial Group Sex Therapy with Chanell.avi
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Chanell Heart - Dog Fart - Interracial Group Sex Therapy with Chanell.avi
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Chanell Heart - Dog Fart - Interracial Group Sex Therapy with Chanell.avi
+core debugcore debug: : Creating an input forlooking for  'meta fetcher module matching "[DPFanatics] Nikki Dream - Taking My Husaband & Partner At Once (28.04.2017) rq.mp4'n
+y": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for [DPFanatics] Nikki Dream - Taking My Husband & Partner At Once (28.04.2017) rq.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for [DPFanatics] Nikki Dream - Taking My Husband & Partner At Once (28.04.2017) rq.mp4
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for [DPFanatics] Nikki Dream - Taking My Husband & Partner At Once (28.04.2017) rq.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for [DPFanatics] Nikki Dream - Taking My Husband & Partner At Once (28.04.2017) rq.mp4
+core debug: locoking for oremeta fetcher module matching " debug: any": Creating an input for '1 candidatesLana Rhoades - Bangbros -Neglect
+ed Lana Rhoades Gets Fucked By An Intruder.mp4'lua
+ debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Lana Rhoades - Bangbros -Neglected Lana Rhoades Gets Fucked By An Intruder.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Lana Rhoades - Bangbros -Neglected Lana Rhoades Gets Fucked By An Intruder.mp4
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Lana Rhoades - Bangbros -Neglected Lana Rhoades Gets Fucked By An Intruder.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Lana Rhoades - Bangbros -Neglected Lana Rhoades Gets Fucked By An Intruder.mp4
+core debug: looking for coremeta fetcher module matching " debug: anyCreating an input for '": 1 candidatesAu
+gust Ames - Jules Jordan - August Ames Shows Off Her Perfect Natural Raclk.mp4ua' debug: 
+Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for August Ames - Jules Jordan - August Ames Shows Off Her Perfect Natural Rack.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for August Ames - Jules Jordan - August Ames Shows Off Her Perfect Natural Rack.mp4
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for August Ames - Jules Jordan - August Ames Shows Off Her Perfect Natural Rack.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for August Ames - Jules Jordan - August Ames Shows Off Her Perfect Natural Rack.mp4
+core debug: locoking for oremeta fetcher module matching " any": debug1: candidates 
+Creating an input for 'Peyton Coast - POVD - Sluaex Swin debug: g SoiTrying Lua scripts in ree.mp4C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher'
+
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Peyton Coast - POVD - Sex Swing Soiree.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Peyton Coast - POVD - Sex Swing Soiree.mp4
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Peyton Coast - POVD - Sex Swing Soiree.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Peyton Coast - POVD - Sex Swing Soiree.mp4
+core debug: looking for corem debug: eCreating an input for 'tDaphne Rosen PP.wmv'a fetcher
+ module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Daphne Rosen PP.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Daphne Rosen PP.wmv
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Daphne Rosen PP.wmv
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Daphne Rosen PP.wmv
+core debug: corelooking for  debug: meta fetcherCreating an input for ' moVlhx3bi.mp4'dule matching "
+any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Vlhx3bi.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Vlhx3bi.mp4
+core debug: meta ok for (null), need to fetch art
+core debug: looking for meta fetcher module matching "any": 1 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\fetcher
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\fetcher
+core debug: no meta fetcher modules matched
+core debug: searching art for Vlhx3bi.mp4
+core debug: looking for art finder module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\art
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\art
+core debug: no art finder modules matched
+core debug: art not found for Vlhx3bi.mp4
+core debug: Creating an input for 'Vlhx3bi.mp4'
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\Chris\AppData\Local\Temp'
+core debug: `file:///E:/Media/Vlhx3bi.mp4' gives access `file' demux `' path `/E:/Media/Vlhx3bi.mp4'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Vlhx3bi.mp4' file='E:\Media\Vlhx3bi.mp4'
+core debug: looking for access_demux module matching "file": 12 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/E:/Media/Vlhx3bi.mp4', path='E:\Media\Vlhx3bi.mp4'
+core debug: looking for access module matching "file": 21 candidates
+filesystem debug: opening file `E:\Media\Vlhx3bi.mp4'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 1000000 KiB/s
+core debug: looking for stream_filter module matching "any": 6 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 6 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Vlhx3bi.mp4' file='E:\Media\Vlhx3bi.mp4'
+core debug: looking for demux module matching "mp4": 66 candidates
+mp4 debug: added fragment moov
+mp4 debug: dumping root Box "root"
+mp4 debug: |   + ftyp size 32 offset 0
+mp4 debug: |   + moov size 1139 offset 32
+mp4 debug: |   |   + mvhd size 108 offset 40
+mp4 debug: |   |   + trak size 925 offset 148
+mp4 debug: |   |   |   + tkhd size 92 offset 156
+mp4 debug: |   |   |   + edts size 36 offset 248
+mp4 debug: |   |   |   |   + elst size 28 offset 256
+mp4 debug: |   |   |   + mdia size 789 offset 284
+mp4 debug: |   |   |   |   + mdhd size 32 offset 292
+mp4 debug: |   |   |   |   + hdlr size 45 offset 324
+mp4 debug: |   |   |   |   + minf size 704 offset 369
+mp4 debug: |   |   |   |   |   + vmhd size 20 offset 377
+mp4 debug: |   |   |   |   |   + dinf size 36 offset 397
+mp4 debug: |   |   |   |   |   |   + dref size 28 offset 405
+mp4 debug: |   |   |   |   |   |   |   + url  size 12 offset 421
+mp4 debug: |   |   |   |   |   + stbl size 640 offset 433
+mp4 debug: |   |   |   |   |   |   + stsd size 148 offset 441
+mp4 debug: |   |   |   |   |   |   |   + avc1 size 132 offset 457
+mp4 debug: |   |   |   |   |   |   |   |   + avcC size 46 offset 543
+mp4 debug: |   |   |   |   |   |   + stts size 24 offset 589
+mp4 debug: |   |   |   |   |   |   + stss size 20 offset 613
+mp4 debug: |   |   |   |   |   |   + stsc size 28 offset 633
+mp4 debug: |   |   |   |   |   |   + stsz size 392 offset 661
+mp4 debug: |   |   |   |   |   |   + stco size 20 offset 1053
+mp4 debug: |   |   + udta size 98 offset 1073
+mp4 debug: |   |   |   + meta size 90 offset 1081
+mp4 debug: |   |   |   |   + hdlr size 33 offset 1093
+mp4 debug: |   |   |   |   + ilst size 45 offset 1126
+mp4 debug: |   |   |   |   |   + ctoo size 37 offset 1134
+mp4 debug: |   + free size 8 offset 1171
+mp4 debug: |   + mdat size 475712 offset 1179
+mp4 debug: ISO Media file (isom) version 512.
+mp4 debug: found 1 tracks
+mp4 warning: elst box found
+mp4 debug:    - [0] duration=2790ms media time=0ms) rate=1.0
+mp4 debug: track[Id 0x1] read 1 chunk
+mp4 warning: STTS table of 1 entries
+mp4 debug: track[Id 0x1] read 93 samples length:2s
+core debug: selecting program id=0
+mp4 debug: adding track[Id 0x1] video (enable) language undef
+mp4 debug: fragment offset 32, data 1187<->476891, duration 0
+core debug: using demux module "mp4"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: avcodec codec (H264 - MPEG-4 AVC (part 10)) started
+avcodec debug: using frame thread mode with 4 threads
+core debug: using decoder module "avcodec"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\reader
+core debug: no meta reader modules matched
+core debug: `file:///E:/Media/Vlhx3bi.mp4' successfully opened
+mp4 debug: elst (0) gives 0ms (movie)-> 0ms (track)
+mp4 debug: track[Id 0x1] using Sync Sample Box (stss)
+mp4 debug: stss gives 0 --> 0 (sample number)
+core debug: Buffering 0%
+core debug: Buffering 10%
+core debug: Buffering avcodec debug: 20available %hardware decoder output format 
+61 (dxva2_vld)
+coreavcodec debug:  debug: Buffering available 30%
+software decoder output format co0 (reyuv420p) deb
+ug: Buffering c40%
+ore debug: core debug: looking for Buffering hw decoder module matching "50%
+none": 1 candidates
+core debug: core debug: Buffering no 60%
+hw decoder modules matched
+core debug: Buffering 70%
+core debug: core debug: looking for Buffering text renderer module matching "80%
+any": 2 candidatescore debug: 
+Buffering 90%
+core debug: Buffering 100%
+coref debug: reetype debug: Stream buffering done (Using 330Arial as font from file  ms in C:\WINDOWS\Fonts\arial.ttf4 ms)
+
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 32x32 (32x32) chroma: YUVA -> 16x16 (16x16) chroma: RGBA with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: looking for video filter2 module matching "any": 58 candidates
+yuvp debug: YUVP to YUVA converter
+core debug: using video filter2 module "yuvp"
+core debug: Deinterlacing available
+core debug: deinterlace 0, mode blend, is_needed 0
+core debug: Opening vout display wrapper
+core debug: looking for vout display module matching "vmem": 11 candidates
+core debug: VoutDisplayEvent 'fullscreen' 0
+core debug: VoutDisplayEvent 'resize' 640x738 window
+core debug: using vout display module "vmem"
+core debug: A filter to adapt decoder to display is needed
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 640x720 (640x738) chroma: I420 -> 640x738 (640x738) chroma: RV32 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (1f83b4dc) appended to chain
+core debug: original format sz 640x738, of (0,0), vsz 640x720, 4cc I420, sar 1:1, msk r0x0 g0x0 b0x0
+core ecorerror debug: : removing module "Failed to change zoomfreetype"
+
+core errocorer debug: : looking for Faitext renderer module matching "led to set on top
+any":c ore2 candidates error: 
+Failed to change source AR
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 39 ms
+core debug: EOF reached
+core debug: waiting decoder fifos to empty
+core debug: waiting decoder fifos to empty
+core debug: waiting decoder fifos to empty
+core debug: waiting decoder fifos to empty
+core debug: removing module "avcodec"
+avcodec debug: ffmpeg codec (H264 - MPEG-4 AVC (part 10)) stopped
+core debug: killing decoder fourcc `h264', 0 PES in FIFO
+core debug: saving a free vout
+core debug: reusing provided vout
+ccoreore de error: bug: Failed to change zoomremoving module "
+mp4"
+core error: mp4Failed to change source AR
+ debug: freeing all memory
+core debug: removing module "record"
+core debug: removing module "filesystem"
+core debug: Program doesn't contain anymore ES
+core debug: destroying useless vout
+core debug: Filter 1f83b4dc removed from chain
+core debug: removing module "swscale"
+core debug: removing module "vmem"
+core debug: removing module "freetype"
+core debug: removing module "yuvp"
+core debug: removing module "swscale"
+core debug: Creating an input for 'Vlhx3bi.mp4'
+core debug: using timeshift granularity of 50 MiB, in path 'C:\Users\Chris\AppData\Local\Temp'
+core debug: `file:///E:/Media/Vlhx3bi.mp4' gives access `file' demux `' path `/E:/Media/Vlhx3bi.mp4'
+core debug: specified demux `any'
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Vlhx3bi.mp4' file='E:\Media\Vlhx3bi.mp4'
+core debug: looking for access_demux module matching "file": 12 candidates
+core debug: no access_demux modules matched
+core debug: creating access 'file' location='/E:/Media/Vlhx3bi.mp4', path='E:\Media\Vlhx3bi.mp4'
+core debug: looking for access module matching "file": 21 candidates
+filesystem debug: opening file `E:\Media\Vlhx3bi.mp4'
+core debug: using access module "filesystem"
+core debug: Using stream method for AStream*
+core debug: starting pre-buffering
+core debug: received first data after 0 ms
+core debug: pre-buffering done 1024 bytes in 0s - 1000000 KiB/s
+core debug: looking for stream_filter module matching "any": 6 candidates
+core debug: no stream_filter modules matched
+core debug: looking for stream_filter module matching "record": 6 candidates
+core debug: using stream_filter module "record"
+core debug: creating demux: access='file' demux='any' location='/E:/Media/Vlhx3bi.mp4' file='E:\Media\Vlhx3bi.mp4'
+core debug: looking for demux module matching "mp4": 66 candidates
+mp4 debug: added fragment moov
+mp4 debug: dumping root Box "root"
+mp4 debug: |   + ftyp size 32 offset 0
+mp4 debug: |   + moov size 1139 offset 32
+mp4 debug: |   |   + mvhd size 108 offset 40
+mp4 debug: |   |   + trak size 925 offset 148
+mp4 debug: |   |   |   + tkhd size 92 offset 156
+mp4 debug: |   |   |   + edts size 36 offset 248
+mp4 debug: |   |   |   |   + elst size 28 offset 256
+mp4 debug: |   |   |   + mdia size 789 offset 284
+mp4 debug: |   |   |   |   + mdhd size 32 offset 292
+mp4 debug: |   |   |   |   + hdlr size 45 offset 324
+mp4 debug: |   |   |   |   + minf size 704 offset 369
+mp4 debug: |   |   |   |   |   + vmhd size 20 offset 377
+mp4 debug: |   |   |   |   |   + dinf size 36 offset 397
+mp4 debug: |   |   |   |   |   |   + dref size 28 offset 405
+mp4 debug: |   |   |   |   |   |   |   + url  size 12 offset 421
+mp4 debug: |   |   |   |   |   + stbl size 640 offset 433
+mp4 debug: |   |   |   |   |   |   + stsd size 148 offset 441
+mp4 debug: |   |   |   |   |   |   |   + avc1 size 132 offset 457
+mp4 debug: |   |   |   |   |   |   |   |   + avcC size 46 offset 543
+mp4 debug: |   |   |   |   |   |   + stts size 24 offset 589
+mp4 debug: |   |   |   |   |   |   + stss size 20 offset 613
+mp4 debug: |   |   |   |   |   |   + stsc size 28 offset 633
+mp4 debug: |   |   |   |   |   |   + stsz size 392 offset 661
+mp4 debug: |   |   |   |   |   |   + stco size 20 offset 1053
+mp4 debug: |   |   + udta size 98 offset 1073
+mp4 debug: |   |   |   + meta size 90 offset 1081
+mp4 debug: |   |   |   |   + hdlr size 33 offset 1093
+mp4 debug: |   |   |   |   + ilst size 45 offset 1126
+mp4 debug: |   |   |   |   |   + ctoo size 37 offset 1134
+mp4 debug: |   + free size 8 offset 1171
+mp4 debug: |   + mdat size 475712 offset 1179
+mp4 debug: ISO Media file (isom) version 512.
+mp4 debug: found 1 tracks
+mp4 warning: elst box found
+mp4 debug:    - [0] duration=2790ms media time=0ms) rate=1.0
+mp4 debug: track[Id 0x1] read 1 chunk
+mp4 warning: STTS table of 1 entries
+mp4 debug: track[Id 0x1] read 93 samples length:2s
+core debug: selecting program id=0
+mp4 debug: adding track[Id 0x1] video (enable) language undef
+mp4 debug: fragment offset 32, data 1187<->476891, duration 0
+core debug: using demux module "mp4"
+core debug: looking for decoder module matching "any": 43 candidates
+avcodec debug: CPU flags: 0x0107d3db
+avcodec debug: trying to use direct rendering
+avcodec debug: allowing 4 thread(s) for decoding
+avcodec debug: avcodec codec (H264 - MPEG-4 AVC (part 10)) started
+avcodec debug: using frame thread mode with 4 threads
+core debug: using decoder module "avcodec"
+core debug: looking for meta reader module matching "any": 2 candidates
+lua debug: Trying Lua scripts in C:\Users\Chris\AppData\Roaming\vlc\lua\meta\reader
+lua debug: Trying Lua scripts in E:\Tagger\PPD\Tagger\libvlc\lua\meta\reader
+core debug: no meta reader modules matched
+core debug: `file:///E:/Media/Vlhx3bi.mp4' successfully opened
+mp4 debug: elst (0) gives 0ms (movie)-> 0ms (track)
+mp4 debug: track[Id 0x1] using Sync Sample Box (stss)
+mp4 debug: stss gives 0 --> 0 (sample number)
+core debug: Buffering 0%
+core debug: Buffering 10%
+core debug: Buffering 2avcodec debug: 0available hardware d%ecoder output format 
+61 (dxvacore debug: 2_vldBuffering )30%
+
+avcodeccore debug:  debug: available Bufferinsoftware decoder outputg  format 40%
+0 (yuv420p)core
+ debug: coreBuffering  debug: 50%
+looking for corehw decoder mo debug: dule matchinBufferingg " none": 60%
+1 candidatescore
+ debug: coreBuffering  debug: 70%
+no hw decoder modules matchedcore debug: 
+Buffering 80%
+corec debug: oreBuffering  debug: 90%
+looking for coretext renderer module matching " debug: any": Buffering 2 candidates100%
+
+core debug: Stream buffering done (330 ms in 4 ms)
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 32x32 (32x32) chroma: YUVA -> 16x16 (16x16) chroma: RGBA with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: looking for video filter2 module matching "any": 58 candidates
+yuvp debug: YUVP to YUVA converter
+core debug: using video filter2 module "yuvp"
+core debug: Deinterlacing available
+core debug: deinterlace 0, mode blend, is_needed 0
+core debug: Opening vout display wrapper
+core debug: looking for vout display module matching "vmem": 11 candidates
+core debug: VoutDisplayEvent 'fullscreen' 0
+core debug: VoutDisplayEvent 'resize' 640x738 window
+core debug: using vout display module "vmem"
+core debug: A filter to adapt decoder to display is needed
+core debug: looking for video filter2 module matching "any": 58 candidates
+swscale debug: 640x720 (640x738) chroma: I420 -> 640x738 (640x738) chroma: RV32 with scaling using Bicubic (good quality)
+core debug: using video filter2 module "swscale"
+core debug: Filter 'Swscale' (1908beec) appended to chain
+core debug: original format sz 640x738, of (0,0), vsz 640x720, 4cc I420, sar 1:1, msk r0x0 g0x0 b0x0
+ccoreor debug: eremoving module " error: freetype"
+Failed to change zoomcore
+ debucore error: Failed to set on top
+g: looking for coretext renderer module matching " error: any": Failed to change source AR
+2 candidates
+freetype debug: Using Arial as font from file C:\WINDOWS\Fonts\arial.ttf
+freetype debug: Using Courier New as mono-font from file C:\WINDOWS\Fonts\cour.ttf
+freetype debug: using fontsize: 2
+core debug: using text renderer module "freetype"
+avcodec warning: plane 0 not aligned
+avcodec warning: disabling direct rendering
+core debug: End of video preroll
+core debug: Received first picture
+core debug: Decoder wait done in 25 ms
+core debug: EOF reached
+core debug: waiting decoder fifos to empty
+core debug: waiting decoder fifos to empty
+core debug: waiting decoder fifos to empty
+core debug: waiting decoder fifos to empty
+core debug: removing module "avcodec"
+avcodec debug: ffmpeg codec (H264 - MPEG-4 AVC (part 10)) stopped
+core debug: killing decoder fourcc `h264', 0 PES in FIFO
+core debug: saving a free vout
+core debug: reusing provided vout
+corecore debug:  error: removing module "Failed to change zoom
+mp4"
+coremp4 debug: freeing all memory
+ error: coreFailed to change source AR
+ debug: removing module "record"
+core debug: removing module "filesystem"
+core debug: Program doesn't contain anymore ES
+core debug: destroying useless vout
+core debug: Filter 1908beec removed from chain
+core debug: removing module "swscale"
+core debug: removing module "vmem"
+core debug: removing module "freetype"
+core debug: removing module "yuvp"
+core debug: removing module "swscale"
