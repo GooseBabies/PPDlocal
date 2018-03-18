@@ -96,6 +96,10 @@ namespace Tagger
         bool IQDBLoopRunning = false;
         int EventIndex = 0;
 
+        string[] allTypes;
+        string[] videoTypes;
+        string[] imageTypes;
+
         IIqdbClient api = new IqdbClient();
         IqdbApi.Models.SearchResult searchResults;
 
@@ -140,16 +144,18 @@ namespace Tagger
                 settings.Slideshowinterval = 3;
                 settings.ViewCat = false;
                 settings.Volume = 30;
-                settings.Png = true;
-                settings.Jpg = true;
-                settings.Jpeg = true;
-                settings.Bmp = true;
-                settings.Gif = true;
-                settings.Mp4 = true;
-                settings.Wmv = true;
-                settings.Avi = true;
-                settings.Mpg = true;
-                settings.Mkv = true;
+                settings.ImageFileTypes = ".png,.jpg,.jpeg,.bmp,.gif,";
+                settings.VideoFileTypes = ".mp4,.wmv,.avi,.mpg,.mkv,.flv,.webm,";
+                //settings.Png = true;
+                //settings.Jpg = true;
+                //settings.Jpeg = true;
+                //settings.Bmp = true;
+                //settings.Gif = true;
+                //settings.Mp4 = true;
+                //settings.Wmv = true;
+                //settings.Avi = true;
+                //settings.Mpg = true;
+                //settings.Mkv = true;
                 settings.Mousedisappeardelay = 4;
                 settings.VisibleNav = true;
                 if (Directory.Exists(appfilelocation))
@@ -250,8 +256,12 @@ namespace Tagger
         {
             //Load Directory Information
             DI = new DirectoryInfo(path);
-            //Load files from directory that have an extensions of bmp, jpeg, jpg, png, gif, mp4, mpg, mkv, avi, wmv
-            FI = DI.GetFiles("*.*").Where(s => s.Extension.Equals((settings.Bmp ? ".bmp" : "nothing")) || s.Extension.Equals((settings.Jpeg ? ".jpeg" : "nothing")) || s.Extension.Equals((settings.Jpg ? ".jpg" : "nothing")) || s.Extension.Equals((settings.Png ? ".png" : "nothing")) || s.Extension.Equals((settings.Gif ? ".gif" : "nothing")) || s.Extension.Equals((settings.Mp4 ? ".mp4" : "nothing")) || s.Extension.Equals((settings.Mkv ? ".mkv" : "nothing")) || s.Extension.Equals((settings.Mpg ? ".mpg" : "nothing")) || s.Extension.Equals((settings.Avi ? ".avi" : "nothing")) || s.Extension.Equals((settings.Wmv ? ".wmv" : "nothing"))).ToList();
+            string fileTypes = settings.ImageFileTypes + settings.VideoFileTypes;
+            allTypes = fileTypes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            videoTypes = settings.VideoFileTypes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            imageTypes = settings.ImageFileTypes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            //Load files from directory that have an extensions of bmp, jpeg, jpg, png, gif, mp4, mpg, mkv, avi, wmv, flv, webm
+            FI = DI.GetFiles("*.*").Where(s => fileTypes.Contains(s.Extension)).ToList();
             //Sort files by creation time
             FI = FI.OrderBy(f => f.LastWriteTime).ToList();
             //Set ProgressBar Max Value to Number of Files
@@ -270,7 +280,7 @@ namespace Tagger
             //Add Files that are Media Files(mp4, mpg, mkv, wmv, avi)
             foreach (FileInfo f in FI)
             {
-                if (f.Extension.Equals(".mp4") || f.Extension.Equals(".mpg") || f.Extension.Equals(".mkv") || f.Extension.Equals(".wmv") || f.Extension.Equals(".avi"))
+                if (videoTypes.Contains(f.Extension))
                 {
                     MediaFiles.Add(FI.IndexOf(f));
                 }
@@ -649,7 +659,7 @@ namespace Tagger
             {
                 FileSize.Content = currentImage.Length.ToString();
             }
-            if (currentImage.Extension.Equals(".mp4") || currentImage.Extension.Equals(".mkv") || currentImage.Extension.Equals(".mpg") || currentImage.Extension.Equals(".avi") || currentImage.Extension.Equals(".wmv"))
+            if (videoTypes.Contains(currentImage.Extension))
             {
                 PreviewImage.Visibility = Visibility.Hidden;
                 ImageBorder.Visibility = Visibility.Hidden;
@@ -2585,7 +2595,7 @@ namespace Tagger
                 cycleVideo = false;
                 UpdateImage();
                 UpdateTagDisplay();
-                if (currentImage.Extension == ".mp4" || currentImage.Extension == ".mpg" || currentImage.Extension == ".mkv" || currentImage.Extension == ".webm" || currentImage.Extension == ".avi" || currentImage.Extension == ".wmv" || currentImage.Extension == ".mp4")
+                if (videoTypes.Contains(currentImage.Extension))
                 {
                     NextIQDB();
                 }

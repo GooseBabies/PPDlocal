@@ -37,6 +37,9 @@ namespace Tagger
         List<string> filepaths = new List<string>();
         string[] currentimagpath;
         Stack<int> ImageHistory = new Stack<int>();
+        string[] allTypes;
+        string[] videoTypes;
+        string[] imageTypes;
 
         public string ReturnFile {get; set;}
 
@@ -52,6 +55,11 @@ namespace Tagger
             shuffle = savesettings.Shuffle;
             data = _data;
 
+            string fileTypes = ss.ImageFileTypes + ss.VideoFileTypes;
+            allTypes = fileTypes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            videoTypes = ss.VideoFileTypes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            imageTypes = ss.ImageFileTypes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
             foreach (string file in ops)
             {
                 filepaths.Add(System.IO.Path.Combine(db.GetImageDirectory(data, file), file));
@@ -62,9 +70,11 @@ namespace Tagger
 
             LoadImageFolder(Directories);
 
-            timerImageChange = new DispatcherTimer();
-            timerImageChange.Interval = new TimeSpan(0, 0, IntervalTimer);
-            timerImageChange.Tick += new EventHandler(timerImageChange_Tick);
+            timerImageChange = new DispatcherTimer
+            {
+                Interval = new TimeSpan(0, 0, IntervalTimer)
+            };
+            timerImageChange.Tick += new EventHandler(TimerImageChange_Tick);
 
             if (shuffle)
             {
@@ -79,12 +89,12 @@ namespace Tagger
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             this.Cursor = Cursors.None;
-            //this.Topmost = true;
+            this.Topmost = true;
             PlaySlideShow();
             timerImageChange.IsEnabled = true;            
 
         }
-        private void timerImageChange_Tick(object sender, EventArgs e)
+        private void TimerImageChange_Tick(object sender, EventArgs e)
         {
             PlaySlideShow();
         }
@@ -102,7 +112,7 @@ namespace Tagger
                 }
 
                 DI = new DirectoryInfo(folder);
-                files = DI.GetFiles("*.*").Where(s => s.Extension.Equals((savesettings.Bmp ? ".bmp" : "nothing")) || s.Extension.Equals((savesettings.Jpeg ? ".jpeg" : "nothing")) || s.Extension.Equals((savesettings.Jpg ? ".jpg" : "nothing")) || s.Extension.Equals((savesettings.Png ? ".png" : "nothing")) || s.Extension.Equals((savesettings.Gif ? ".gif" : "nothing")) || s.Extension.Equals((savesettings.Mp4 ? ".mp4" : "nothing")) || s.Extension.Equals((savesettings.Mkv ? ".mkv" : "nothing")) || s.Extension.Equals((savesettings.Mpg ? ".mpg" : "nothing")) || s.Extension.Equals((savesettings.Avi ? ".avi" : "nothing")) || s.Extension.Equals((savesettings.Wmv ? ".wmv" : "nothing"))).ToList();
+                files = DI.GetFiles("*.*").Where(s => allTypes.Contains(s.Extension)).ToList();
                 var FI_SortedCreationtime = files.OrderBy(f => f.LastWriteTime);
                 files = FI_SortedCreationtime.ToList();
                 FI.AddRange(files);
@@ -157,7 +167,7 @@ namespace Tagger
                             Randomize(ref FI);
                         }
                         string ext = FI[Counter].Extension;
-                        if (ext == ".mkv" || ext == ".mpg" || ext == ".mp4" || ext == ".wmv" || ext == ".avi" || ext == ".webm" || !File.Exists(FI[Counter].FullName))
+                        if (videoTypes.Contains(ext) || !File.Exists(FI[Counter].FullName))
                         {
                             Counter++;
                             PlaySlideShow();
@@ -177,7 +187,7 @@ namespace Tagger
                     {
                         Counter = r.Next(FI.Count - 1);
                         string ext = FI[Counter].Extension;
-                        if (ext == ".mkv" || ext == ".mpg" || ext == ".mp4" || ext == ".wmv" || ext == ".avi" || ext == ".webm" || !File.Exists(FI[Counter].FullName))
+                        if (videoTypes.Contains(ext) || !File.Exists(FI[Counter].FullName))
                         {
                             PlaySlideShow();
                             timerImageChange.Start();
@@ -201,7 +211,7 @@ namespace Tagger
                         Counter = 0;
                     }
                     string ext = FI[Counter].Extension;
-                    if (ext == ".mkv" || ext == ".mpg" || ext == ".mp4" || ext == ".wmv" || ext == ".avi" || ext == ".webm" || !File.Exists(FI[Counter].FullName))
+                    if (videoTypes.Contains(ext) || !File.Exists(FI[Counter].FullName))
                     {
                         Counter++;
                         PlaySlideShow();
@@ -231,7 +241,7 @@ namespace Tagger
                             Randomize(ref main);
                         }
                         string ext = main[Counter].Split('.').Last();
-                        if (ext == "mkv" || ext == "mpg" || ext == "mp4" || ext == "wmv" || ext == "avi" || ext == "webm" || !File.Exists(main[Counter]))
+                        if (videoTypes.Contains(ext) || !File.Exists(main[Counter]))
                         {
                             Counter++;
                             PlaySlideShow();
@@ -251,7 +261,7 @@ namespace Tagger
                     {
                         Counter = r.Next(0, main.Length - 1);
                         string ext = main[Counter].Split('.').Last();
-                        if (ext == "mkv" || ext == "mpg" || ext == "mp4" || ext == "wmv" || ext == "avi" || ext == "webm" || !File.Exists(main[Counter]))
+                        if (videoTypes.Contains(ext) || !File.Exists(main[Counter]))
                         {
                             PlaySlideShow();
                             timerImageChange.Start();
@@ -273,7 +283,7 @@ namespace Tagger
                         Counter = 0;
                     }
                     string ext = main[Counter].Split('.').Last();
-                    if (ext == "mkv" || ext == "mpg" || ext == "mp4" || ext == "wmv" || ext == "avi" || ext == "webm" || !File.Exists(main[Counter]))
+                    if (videoTypes.Contains(ext) || !File.Exists(main[Counter]))
                     {
                         Counter++;
                         PlaySlideShow();
