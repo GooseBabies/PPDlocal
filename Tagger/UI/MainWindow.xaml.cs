@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.IO;
 using IqdbApi;
 using XamlAnimatedGif;
-//using Vlc.DotNet.Wpf;
+using System.ComponentModel;
 using Meta.Vlc;
 
 
@@ -78,9 +78,8 @@ namespace Tagger
         int ImagesTaggedCurrentRun = 0; //Count of images tagged in the current run
         short Rating = 0;   //rating of the image
         bool imagetagged = false;   //Indicator flag for knowing if image has info in database at all
-        bool isdragging = false;
         TimeSpan progressupdate = new TimeSpan(0, 0, 1);
-        DispatcherTimer timer = new DispatcherTimer();
+        //DispatcherTimer timer = new DispatcherTimer();
         string currentprofile = "def";
         bool mouseovermedia;
         DispatcherTimer mousewheeldonetimer = new DispatcherTimer();
@@ -88,7 +87,6 @@ namespace Tagger
         int mousewheelcounter = 0;
         int deletedimages = 0;
         
-        double mediaTotalTime;
         int mediafilesindex = 0;
         bool lessthan10seconds = false;
         bool waitingforresults = false;
@@ -97,8 +95,6 @@ namespace Tagger
         bool mediaopened = false;
         bool updatingmedia = false;
         List<string> SearchResults = new List<string>();
-        bool settingprogressbar = false;
-        string MediaLength = "";
         bool MediaIsVideo = false;
         bool cycleVideo = false;
         bool IQDBLoopRunning = false;
@@ -108,7 +104,6 @@ namespace Tagger
 
         IIqdbClient api = new IqdbClient();
         IqdbApi.Models.SearchResult searchResults;
-
 
         public MainWindow()
         {
@@ -121,8 +116,6 @@ namespace Tagger
         {
             //Don't show image icon in windows taskbar           
             Application.Current.MainWindow.ShowInTaskbar = false;
-            timer.Interval = progressupdate;
-            timer.Tick += new EventHandler(Update_progress);
             mousewheeldonetimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             mousewheeldonetimer.Tick += new EventHandler(MouseWheel_Done);
             IQDBTimer.Interval = new TimeSpan(0, 0, 15);
@@ -598,13 +591,9 @@ namespace Tagger
             //If media is playing
             if (mediaplaying)
             {
-                //Stoip the media
+                //Stop the media
                 PreviewMedia.Stop();
-                //PreviewMedia.MediaPlayer.Stop();
-                timer.Stop();
                 VideoProgress.Value = 0;
-                mediatime.Content = "00:00:00";
-                RemainingMediaTime.Content = "00:00:00";
                 //Flag media as stopped
                 mediaplaying = false;
             }
@@ -680,10 +669,12 @@ namespace Tagger
                 Pause2.Visibility = Visibility.Hidden;
                 EventExpander.Visibility = Visibility.Visible;
                 mediaplaying = false;
-                PreviewMedia.LoadMedia(new Uri(currentImage.FullName));
-                //PreviewMedia.MediaPlayer.SetMedia(currentImage);                
+                currentImageWidth = (short)PreviewMedia.ActualHeight;
+                currentImageHeight = (short)PreviewMedia.ActualWidth;
+                FileHeight.Content = "H: " + PreviewMedia.ActualHeight.ToString();
+                FileWidth.Content = "W: " + PreviewMedia.ActualHeight.ToString();
+                PreviewMedia.LoadMedia(new Uri(currentImage.FullName));              
                 MediaIsVideo = true;
-                mediatime.Content = "00:00:00";
 
             }
             else if (currentImage.Extension.Equals(".gif"))
@@ -867,16 +858,8 @@ namespace Tagger
         #region Media Player Controls
 
         private void PreviewMedia_LengthChanged(object sender, EventArgs e)
-        {
-            currentImageWidth = (short)PreviewMedia.ActualWidth;
-            currentImageHeight = (short)PreviewMedia.ActualHeight;
-            mediaTotalTime = PreviewMedia.Length.TotalMilliseconds;
-            var RemainingMilliseconds = mediaTotalTime - PreviewMedia.Time.TotalMilliseconds;
-            var RemainingSeconds = Math.Floor((RemainingMilliseconds / 1000) % 60);
-            var RemainingMinutes = Math.Floor((RemainingMilliseconds / 60000) % 60);
-            var RemainingHours = Math.Floor((RemainingMilliseconds / 3600000) % 60);
-            MediaLength = RemainingHours.ToString("00.") + ":" + RemainingMinutes.ToString("00.") + ":" + RemainingSeconds.ToString("00.");
-            if (mediaTotalTime < 10000)
+        {            
+            if (PreviewMedia.Length.TotalSeconds < 10)
             {
                 PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Repeat;
             }
@@ -884,7 +867,6 @@ namespace Tagger
             {
                 PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Stop;
             }
-            RemainingMediaTime.Content = MediaLength;
 
             mediaopened = true;
         }
@@ -911,50 +893,7 @@ namespace Tagger
         private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {            
             settings.Volume = Volume.Value;
-        }
-
-        private void Update_progress(object sender, EventArgs e)
-        {
-            UpdateProgressBar();
-        }
-
-        private void UpdateProgressBar()
-        {
-            if (!isdragging)
-            {
-                var MediaMilliseconds = PreviewMedia.Time.Milliseconds;
-                var MediaSeconds = PreviewMedia.Time.Seconds;
-                var MediaMinutes = PreviewMedia.Time.Minutes;
-                var MediaHours = PreviewMedia.Time.Hours;
-                var RemainingMilliseconds = PreviewMedia.Length.TotalMilliseconds - PreviewMedia.Time.TotalMilliseconds;
-                var RemainingSeconds = Math.Floor((RemainingMilliseconds / 1000) % 60);
-                var RemainingMinutes = Math.Floor((RemainingMilliseconds / 60000) % 60);
-                var RemainingHours = Math.Floor((RemainingMilliseconds / 3600000) % 60);
-
-                mediatime.Content = (MediaHours >= 1 ? Math.Floor((double)MediaHours).ToString("00.") + ":" : "00:") + Math.Floor((double)MediaMinutes % 60).ToString("00.") + ":" + Math.Floor((double)MediaSeconds % 60).ToString("00.");
-                RemainingMediaTime.Content = RemainingHours.ToString("00.") + ":" + RemainingMinutes.ToString("00.") + ":" + RemainingSeconds.ToString("00.");
-            }
-        }
-
-        private void PreviewMedia_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            if (lessthan10seconds)
-            {
-                timer.Stop();
-                PreviewMedia.Replay();
-                timer.Start();
-            }
-            else
-            {
-                PreviewMedia.Stop();
-                timer.Stop();
-                mediaplaying = false;
-                Play.Visibility = Visibility.Visible;
-                Pause.Visibility = Visibility.Hidden;
-                Pause2.Visibility = Visibility.Hidden;
-                VideoProgress.Value = 0;
-            }
-        }        
+        }               
 
         private void Window_MouseWheel(object sender, MouseWheelEventArgs e)
         {
@@ -979,7 +918,6 @@ namespace Tagger
         {
             mousewheeldonetimer.Stop();
             PreviewMedia.Position += (mousewheelcounter * 0.001F);
-            UpdateProgressBar();
             mousewheelcounter = 0;
         }
 
@@ -1663,8 +1601,7 @@ namespace Tagger
                 Play.Visibility = Visibility.Hidden;
                 Pause.Visibility = Visibility.Visible;
                 Pause2.Visibility = Visibility.Visible;
-                PreviewMedia.Play();
-                timer.Start();                
+                PreviewMedia.Play();              
             }
             else
             {
@@ -1673,7 +1610,6 @@ namespace Tagger
                 Pause2.Visibility = Visibility.Hidden;
                 Play.Visibility = Visibility.Visible;
                 PreviewMedia.Pause();
-                timer.Stop();
             }
         }
 
@@ -1698,9 +1634,6 @@ namespace Tagger
                 Pause2.Visibility = Visibility.Hidden;
                 Play.Visibility = Visibility.Visible;
                 PreviewMedia.Stop();
-                timer.Stop();
-                mediatime.Content = "00:00:00";
-                RemainingMediaTime.Content = MediaLength;
                 VideoProgress.Value = 0;
             }
         }
@@ -1727,7 +1660,6 @@ namespace Tagger
                 {
                     PreviewMedia.Position = skipAmount;
                 }
-                UpdateProgressBar();
             }
         }
 
@@ -1757,7 +1689,6 @@ namespace Tagger
                 {
                     PreviewMedia.Position = 0;
                 }
-                UpdateProgressBar();
             }
         }
 
@@ -1777,7 +1708,6 @@ namespace Tagger
         {
             UI.MediaFullscreen mf = new UI.MediaFullscreen(currentImage.FullName, PreviewMedia.Time, settings, db.GetImageTags(data, currentImageName), mediaplaying);
             PreviewMedia.Stop();
-            timer.Stop();
             mf.ShowDialog();
             if (mf.playing)
             {
@@ -1796,8 +1726,7 @@ namespace Tagger
             }
             PreviewMedia.Time = mf.returnposition;
             Volume.Value = mf.VolumeOut;
-
-            UpdateProgressBar();
+            
         }
 
         private void FullscreenCanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -2942,6 +2871,12 @@ namespace Tagger
             db.DeleteImageData(data, currentImageName);
             UpdateTagDisplay();
             TagAdd.Focus();
+        }
+
+        private void PreviewMedia_TimeChanged(object sender, EventArgs e)
+        {
+            var timeElapsed = PreviewMedia.Length.Subtract(PreviewMedia.Time);
+            RemainingMediaTime.Text = timeElapsed.ToString("hh\\:mm\\:ss");
         }
     }
 }

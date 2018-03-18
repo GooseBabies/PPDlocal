@@ -6,6 +6,7 @@
         xmlns:behavs="clr-namespace:Tagger"
         xmlns:wpf="clr-namespace:Meta.Vlc.Wpf;assembly=Meta.Vlc.Wpf"
         mc:Ignorable="d"
+        x:Name="CurrentWindow"
         Title="PPD" Height="900" Width="1200" WindowState="Maximized" Closing="Window_Closing" behavs:InputBindingsBehavior.TakesInputBindingPrecedence="True" Loaded="Window_Loaded" MouseWheel="Window_MouseWheel">
     <Window.Resources>
         <RoutedUICommand x:Key="NextFileCommand" Text="Next File"/>
@@ -501,9 +502,9 @@
                             <Button x:Name="SkipF" Margin="5,0,5,0" Grid.Column="3" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" Width="25" Command="{StaticResource SkipForwardCommand}">
                                 <Polygon Points="0,20 0,0 6,6 6,0 16,10 6,20 6,14" Stroke="RoyalBlue" StrokeThickness="1" Fill="RoyalBlue"/>
                             </Button>
-                            <Label x:Name="mediatime" Content="00:00:00" Foreground="White" Margin="5,0,5,0" Grid.Column="4"/>
+                            <TextBlock x:Name="mediatime" Text="{Binding Time, ElementName=PreviewMedia, StringFormat=hh\\:mm\\:ss}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0" Grid.Column="4"/>
                             <Slider x:Name="VideoProgress" IsMoveToPointEnabled="True" Grid.Column="5" Margin="5,2,5,2" VerticalAlignment="Center" Opacity="0.8" Value="{Binding Position, ElementName=PreviewMedia}" Maximum="1" SmallChange="0.00001"/>
-                            <Label x:Name="RemainingMediaTime" Content="00:00:00" Foreground="White" Margin="5,0,5,0" Grid.Column="6"/>
+                            <TextBlock x:Name="RemainingMediaTime" Text="00:00:00" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="5,0,5,0" Grid.Column="6"/>
                             <Slider x:Name="Volume" IsMoveToPointEnabled="True" Grid.Column="7" Margin="5,2,5,2" VerticalAlignment="Center" Orientation="Horizontal" Value="{Binding Volume, ElementName=PreviewMedia}"  Maximum="100" ValueChanged="Volume_ValueChanged"/>
                             <Button x:Name="Fullscren" Margin="5,0,0,0" Grid.Column="8" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" Width="25" Command="{StaticResource FullscreenCommand}">
                                 <Polygon Points="0,20 8,20 6,18 18,6 20,8 20,0 12,0 14,2 2,14 0,12" Stroke="RoyalBlue" StrokeThickness="1" Fill="RoyalBlue"/>
@@ -514,7 +515,7 @@
                     </StackPanel>                        
                         <Border x:Name="MediaBorder" BorderBrush="Black" BorderThickness="2" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MouseEnter="PreviewMedia_MouseEnter" MouseLeave="PreviewMedia_MouseLeave" Panel.ZIndex="1">
                         <!--<MediaElement x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrubbingEnabled="True" Margin="0,0,0,0" LoadedBehavior="Manual" MediaOpened="PreviewMedia_MediaOpened" MediaEnded="PreviewMedia_MediaEnded"/>-->
-                        <wpf:VlcPlayer x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LibVlcPath="..\..\libvlc" LengthChanged="PreviewMedia_LengthChanged" />
+                        <wpf:VlcPlayer x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LibVlcPath="..\..\libvlc" LengthChanged="PreviewMedia_LengthChanged" TimeChanged="PreviewMedia_TimeChanged" />
                     </Border>
                 </Grid>                              
                 <Border x:Name="ImageBorder" Grid.Row="1" BorderBrush="Black" BorderThickness="2" Background="Black">                    
