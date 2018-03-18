@@ -56,7 +56,7 @@ namespace Tagger
         List<string> DisplayTags = new List<string>();  //List to store Tags for Tag Display in
         Stack<int> ImageHistory = new Stack<int>(); //Stack holding previous images displayed
         List<int> MediaFiles = new List<int>();
-        List<int> EventList = new List<int>();
+        List<float> EventList = new List<float>();
 
         Label Defaultlabel; //Label generated when Tag Add Textbox contains anything that doesn't match up with any tags in Tags table
         Label SelectedLabel;    //Label that has focus
@@ -758,7 +758,7 @@ namespace Tagger
                         string[] others = tagname.Split('|');
                         //Create a button for the event with Tag Property as Position
                         Button event1 = new Button { Content = others[0], HorizontalContentAlignment = HorizontalAlignment.Center, Tag = others[1], Background = Brushes.LightGray, BorderBrush = Brushes.Transparent, Foreground = Brushes.Black, FontWeight = FontWeights.Bold, FontSize = 12, Height = 20};
-                        if(int.TryParse(others[1], out int EventTime))
+                        if(float.TryParse(others[1], out float EventTime))
                         {
                             EventList.Add(EventTime);
                         }                        
@@ -2783,14 +2783,14 @@ namespace Tagger
 
         private void GrabCurrentPosition_Click(object sender, RoutedEventArgs e)
         {
-            EventPosition.Text = Math.Floor(PreviewMedia.Time.TotalMilliseconds).ToString();
+            EventPosition.Text = PreviewMedia.Position.ToString();
         }
 
         private void AddEvent_Click(object sender, RoutedEventArgs e)
         {
             if (EventName.Text == "" || EventPosition.Text == "")
             {
-                MessageBox.Show("An event needs a name and a position (ms)");
+                MessageBox.Show("An event needs a name and a position");
             }
             else
             {
@@ -2804,7 +2804,7 @@ namespace Tagger
             {
                 if (EventName.Text == "" || EventPosition.Text == "")
                 {
-                    MessageBox.Show("An event needs a name and a position (ms)");
+                    MessageBox.Show("An event needs a name and a position");
                 }
                 else
                 {
@@ -2815,11 +2815,11 @@ namespace Tagger
 
         private void EventKey(int eventindex)
         {
-            if (eventindex < EventControls.Children.Count - 1 && eventindex >= 0)
+            if (eventindex <= EventControls.Children.Count - 1 && eventindex >= 0)
             {
-                if (eventindex < EventList.Count - 1)
+                if (eventindex <= EventList.Count - 1)
                 {
-                    PreviewMedia.Time = new TimeSpan(0, 0, 0, 0, EventList[eventindex]);
+                    PreviewMedia.Position = EventList[eventindex];
                 }
             }
         }

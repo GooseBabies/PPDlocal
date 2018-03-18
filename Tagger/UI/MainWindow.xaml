@@ -197,11 +197,8 @@
         <KeyBinding Command="{StaticResource SkipBackCommand}" Key="MediaNextTrack"/>
         <KeyBinding Command="{StaticResource FullscreenCommand}" Key="F11"/>
         <KeyBinding Command="{StaticResource VolumeUpCommand}" Modifiers="Ctrl" Key="Up"/>
-        <KeyBinding Command="{StaticResource VolumeUpCommand}" Key="VolumeUp"/>
         <KeyBinding Command="{StaticResource VolumeDownCommand}" Modifiers="Ctrl" Key="Down"/>
-        <KeyBinding Command="{StaticResource VolumeDownCommand}" Key="VolumeDown"/>
         <KeyBinding Command="{StaticResource MuteCommand}" Modifiers="Ctrl" Key="M"/>
-        <KeyBinding Command="{StaticResource MuteCommand}" Key="VolumeMute"/>
 
         <KeyBinding Command="{StaticResource Event1Command}" Modifiers="Ctrl" Key="F1"/>
         <KeyBinding Command="{StaticResource Event2Command}" Modifiers="Ctrl" Key="F2"/>
@@ -280,6 +277,19 @@
                     <MenuItem x:Name="RandomVideoButton" Header="Random Video" IsTabStop="False" InputGestureText="F8" Command="{StaticResource RandomVideoCommand}"/>
                     <Separator IsTabStop="False"/>
                     <MenuItem x:Name="PrevHistoryButton" Header="Previous History File" IsTabStop="False" InputGestureText="F9" Command="{StaticResource GotoHistoryCommand}"/>
+                </MenuItem>
+                <MenuItem Header="_Video Controls" IsTabStop="False">
+                    <MenuItem x:Name="PlayButton" Header="Play" IsTabStop="False" InputGestureText="Ctrl+Space" Command="{StaticResource PlayPauseCommand}"/>
+                    <MenuItem x:Name="StopButton" Header="Stop" IsTabStop="False" InputGestureText="Ctrl+P" Command="{StaticResource StopCommand}"/>
+                    <Separator IsTabStop="False"/>
+                    <MenuItem x:Name="SkipBackButton" Header="Skip Back" IsTabStop="False" InputGestureText="Ctrl+," Command="{StaticResource SkipBackCommand}"/>
+                    <MenuItem x:Name="SkipForwardButton" Header="Skip Forward" IsTabStop="False" InputGestureText="Ctrl+." Command="{StaticResource SkipForwardCommand}"/>
+                    <Separator IsTabStop="False"/>
+                    <MenuItem x:Name="VolumeUpButton" Header="Volume Up" IsTabStop="False" InputGestureText="Ctrl+Up" Command="{StaticResource VolumeUpCommand}"/>
+                    <MenuItem x:Name="VolumeDownButton" Header="Volume Down" IsTabStop="False" InputGestureText="Ctrl+Down" Command="{StaticResource VolumeDownCommand}"/>
+                    <MenuItem x:Name="MuteButton" Header="Mute" IsTabStop="False" InputGestureText="Ctrl+M" Command="{StaticResource MuteCommand}"/>
+                    <Separator IsTabStop="False"/>
+                    <MenuItem x:Name="FullscreenButton" Header="Fullscreen" IsTabStop="False" InputGestureText="F11" Command="{StaticResource FullscreenCommand}"/>
                 </MenuItem>
                 <MenuItem Header="_Tools" IsTabStop="False">
                     <MenuItem x:Name="FileTagManager" Header="File Tag Manager" IsTabStop="False" InputGestureText="Ctrl+G" Command="{StaticResource FileTagManagerCommand}"/>
@@ -515,7 +525,23 @@
                     </StackPanel>                        
                         <Border x:Name="MediaBorder" BorderBrush="Black" BorderThickness="2" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MouseEnter="PreviewMedia_MouseEnter" MouseLeave="PreviewMedia_MouseLeave" Panel.ZIndex="1">
                         <!--<MediaElement x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrubbingEnabled="True" Margin="0,0,0,0" LoadedBehavior="Manual" MediaOpened="PreviewMedia_MediaOpened" MediaEnded="PreviewMedia_MediaEnded"/>-->
-                        <wpf:VlcPlayer x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LibVlcPath="..\..\libvlc" LengthChanged="PreviewMedia_LengthChanged" TimeChanged="PreviewMedia_TimeChanged" />
+                        <wpf:VlcPlayer x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LibVlcPath="..\..\libvlc" LengthChanged="PreviewMedia_LengthChanged" TimeChanged="PreviewMedia_TimeChanged">
+                            <wpf:VlcPlayer.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem x:Name="ContextPlayButton" Header="Play" IsTabStop="False" InputGestureText="Ctrl+Space" Command="{StaticResource PlayPauseCommand}"/>
+                                    <MenuItem x:Name="ContextStopButton" Header="Stop" IsTabStop="False" InputGestureText="Ctrl+P" Command="{StaticResource StopCommand}"/>
+                                    <Separator IsTabStop="False"/>
+                                    <MenuItem x:Name="ContextSkipBackButton" Header="Skip Back" IsTabStop="False" InputGestureText="Ctrl+," Command="{StaticResource SkipBackCommand}"/>
+                                    <MenuItem x:Name="ContextSkipForwardButton" Header="Skip Forward" IsTabStop="False" InputGestureText="Ctrl+." Command="{StaticResource SkipForwardCommand}"/>
+                                    <Separator IsTabStop="False"/>
+                                    <MenuItem x:Name="ContextVolumeUpButton" Header="Volume Up" IsTabStop="False" InputGestureText="Ctrl+Up" Command="{StaticResource VolumeUpCommand}"/>
+                                    <MenuItem x:Name="ContextVolumeDownButton" Header="Volume Down" IsTabStop="False" InputGestureText="Ctrl+Down" Command="{StaticResource VolumeDownCommand}"/>
+                                    <MenuItem x:Name="ContextMuteButton" Header="Mute" IsTabStop="False" InputGestureText="Ctrl+M" Command="{StaticResource MuteCommand}"/>
+                                    <Separator IsTabStop="False"/>
+                                    <MenuItem x:Name="ContextFullscreenButton" Header="Fullscreen" IsTabStop="False" InputGestureText="F11" Command="{StaticResource FullscreenCommand}"/>
+                                </ContextMenu>                                
+                            </wpf:VlcPlayer.ContextMenu>
+                        </wpf:VlcPlayer>
                     </Border>
                 </Grid>                              
                 <Border x:Name="ImageBorder" Grid.Row="1" BorderBrush="Black" BorderThickness="2" Background="Black">                    
