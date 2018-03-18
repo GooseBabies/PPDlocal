@@ -72,14 +72,11 @@ namespace Tagger
         
         //Settings 
         
-        bool mediaplaying = false;  //Indicator for if displayed media is playing or not
         bool AlreadyHasTag = false; //Inidcator flag on wether the displayed image already has the tag being tried to add to it
         int ImagesTaggedfromCurrentDirectory = 0;   //Count of images that have been tagged from the current directory in previous runs
         int ImagesTaggedCurrentRun = 0; //Count of images tagged in the current run
         short Rating = 0;   //rating of the image
         bool imagetagged = false;   //Indicator flag for knowing if image has info in database at all
-        TimeSpan progressupdate = new TimeSpan(0, 0, 1);
-        //DispatcherTimer timer = new DispatcherTimer();
         string currentprofile = "def";
         bool mouseovermedia;
         DispatcherTimer mousewheeldonetimer = new DispatcherTimer();
@@ -88,7 +85,6 @@ namespace Tagger
         int deletedimages = 0;
         
         int mediafilesindex = 0;
-        bool lessthan10seconds = false;
         bool waitingforresults = false;
         int IQDBscoreQualifier = 60;
         bool closewithoutsaving = false;
@@ -99,8 +95,6 @@ namespace Tagger
         bool cycleVideo = false;
         bool IQDBLoopRunning = false;
         int EventIndex = 0;
-        bool mediamuted = false;
-        double previousvolume = 0.0;
 
         IIqdbClient api = new IqdbClient();
         IqdbApi.Models.SearchResult searchResults;
@@ -145,7 +139,7 @@ namespace Tagger
                 settings.Shuffle = true;
                 settings.Slideshowinterval = 3;
                 settings.ViewCat = false;
-                settings.Volume = 0.3;
+                settings.Volume = 30;
                 settings.Png = true;
                 settings.Jpg = true;
                 settings.Jpeg = true;
@@ -584,18 +578,15 @@ namespace Tagger
         private void UpdateImage()
         {
             updatingmedia = true;
-            mediamuted = false;
             EventList.Clear();
             //Collapse Event Controls Area
             EventControls.Visibility = Visibility.Collapsed;
             //If media is playing
-            if (mediaplaying)
+            if (PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 //Stop the media
                 PreviewMedia.Stop();
                 VideoProgress.Value = 0;
-                //Flag media as stopped
-                mediaplaying = false;
             }
             mediaopened = false;
             //Collect Garbage - Helps keep program running smoothly
@@ -668,7 +659,6 @@ namespace Tagger
                 Pause.Visibility = Visibility.Hidden;
                 Pause2.Visibility = Visibility.Hidden;
                 EventExpander.Visibility = Visibility.Visible;
-                mediaplaying = false;
                 currentImageWidth = (short)PreviewMedia.ActualHeight;
                 currentImageHeight = (short)PreviewMedia.ActualWidth;
                 FileHeight.Content = "H: " + PreviewMedia.ActualHeight.ToString();
@@ -690,7 +680,6 @@ namespace Tagger
                 //FileHeight.Content = "H: " + currentImageHeight.ToString();
                 //FileWidth.Content = "W: " + currentImageWidth.ToString();
                 PreviewImage.Stretch = Stretch.Uniform;
-                mediaplaying = false;
                 MediaIsVideo = false;
             }
             else
@@ -707,7 +696,6 @@ namespace Tagger
                 FileWidth.Content = "W: " + currentImageWidth.ToString();
                 PreviewImage.Source = ImageInstance;
                 PreviewImage.Stretch = Stretch.Uniform;
-                mediaplaying = false;
                 MediaIsVideo = false;
             }
             Rating = db.GetRating(data, currentImageName);
@@ -867,8 +855,18 @@ namespace Tagger
             {
                 PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Stop;
             }
-
             mediaopened = true;
+        }
+
+        private void PreviewMedia_TimeChanged(object sender, EventArgs e)
+        {
+            var timeElapsed = PreviewMedia.Length.Subtract(PreviewMedia.Time);
+            RemainingMediaTime.Text = timeElapsed.ToString("hh\\:mm\\:ss");
+        }
+
+        private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            settings.Volume = (int)Volume.Value;
         }
 
         private void PreviewMedia_MouseEnter(object sender, MouseEventArgs e)
@@ -888,12 +886,7 @@ namespace Tagger
                 FullMediaControls.Visibility = Visibility.Collapsed;
                 TagAdd.Focus();
             }
-        }
-
-        private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {            
-            settings.Volume = Volume.Value;
-        }               
+        }              
 
         private void Window_MouseWheel(object sender, MouseWheelEventArgs e)
         {
@@ -1595,9 +1588,8 @@ namespace Tagger
             #region VideoCommands
         private void PlayPauseExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            if (!mediaplaying)
+            if (PreviewMedia.State != Meta.Vlc.Interop.Media.MediaState.Playing)
             {
-                mediaplaying = true;
                 Play.Visibility = Visibility.Hidden;
                 Pause.Visibility = Visibility.Visible;
                 Pause2.Visibility = Visibility.Visible;
@@ -1605,7 +1597,6 @@ namespace Tagger
             }
             else
             {
-                mediaplaying = false;
                 Pause.Visibility = Visibility.Hidden;
                 Pause2.Visibility = Visibility.Hidden;
                 Play.Visibility = Visibility.Visible;
@@ -1627,13 +1618,14 @@ namespace Tagger
 
         private void StopExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            if (mediaplaying)
+            if (PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
-                mediaplaying = false;
                 Pause.Visibility = Visibility.Hidden;
                 Pause2.Visibility = Visibility.Hidden;
                 Play.Visibility = Visibility.Visible;
                 PreviewMedia.Stop();
+                mediatime.Text = "00:00:00";
+                RemainingMediaTime.Text = "00:00:00";
                 VideoProgress.Value = 0;
             }
         }
@@ -1653,7 +1645,7 @@ namespace Tagger
         private void SkipForwardExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             float skipAmount = 0;
-            if (mediaplaying)
+            if (PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 skipAmount = PreviewMedia.Position + 0.0333F;
                 if (skipAmount < 1)
@@ -1678,7 +1670,7 @@ namespace Tagger
         private void SkipBackExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             float skipAmount = 0;
-            if (mediaplaying)
+            if (PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 skipAmount = PreviewMedia.Position - 0.0333F;
                 if (skipAmount > 0)
@@ -1706,12 +1698,11 @@ namespace Tagger
 
         private void FullscreenExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            UI.MediaFullscreen mf = new UI.MediaFullscreen(currentImage.FullName, PreviewMedia.Time, settings, db.GetImageTags(data, currentImageName), mediaplaying);
+            UI.MediaFullscreen mf = new UI.MediaFullscreen(currentImage.FullName, PreviewMedia.Position, settings, db.GetImageTags(data, currentImageName), (PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing ? true : false));
             PreviewMedia.Stop();
             mf.ShowDialog();
-            if (mf.playing)
+            if (mf.Playing)
             {
-                mediaplaying = true;
                 PreviewMedia.Play();
                 Play.Visibility = Visibility.Hidden;
                 Pause.Visibility = Visibility.Visible;
@@ -1719,12 +1710,11 @@ namespace Tagger
             }
             else
             {
-                mediaplaying = false;
                 Play.Visibility = Visibility.Visible;
                 Pause.Visibility = Visibility.Hidden;
                 Pause2.Visibility = Visibility.Hidden;
             }
-            PreviewMedia.Time = mf.returnposition;
+            PreviewMedia.Position = mf.Returnposition;
             Volume.Value = mf.VolumeOut;
             
         }
@@ -1744,10 +1734,10 @@ namespace Tagger
         private void VolumeUpExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             double currentvolume = Volume.Value;
-            double newvolume = currentvolume + 0.1;
-            if (newvolume > 1)
+            double newvolume = currentvolume + 5;
+            if (newvolume > 100)
             {
-                newvolume = 1;
+                newvolume = 100;
             }
             Volume.Value = newvolume;
         }
@@ -1767,7 +1757,7 @@ namespace Tagger
         private void VolumeDownExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             double currentvolume = Volume.Value;
-            double newvolume = currentvolume - 0.1;
+            double newvolume = currentvolume - 5;
             if(newvolume < 0)
             {
                 newvolume = 0;
@@ -1789,16 +1779,13 @@ namespace Tagger
 
         private void MuteExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            if (mediamuted)
+            if (PreviewMedia.IsMute)
             {
-                Volume.Value = previousvolume;
-                mediamuted = false;
+                PreviewMedia.IsMute = false;
             }
             else
             {
-                previousvolume = Volume.Value;
-                Volume.Value = 0;
-                mediamuted = true;
+                PreviewMedia.IsMute = true;
             }            
         }
 
@@ -1833,7 +1820,7 @@ namespace Tagger
 
         private void EventCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -1851,7 +1838,7 @@ namespace Tagger
 
         private void Event1CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -1869,7 +1856,7 @@ namespace Tagger
 
         private void Event2CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -1887,7 +1874,7 @@ namespace Tagger
 
         private void Event3CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -1905,7 +1892,7 @@ namespace Tagger
 
         private void Event4CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -1923,7 +1910,7 @@ namespace Tagger
 
         private void Event5CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -1941,7 +1928,7 @@ namespace Tagger
 
         private void Event6CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -1959,7 +1946,7 @@ namespace Tagger
 
         private void Event7CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -1977,7 +1964,7 @@ namespace Tagger
 
         private void Event8CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -1995,7 +1982,7 @@ namespace Tagger
 
         private void Event9CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -2013,7 +2000,7 @@ namespace Tagger
 
         private void Event10CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -2031,7 +2018,7 @@ namespace Tagger
 
         private void Event11CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -2049,7 +2036,7 @@ namespace Tagger
 
         private void Event12CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -2074,7 +2061,7 @@ namespace Tagger
 
         private void NextEventCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -2099,7 +2086,7 @@ namespace Tagger
 
         private void PrevEventCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (e.Source is Control target && mediaplaying)
+            if (e.Source is Control target && PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
             {
                 e.CanExecute = true;
             }
@@ -2871,12 +2858,6 @@ namespace Tagger
             db.DeleteImageData(data, currentImageName);
             UpdateTagDisplay();
             TagAdd.Focus();
-        }
-
-        private void PreviewMedia_TimeChanged(object sender, EventArgs e)
-        {
-            var timeElapsed = PreviewMedia.Length.Subtract(PreviewMedia.Time);
-            RemainingMediaTime.Text = timeElapsed.ToString("hh\\:mm\\:ss");
         }
     }
 }

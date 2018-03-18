@@ -505,7 +505,7 @@
                             <TextBlock x:Name="mediatime" Text="{Binding Time, ElementName=PreviewMedia, StringFormat=hh\\:mm\\:ss}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0" Grid.Column="4"/>
                             <Slider x:Name="VideoProgress" IsMoveToPointEnabled="True" Grid.Column="5" Margin="5,2,5,2" VerticalAlignment="Center" Opacity="0.8" Value="{Binding Position, ElementName=PreviewMedia}" Maximum="1" SmallChange="0.00001"/>
                             <TextBlock x:Name="RemainingMediaTime" Text="00:00:00" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="5,0,5,0" Grid.Column="6"/>
-                            <Slider x:Name="Volume" IsMoveToPointEnabled="True" Grid.Column="7" Margin="5,2,5,2" VerticalAlignment="Center" Orientation="Horizontal" Value="{Binding Volume, ElementName=PreviewMedia}"  Maximum="100" ValueChanged="Volume_ValueChanged"/>
+                            <Slider x:Name="Volume" IsMoveToPointEnabled="True" Grid.Column="7" Margin="5,2,5,2" VerticalAlignment="Center" Orientation="Horizontal" Value="{Binding Volume, ElementName=PreviewMedia}" Maximum="100" ValueChanged="Volume_ValueChanged"/>
                             <Button x:Name="Fullscren" Margin="5,0,0,0" Grid.Column="8" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" Width="25" Command="{StaticResource FullscreenCommand}">
                                 <Polygon Points="0,20 8,20 6,18 18,6 20,8 20,0 12,0 14,2 2,14 0,12" Stroke="RoyalBlue" StrokeThickness="1" Fill="RoyalBlue"/>
                             </Button>

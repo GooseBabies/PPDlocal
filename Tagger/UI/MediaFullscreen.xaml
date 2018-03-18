@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Tagger.UI"
+        xmlns:wpf="clr-namespace:Meta.Vlc.Wpf;assembly=Meta.Vlc.Wpf"
         mc:Ignorable="d"
         Title=""  WindowState="Normal" ResizeMode="NoResize" Height="1080" Width="1920" WindowStyle="None" WindowStartupLocation="Manual" ShowInTaskbar="False" MouseMove="Window_MouseMove" KeyUp="Window_KeyUp" Loaded="Window_Loaded" MouseWheel="Window_MouseWheel_1">
     <Grid>
@@ -122,10 +122,10 @@
                 <Button x:Name="SkipForward" Margin="5,0,5,0" Grid.Column="3" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" Width="25" Click="SkipF_Click">
                     <Polygon Points="0,20 0,0 6,6 6,0 16,10 6,20 6,14" Stroke="RoyalBlue" StrokeThickness="1" Fill="RoyalBlue"/>
                 </Button>
-                <Label x:Name="mediatime" Content="00:00:00" Foreground="White" Margin="5,0,5,0" Grid.Column="4"/>
-                <Slider x:Name="VideoProgress" IsMoveToPointEnabled="True" Grid.Column="5" Margin="5,2,5,2" VerticalAlignment="Center" ValueChanged="VideoProgress_ValueChanged" Thumb.DragStarted="VideoProgress_DragStarted" Thumb.DragCompleted="VideoProgress_DragCompleted"/>
-                <Label x:Name="RemainingMediaTime" Content="00:00:00" Foreground="White" Margin="5,0,5,0" Grid.Column="6"/>
-                <Slider x:Name="Volume" IsMoveToPointEnabled="True" Grid.Column="7" Margin="5,2,5,2" VerticalAlignment="Center" Orientation="Horizontal" ValueChanged="Volume_ValueChanged" Maximum="1" Value="0.3"/>
+                <TextBlock x:Name="mediatime" Text="{Binding Time, ElementName=PreviewMedia, StringFormat=hh\\:mm\\:ss}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="5,0,5,0" Grid.Column="4"/>
+                <Slider x:Name="VideoProgress" IsMoveToPointEnabled="True" Grid.Column="5" Margin="5,2,5,2" VerticalAlignment="Center" Opacity="0.8" Value="{Binding Position, ElementName=PreviewMedia}" Maximum="1" SmallChange="0.00001"/>
+                <TextBlock x:Name="RemainingMediaTime" Text="00:00:00" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="5,0,5,0" Grid.Column="6"/>
+                <Slider x:Name="Volume" IsMoveToPointEnabled="True" Grid.Column="7" Margin="5,2,5,2" VerticalAlignment="Center" Orientation="Horizontal" Value="{Binding Volume, ElementName=PreviewMedia}" Maximum="100" ValueChanged="Volume_ValueChanged"/>
                 <Button x:Name="Fullscren" Margin="10,0,0,0" Grid.Column="8" Click="Fullscren_Click" BorderBrush="Transparent" Background="Transparent" Height="25" Width="25">
                     <Polygon Points="0,16 4,20 8,16 10,18 10,10 18,10 16,8 20,4 16,0 12,4 10,2 10,10 2,10 4,12" Stroke="RoyalBlue" StrokeThickness="1" Fill="RoyalBlue" />
                 </Button>
@@ -135,7 +135,8 @@
         </StackPanel>
         
         <Border x:Name="MediaBorder" BorderBrush="Black" BorderThickness="2" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Panel.ZIndex="1">
-            <MediaElement x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrubbingEnabled="True" Margin="0,0,0,0" LoadedBehavior="Manual" MediaOpened="PreviewMedia_MediaOpened"/>
+            <!--<MediaElement x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrubbingEnabled="True" Margin="0,0,0,0" LoadedBehavior="Manual" MediaOpened="PreviewMedia_MediaOpened"/>-->
+            <wpf:VlcPlayer x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LibVlcPath="..\..\libvlc" LengthChanged="PreviewMedia_LengthChanged" TimeChanged="PreviewMedia_TimeChanged"/>
         </Border>
     </Grid>
 </Window>

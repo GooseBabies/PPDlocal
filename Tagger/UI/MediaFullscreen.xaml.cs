@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Tagger.UI
@@ -21,29 +14,20 @@ namespace Tagger.UI
     public partial class MediaFullscreen : Window
     {
         XMLUtil.SaveSettings ss;
-        DispatcherTimer timer = new DispatcherTimer();
         DispatcherTimer mousewheeldonetimer = new DispatcherTimer();
         DispatcherTimer mousenomove = new DispatcherTimer();
-
-        bool isdragging = false;
-        bool mediaplaying = false;
-        bool mediaopened = false;
+        
         int mousewheelcounter = 0;
         int mousedelay;
         int eventindex = -1;
-        long skipInterval = 0;
-        double mediaTotalTime;        
-        string MediaLength = "";
-        bool SettingProgressBar = false;
-        bool LessThan10Seconds = false;
 
         public double VolumeOut { get; set; }
-        public TimeSpan returnposition { get; set; }
-        public bool playing { get; set; }
+        public float Returnposition { get; set; }
+        public bool Playing { get; set; }
 
         ErrorHandling Error = new ErrorHandling();
 
-        public MediaFullscreen(string mediafile, TimeSpan position, XMLUtil.SaveSettings settings, List<string> Tags, bool mediaplay)
+        public MediaFullscreen(string mediafile, float position, XMLUtil.SaveSettings settings, List<string> Tags, bool mediaplay)
         {            
             InitializeComponent();            
             SetWindowScreen(this, GetWindowScreen(App.Current.MainWindow));
@@ -53,9 +37,7 @@ namespace Tagger.UI
                 this.Cursor = Cursors.None;
                 this.Topmost = true;
                 mousedelay = settings.Mousedisappeardelay;
-
-                timer.Interval = new TimeSpan(0, 0, 1);
-                timer.Tick += new EventHandler(update_progress);
+                
                 mousewheeldonetimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
                 mousewheeldonetimer.Tick += new EventHandler(MouseWheel_Done);
                 mousenomove.Interval = new TimeSpan(0, 0, mousedelay);
@@ -91,25 +73,20 @@ namespace Tagger.UI
                     }                    
                 }                
 
-                PreviewMedia.Source = new Uri(mediafile);
-                ss = settings;
-                Volume.Value = ss.Volume;
-                mediaplaying = mediaplay;
-                returnposition = position;
+                PreviewMedia.LoadMedia(new Uri(mediafile));
+                ss = settings;                
+                Returnposition = position;
 
-                if (mediaplaying)
+                if (mediaplay)
                 {
                     PreviewMedia.Play();
-                    mediaplaying = true;
-                    timer.Start();
                     Play.Visibility = Visibility.Hidden;
                     Pause.Visibility = Visibility.Visible;
                     Pause2.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    mediaplaying = false;
-                    timer.Stop();
+                    //mediaplaying = false;
                     Play.Visibility = Visibility.Visible;
                     Pause.Visibility = Visibility.Hidden;
                     Pause2.Visibility = Visibility.Hidden;
@@ -121,64 +98,36 @@ namespace Tagger.UI
                 MessageBox.Show("Error initializing media fullcreen. - " + ex.Message);
                 Error.WriteToLog(ex);
             }
+        }        
+
+        private void PreviewMedia_LengthChanged(object sender, EventArgs e)
+        {
+            PreviewMedia.Position = Returnposition;
+            PreviewMedia.Volume = ss.Volume;
+
+            if (PreviewMedia.Length.TotalSeconds < 10)
+            {
+                PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Repeat;
+            }
+            else
+            {
+                PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Stop;
+            }
         }
 
-        private void PreviewMedia_MediaOpened(object sender, RoutedEventArgs e)
+        private void PreviewMedia_TimeChanged(object sender, EventArgs e)
         {
-            try
-            {
-                mediaopened = true;
-                var RemainingMilliseconds = (PreviewMedia.NaturalDuration.TimeSpan.TotalMilliseconds - PreviewMedia.Position.TotalMilliseconds < 0 ? 0 : PreviewMedia.NaturalDuration.TimeSpan.TotalMilliseconds - PreviewMedia.Position.TotalMilliseconds);
-                var RemainingSeconds = Math.Floor((RemainingMilliseconds / 1000) % 60);
-                var RemainingMinutes = Math.Floor((RemainingMilliseconds / 60000) % 60);
-                var RemainingHours = Math.Floor((RemainingMilliseconds / 3600000) % 60);
-                MediaLength = RemainingHours.ToString("00.") + ":" + RemainingMinutes.ToString("00.") + ":" + RemainingSeconds.ToString("00.");
-
-                if (PreviewMedia.NaturalDuration.HasTimeSpan)
-                {
-                    mediaTotalTime = PreviewMedia.NaturalDuration.TimeSpan.TotalMilliseconds;
-                    VideoProgress.Maximum = mediaTotalTime;
-                    if (mediaTotalTime > 30000)
-                    {
-                        skipInterval = (long)Math.Floor(mediaTotalTime / 30);
-                    }
-                    if (mediaTotalTime < 10000)
-                    {
-                        LessThan10Seconds = true;
-                    }
-                    else
-                    {
-                        LessThan10Seconds = false;
-                    }
-                }
-                else
-                {
-                    VideoProgress.Maximum = 0;
-                }
-
-                PreviewMedia.Position = returnposition;
-                VideoProgress.Value = PreviewMedia.Position.TotalMilliseconds;
-                PreviewMedia.Volume = ss.Volume;
-            }
-            catch(Exception ex)
-            {
-                this.Topmost = false;
-                MessageBox.Show("Error opening media. - " + ex.Message);
-                Error.WriteToLog(ex);
-            }                      
+            var timeElapsed = PreviewMedia.Length.Subtract(PreviewMedia.Time);
+            RemainingMediaTime.Text = timeElapsed.ToString("hh\\:mm\\:ss");
         }
 
         private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             try
             {
-                if (mediaopened)
+                if (ss != null && PreviewMedia.Length.TotalMilliseconds != 0)
                 {
-                    PreviewMedia.Volume = Volume.Value;
-                }
-                if (ss != null)
-                {
-                    ss.Volume = Volume.Value;
+                    ss.Volume = (int)Volume.Value;
                 }
                 VolumeOut = Volume.Value;
             }
@@ -197,23 +146,19 @@ namespace Tagger.UI
         {
             try
             {
-                if (!mediaplaying)
+                if (PreviewMedia.State != Meta.Vlc.Interop.Media.MediaState.Playing)
                 {
-                    mediaplaying = true;
                     Play.Visibility = Visibility.Hidden;
                     Pause.Visibility = Visibility.Visible;
                     Pause2.Visibility = Visibility.Visible;
                     PreviewMedia.Play();
-                    timer.Start();
                 }
                 else
                 {
-                    mediaplaying = false;
                     Pause.Visibility = Visibility.Hidden;
                     Pause2.Visibility = Visibility.Hidden;
                     Play.Visibility = Visibility.Visible;
                     PreviewMedia.Pause();
-                    timer.Stop();
                 }
             }
             catch(Exception ex)
@@ -226,119 +171,26 @@ namespace Tagger.UI
         {
             try
             {
-                mediaplaying = false;
                 Pause.Visibility = Visibility.Hidden;
                 Pause2.Visibility = Visibility.Hidden;
                 Play.Visibility = Visibility.Visible;
                 PreviewMedia.Stop();
-                timer.Stop();
                 VideoProgress.Value = 0;
-                RemainingMediaTime.Content = MediaLength;
-                mediatime.Content = "00:00:00";
+                RemainingMediaTime.Text = "00:00:00";
+                mediatime.Text = "00:00:00";
             }
             catch(Exception ex)
             {
                 Error.WriteToLog(ex);
             }            
         }
-
-        private void update_progress(object sender, EventArgs e)
-        {
-            updateProgressBar();
-        }
-
-        private void updateProgressBar()
-        {
-            try
-            {
-                if (mediaplaying && !isdragging)
-                {
-                    var MediaMilliseconds = PreviewMedia.Position.TotalMilliseconds;
-                    var MediaSeconds = PreviewMedia.Position.TotalSeconds;
-                    var MediaMinutes = PreviewMedia.Position.TotalMinutes;
-                    var MediaHours = PreviewMedia.Position.TotalHours;
-
-                    var RemainingMilliseconds = PreviewMedia.NaturalDuration.TimeSpan.TotalMilliseconds - PreviewMedia.Position.TotalMilliseconds;
-                    var RemainingSeconds = Math.Floor((RemainingMilliseconds / 1000) % 60);
-                    var RemainingMinutes = Math.Floor((RemainingMilliseconds / 60000) % 60);
-                    var RemainingHours = Math.Floor((RemainingMilliseconds / 3600000) % 60);
-
-                    SettingProgressBar = true;
-                    VideoProgress.Value = PreviewMedia.Position.TotalMilliseconds;
-                    SettingProgressBar = false;
-
-                    if (PreviewMedia.NaturalDuration.HasTimeSpan)
-                    {
-                        if (PreviewMedia.Position.TotalMilliseconds == PreviewMedia.NaturalDuration.TimeSpan.TotalMilliseconds)
-                        {
-                            if (LessThan10Seconds)
-                            {
-                                PreviewMedia.Stop();
-                                PreviewMedia.Play();
-                            }
-                            else
-                            {
-                                PreviewMedia.Stop();
-                                mediaplaying = false;
-                                Play.Visibility = Visibility.Visible;
-                                Pause.Visibility = Visibility.Hidden;
-                                Pause2.Visibility = Visibility.Hidden;
-                            }
-                        }
-                    }
-
-                    mediatime.Content = (MediaHours >= 1 ? Math.Floor(MediaHours).ToString("00.") + ":" : "00:") + Math.Floor(MediaMinutes % 60).ToString("00.") + ":" + Math.Floor(MediaSeconds % 60).ToString("00.");
-                    RemainingMediaTime.Content = RemainingHours.ToString("00.") + ":" + RemainingMinutes.ToString("00.") + ":" + RemainingSeconds.ToString("00.");
-                }
-            }
-            catch(Exception ex)
-            {
-                Error.WriteToLog(ex);
-            }            
-        }
-
-        private void VideoProgress_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            try
-            {
-                if (mediaplaying && !isdragging && !SettingProgressBar)
-                {
-                    PreviewMedia.Position = new TimeSpan(0, 0, 0, 0, (int)VideoProgress.Value);
-                }
-            }
-            catch(Exception ex)
-            {
-                Error.WriteToLog(ex);
-            }            
-        }
-
-        private void VideoProgress_DragStarted(object sende, RoutedEventArgs e)
-        {
-            isdragging = true;
-        }
-
-        private void VideoProgress_DragCompleted(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                isdragging = false;
-                PreviewMedia.Position = new TimeSpan(0, 0, 0, 0, (int)VideoProgress.Value);
-                updateProgressBar();
-            }
-            catch(Exception ex)
-            {
-                Error.WriteToLog(ex);
-            }
-        }
-               
-
+        
         private void MouseWheel_Done(object sender, EventArgs e)
         {
             try
             {
                 mousewheeldonetimer.Stop();
-                PreviewMedia.Position = PreviewMedia.Position.Add(new TimeSpan(0, 0, mousewheelcounter * 10));
-                updateProgressBar();
+                PreviewMedia.Position += (mousewheelcounter * 0.001F);
                 mousewheelcounter = 0;
             }
             catch(Exception ex)
@@ -351,18 +203,16 @@ namespace Tagger.UI
         {
             try
             {
-                returnposition = PreviewMedia.Position;
-                playing = mediaplaying;
+                Returnposition = PreviewMedia.Position;
+                Playing = (PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing ? true : false);
                 VolumeOut = Volume.Value;
                 PreviewMedia.Stop();
-                timer.Stop();
                 this.Close();
             }
             catch(Exception ex)
             {
                 Error.WriteToLog(ex);
                 PreviewMedia.Stop();
-                timer.Stop();
                 this.Close();
             }            
         }
@@ -405,11 +255,10 @@ namespace Tagger.UI
             {
                 if (e.Key == Key.Escape)
                 {
-                    returnposition = PreviewMedia.Position;
-                    playing = mediaplaying;
+                    Returnposition = PreviewMedia.Position;
+                    Playing = (PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing ? true : false);
                     VolumeOut = Volume.Value;
                     PreviewMedia.Stop();
-                    timer.Stop();
                     this.Close();
                 }
                 else if (e.Key == Key.D1)
@@ -556,8 +405,7 @@ namespace Tagger.UI
                         eventindex = y;
                     }
                 }
-                PreviewMedia.Position = new TimeSpan(0, 0, 0, 0, Convert.ToInt32(jack.Tag));
-                updateProgressBar();
+                PreviewMedia.Position = float.Parse(jack.Tag.ToString());
             }
             catch(Exception ex)
             {
@@ -579,13 +427,15 @@ namespace Tagger.UI
         {
             try
             {
-                long skipAmount = 0;
-                skipAmount = (long)PreviewMedia.Position.TotalMilliseconds + skipInterval;
-                if (skipAmount < mediaTotalTime)
+                float skipAmount = 0;
+                if(PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
                 {
-                    PreviewMedia.Position = PreviewMedia.Position.Add(new TimeSpan(0, 0, 0, 0, (int)skipInterval));
-                }
-                updateProgressBar();
+                    skipAmount = PreviewMedia.Position + 0.0333F;
+                    if (skipAmount < 1)
+                    {
+                        PreviewMedia.Position = skipAmount;
+                    }
+                }                
             }
             catch(Exception ex)
             {
@@ -597,17 +447,19 @@ namespace Tagger.UI
         {
             try
             {
-                long skipAmount = 0;
-                skipAmount = (long)PreviewMedia.Position.TotalMilliseconds - skipInterval;
-                if (skipAmount > 0)
+                float skipAmount = 0;
+                if (PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
                 {
-                    PreviewMedia.Position = PreviewMedia.Position.Subtract(new TimeSpan(0, 0, 0, 0, (int)skipInterval));
+                    skipAmount = PreviewMedia.Position - 0.0333F;
+                    if (skipAmount > 0)
+                    {
+                        PreviewMedia.Position = skipAmount;
+                    }
+                    else
+                    {
+                        PreviewMedia.Position = 0;
+                    }
                 }
-                else
-                {
-                    PreviewMedia.Position = new TimeSpan(0, 0, 0, 0, 0);
-                }
-                updateProgressBar();
             }
             catch(Exception ex)
             {

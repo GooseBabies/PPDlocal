@@ -43,7 +43,7 @@ namespace Tagger
             public int Slideshowinterval { get; set; }
             public bool Shuffle { get; set; }
             public bool RepeatShuffle { get; set; }
-            public double Volume { get; set; }
+            public int Volume { get; set; }
             public bool Png { get; set; }
             public bool Jpg { get; set; }
             public bool Jpeg { get; set; }
@@ -200,7 +200,7 @@ namespace Tagger
                 Shuffle = true,
                 RepeatShuffle = false,
                 Slideshowinterval = 3,
-                Volume = 0.3,
+                Volume = 30,
                 Png = true,
                 Jpg = true,
                 Jpeg = true,
@@ -250,7 +250,7 @@ namespace Tagger
                 setts.Shuffle = (query3.First() == "true" ? true : false);
                 setts.RepeatShuffle = (query4.First() == "true" ? true : false);
                 setts.Slideshowinterval = Convert.ToInt32(query5.First());
-                setts.Volume = Convert.ToDouble(query6.First());
+                setts.Volume = Convert.ToInt32(query6.First());
                 setts.Profile = query7.First();
                 setts.Png = (query8.First() == "true" ? true : false);
                 setts.Jpg = (query9.First() == "true" ? true : false);
@@ -286,7 +286,7 @@ namespace Tagger
                 Shuffle = true,
                 RepeatShuffle = false,
                 Slideshowinterval = 3,
-                Volume = 0.3,
+                Volume = 30,
                 Png = true,
                 Jpg = true,
                 Jpeg = true,
@@ -334,7 +334,7 @@ namespace Tagger
                 setts.Shuffle = (query3.First() == "true" ? true : false);
                 setts.RepeatShuffle = (query4.First() == "true" ? true : false);
                 setts.Slideshowinterval = Convert.ToInt32(query5.First());
-                setts.Volume = Convert.ToDouble(query6.First());
+                setts.Volume = Convert.ToInt32(query6.First());
                 setts.Profile = profilename;
                 setts.Png = (query7.First() == "true" ? true : false);
                 setts.Jpg = (query8.First() == "true" ? true : false);
