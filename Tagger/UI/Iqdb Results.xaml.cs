@@ -30,7 +30,6 @@ namespace Tagger
         bool AlreadyHasTag;
 
         List<string> DisplayTags = new List<string>();
-        List<string> Tags = new List<string>();
 
         public Iqdb_Results()
         {
@@ -66,55 +65,60 @@ namespace Tagger
             {
                 for (int index = 0; index <= results.Matches.Count - 1; index++)
                 {
-                    var rowdef = new RowDefinition{ Height = GridLength.Auto };
-                    ExpanderGrid.RowDefinitions.Add(rowdef);
-                    Expander Match = new Expander { Header = results.Matches[index].Source.ToString() + ": " + results.Matches[index].Similarity.ToString() + " - " + results.Matches[index].Resolution.Height + "x" + results.Matches[index].Resolution.Width + (results.Matches[index].MatchType == IqdbApi.Enums.MatchType.Best ? " - Best" : ""), Margin = new Thickness(3), MaxHeight = 860 - (index * 30) };
-                    Grid.SetRow(Match, index);
-                    Grid.SetColumn(Match, 0);
-                    ExpanderGrid.Children.Add(Match);
-
-                    Grid TagListGrid = new Grid { Margin = new Thickness(2) };
-                    ScrollViewer Scoller = new ScrollViewer { VerticalScrollBarVisibility = ScrollBarVisibility.Visible };
-                    var rowdef1 = new RowDefinition{ Height = GridLength.Auto };
-                    TagListGrid.RowDefinitions.Add(rowdef1);
-
-                    Image ImageThumb = new Image();
-                    BitmapImage bi = new BitmapImage();
-                    bi.BeginInit();
-                    bi.UriSource = new Uri("http://iqdb.org" + results.Matches[index].PreviewUrl, UriKind.Absolute);
-                    bi.EndInit();
-                    ImageThumb.Source = bi;
-                    ImageThumb.Stretch = Stretch.None;
-                    ImageThumb.Tag = "Http:" + results.Matches[index].Url;
-                    ImageThumb.MouseUp += new MouseButtonEventHandler(ImageThumb_clicked);
-
-                    Grid.SetRow(ImageThumb, 0);
-                    Grid.SetColumn(ImageThumb, 0);
-
-                    Button AddAllTags = new Button { Content = "Add All Tags", Margin = new Thickness(3), Tag = index };
-                    AddAllTags.Click += new RoutedEventHandler(AddAllTags_Clicked);
-
-                    Grid.SetRow(AddAllTags, 1);
-                    Grid.SetColumn(AddAllTags, 0);
-
-                    TagListGrid.Children.Add(AddAllTags);
-                    TagListGrid.Children.Add(ImageThumb);
-
-                    for (int Index2 = 0; Index2 <= results.Matches[index].Tags.Count - 1; Index2++)
+                    if(results.Matches[index].Similarity > 60)
                     {
-                        var rowdef2 = new RowDefinition{ Height = GridLength.Auto };
+                        var rowdef = new RowDefinition { Height = GridLength.Auto };
+                        ExpanderGrid.RowDefinitions.Add(rowdef);
+                        Expander Match = new Expander { Header = results.Matches[index].Source.ToString() + ": " + results.Matches[index].Similarity.ToString() + " - " + results.Matches[index].Resolution.Height + "x" + results.Matches[index].Resolution.Width + (results.Matches[index].MatchType == IqdbApi.Enums.MatchType.Best ? " - Best" : ""), Margin = new Thickness(3), MaxHeight = 860 - (index * 30) };
+                        Grid.SetRow(Match, index);
+                        Grid.SetColumn(Match, 0);
+                        ExpanderGrid.Children.Add(Match);
+
+                        Grid TagListGrid = new Grid { Margin = new Thickness(2) };
+                        ScrollViewer Scoller = new ScrollViewer { VerticalScrollBarVisibility = ScrollBarVisibility.Visible };
+                        var rowdef1 = new RowDefinition { Height = new GridLength(120, GridUnitType.Pixel) };
+                        var rowdef2 = new RowDefinition { Height = GridLength.Auto };
+                        TagListGrid.RowDefinitions.Add(rowdef1);
                         TagListGrid.RowDefinitions.Add(rowdef2);
 
-                        Button AddIndividualTag = new Button { Content = results.Matches[index].Tags[Index2], Margin = new Thickness(3), Tag = index };
-                        Grid.SetRow(AddIndividualTag, Index2 + 2);
-                        Grid.SetColumn(AddIndividualTag, 0);
+                        Image ImageThumb = new Image();
+                        BitmapImage bi = new BitmapImage();
+                        bi.BeginInit();
+                        bi.UriSource = new Uri("http://iqdb.org" + results.Matches[index].PreviewUrl, UriKind.Absolute);
+                        bi.EndInit();
+                        ImageThumb.Source = bi;
+                        ImageThumb.Stretch = Stretch.Uniform;
+                        ImageThumb.Tag = "Http:" + results.Matches[index].Url;
+                        ImageThumb.MouseUp += new MouseButtonEventHandler(ImageThumb_clicked);
 
-                        AddIndividualTag.Click += new RoutedEventHandler(AddIndividualTag_clicked);
-                        TagListGrid.Children.Add(AddIndividualTag);
-                    }
+                        Grid.SetRow(ImageThumb, 0);
+                        Grid.SetColumn(ImageThumb, 0);
 
-                    Match.Content = Scoller;
-                    Scoller.Content = TagListGrid;
+                        Button AddAllTags = new Button { Content = "Add All Tags", Margin = new Thickness(3), Tag = index };
+                        AddAllTags.Click += new RoutedEventHandler(AddAllTags_Clicked);
+
+                        Grid.SetRow(AddAllTags, 1);
+                        Grid.SetColumn(AddAllTags, 0);
+
+                        TagListGrid.Children.Add(AddAllTags);
+                        TagListGrid.Children.Add(ImageThumb);
+
+                        for (int Index2 = 0; Index2 <= results.Matches[index].Tags.Count - 1; Index2++)
+                        {
+                            var rowdef3 = new RowDefinition { Height = GridLength.Auto };
+                            TagListGrid.RowDefinitions.Add(rowdef3);
+
+                            Button AddIndividualTag = new Button { Content = results.Matches[index].Tags[Index2], Margin = new Thickness(3), Tag = index };
+                            Grid.SetRow(AddIndividualTag, Index2 + 2);
+                            Grid.SetColumn(AddIndividualTag, 0);
+
+                            AddIndividualTag.Click += new RoutedEventHandler(AddIndividualTag_clicked);
+                            TagListGrid.Children.Add(AddIndividualTag);
+                        }
+
+                        Match.Content = Scoller;
+                        Scoller.Content = TagListGrid;
+                    }                    
                 }
             }
             catch(Exception ex)
@@ -213,33 +217,19 @@ namespace Tagger
             try
             {
                 //Check if File has already had at least one tag added
-                Tags.Clear();
-                Tags = _db.GetImageTags(_data, currentImageName);
-                if (Tags != null)
+                if ((bool)_db.IsFileinImageData(_data, currentImageName))
                 {
-                    if (Tags.Count > 0)
+                    if (!_db.AddTagtoImageData(_data, currentImageName, TagName))
                     {
-                        if(!_db.AddTagtoImageData(_data, currentImageName, TagName))
-                        {
-                            throw new Exception("Error adding new tag to ImageTags table.");
-                        }
-                    }
-                    else
-                    {
-                        if(!_db.AddtoImageData(_data, currentImageName, _DirectoryPath, 0, TagName, 1, _currentImageWidth, _currentImageHeight, _currentImage.LastWriteTime, _currentImage.Extension, _currentImage.Length))
-                        {
-                            throw new Exception("Error adding info to ImageInfo table");
-                        }
-                        //if(!_db.AddtoImageTags(_data, currentImageName, 1, TagName, _DirectoryPath))
-                        //{
-                        //    throw new Exception("Error adding new tag to ImageTags table.");
-                        //}
-                        Tagged = true;
+                        throw new Exception("Error adding new tag to ImageData table.");
                     }
                 }
                 else
                 {
-                    throw new Exception("Error retrieving tags associated with image");
+                    if (!_db.AddtoImageData(_data, currentImageName, _DirectoryPath, 0, TagName, 1, _currentImageWidth, _currentImageHeight, _currentImage.LastWriteTime, _currentImage.Extension, _currentImage.Length))
+                    {
+                        throw new Exception("Error adding info to ImageData table");
+                    }
                 }
             }
             catch(Exception ex)

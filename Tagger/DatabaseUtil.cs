@@ -809,35 +809,6 @@ namespace Tagger
             }            
         }
 
-        public bool ImageDataExists(DBTable db, string filename)
-        {
-            try
-            {
-                var query = from ImageData in db.ImageData where ImageData.Filename == filename.ApostrepheFix() select ImageData;
-
-                if(query != null)
-                {
-                    if(query.Count() > 0)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch(Exception ex)
-            {
-                Error.WriteToLog(ex);
-                return false;
-            }
-        }
-
         public int GetTotalTagCount(DBTable db)
         {
             try
@@ -881,19 +852,26 @@ namespace Tagger
             {
                 var query = from ImageData in db.ImageData where ImageData.Filename == filename.ApostrepheFix() select ImageData.Filetype;
 
-                if (query.Count() < 0)
+                if(query == null)
                 {
-                    return false;
+                    return null;
                 }
                 else
                 {
-                    if (query.First() == ".mp4" || query.First() == ".mkv" || query.First() == ".mpg" || query.First() == ".wmv" || query.First() == ".avi")
+                    if (query.Count() < 0)
                     {
-                        return true;
+                        return false;
                     }
                     else
                     {
-                        return false;
+                        if (query.First() == ".mp4" || query.First() == ".mkv" || query.First() == ".mpg" || query.First() == ".wmv" || query.First() == ".avi")
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                 }
             }
@@ -903,6 +881,71 @@ namespace Tagger
                 return null;
             }            
         }
+
+        public bool? IsFileinImageData(DBTable db, string filename)
+        {
+            try
+            {
+                var query = from ImageData in db.ImageData where ImageData.Filename == filename.ApostrepheFix() select ImageData.Filename.ApostrepheDefix();
+
+                if(query == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    if (query.Count() < 1)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }                
+            }
+            catch(Exception ex)
+            {
+                Error.WriteToLog(ex);
+                return null;
+            }
+        }
+
+        //public bool? IsFileTagged(DBTable db, string filename)
+        //{
+        //    try
+        //    {
+        //        var query = from ImageData in db.ImageData where ImageData.Filename == filename.ApostrepheFix() select ImageData.Tags;
+
+        //        if(query == null)
+        //        {
+        //            return null;
+        //        }
+        //        else
+        //        {
+        //            if (query.Count() < 0)
+        //            {
+        //                return false;
+        //            }
+        //            else
+        //            {
+        //                if (query.Last() == null || query.Last() == "")
+        //                {
+        //                    return false;
+        //                }
+        //                else
+        //                {
+        //                    return true;
+        //                }
+        //            }
+        //        }                
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        Error.WriteToLog(ex);
+        //        return null;
+        //    }
+        //}
 
         public bool SaveState(DBTable db, string profilename, string directory, string filename)
         {

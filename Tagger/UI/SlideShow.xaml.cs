@@ -166,7 +166,7 @@ namespace Tagger
                             Counter = 0;
                             Randomize(ref FI);
                         }
-                        string ext = FI[Counter].Extension;
+                        string ext = "." + FI[Counter].Extension;
                         if (videoTypes.Contains(ext) || !File.Exists(FI[Counter].FullName))
                         {
                             Counter++;
@@ -186,7 +186,7 @@ namespace Tagger
                     else //If random repeat is on
                     {
                         Counter = r.Next(FI.Count - 1);
-                        string ext = FI[Counter].Extension;
+                        string ext = "." + FI[Counter].Extension;
                         if (videoTypes.Contains(ext) || !File.Exists(FI[Counter].FullName))
                         {
                             PlaySlideShow();
@@ -210,7 +210,7 @@ namespace Tagger
                     {
                         Counter = 0;
                     }
-                    string ext = FI[Counter].Extension;
+                    string ext = "." + FI[Counter].Extension;
                     if (videoTypes.Contains(ext) || !File.Exists(FI[Counter].FullName))
                     {
                         Counter++;
@@ -240,7 +240,7 @@ namespace Tagger
                             Counter = 0;
                             Randomize(ref main);
                         }
-                        string ext = main[Counter].Split('.').Last();
+                        string ext = "." + main[Counter].Split('.').Last();
                         if (videoTypes.Contains(ext) || !File.Exists(main[Counter]))
                         {
                             Counter++;
@@ -260,7 +260,7 @@ namespace Tagger
                     else //If Random repeat is on
                     {
                         Counter = r.Next(0, main.Length - 1);
-                        string ext = main[Counter].Split('.').Last();
+                        string ext = "." + main[Counter].Split('.').Last();
                         if (videoTypes.Contains(ext) || !File.Exists(main[Counter]))
                         {
                             PlaySlideShow();
@@ -282,7 +282,7 @@ namespace Tagger
                     {
                         Counter = 0;
                     }
-                    string ext = main[Counter].Split('.').Last();
+                    string ext = "." + main[Counter].Split('.').Last();
                     if (videoTypes.Contains(ext) || !File.Exists(main[Counter]))
                     {
                         Counter++;

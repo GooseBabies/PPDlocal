@@ -68,11 +68,11 @@ namespace Tagger
             jpg.IsChecked = Savesettings.ImageFileTypes.Contains(".jpg");
             bmp.IsChecked = Savesettings.ImageFileTypes.Contains(".bmp");
             gif.IsChecked = Savesettings.ImageFileTypes.Contains(".gif");
-            mp4.IsChecked = Savesettings.ImageFileTypes.Contains(".mp4");
-            mpg.IsChecked = Savesettings.ImageFileTypes.Contains(".mpg");
-            mkv.IsChecked = Savesettings.ImageFileTypes.Contains(".mkv");
-            avi.IsChecked = Savesettings.ImageFileTypes.Contains(".avi");
-            wmv.IsChecked = Savesettings.ImageFileTypes.Contains(".wmv");
+            mp4.IsChecked = Savesettings.VideoFileTypes.Contains(".mp4");
+            mpg.IsChecked = Savesettings.VideoFileTypes.Contains(".mpg");
+            mkv.IsChecked = Savesettings.VideoFileTypes.Contains(".mkv");
+            avi.IsChecked = Savesettings.VideoFileTypes.Contains(".avi");
+            wmv.IsChecked = Savesettings.VideoFileTypes.Contains(".wmv");
             MouseDelay.Text = Savesettings.Mousedisappeardelay.ToString();
             VisibleNav.IsChecked = Savesettings.VisibleNav;
             Booru.SelectedIndex = Savesettings.BooruSource;

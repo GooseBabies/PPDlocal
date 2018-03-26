@@ -468,7 +468,7 @@ namespace Tagger
 
         private void ImageTag(string TagName)
         {
-            if (db.ImageDataExists(data, currentImageName))
+            if ((bool)db.IsFileinImageData(data, currentImageName))
             {
                 db.AddTagtoImageData(data, currentImageName, TagName);
                 UpdateTagDisplay();
@@ -542,7 +542,7 @@ namespace Tagger
         private void AddEvent()
         {
             
-            if(db.ImageDataExists(data, currentImageName))
+            if((bool)db.IsFileinImageData(data, currentImageName))
             {
                 db.AddTagtoImageData(data, currentImageName, "Event: " + EventName.Text + "|" + EventPosition.Text);
                 UpdateTagDisplay();                
@@ -564,7 +564,7 @@ namespace Tagger
         {
             RatingVisuals(rating);
             Rating = rating;
-            if (db.ImageDataExists(data, currentImageName))
+            if ((bool)db.IsFileinImageData(data, currentImageName))
             {
                 db.UpdateRating(data, currentImageName, Rating);
                 UpdateTagDisplay();
@@ -856,7 +856,8 @@ namespace Tagger
         #region Media Player Controls
 
         private void PreviewMedia_LengthChanged(object sender, EventArgs e)
-        {            
+        {
+            //PreviewMedia.Rate = 1.0F;
             if (PreviewMedia.Length.TotalSeconds < 10)
             {
                 PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Repeat;
@@ -2350,28 +2351,35 @@ namespace Tagger
             #region IQDBCommands
         private async void SearchOnIQDBExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            IIqdbClient api = new IqdbClient();
-            IqdbApi.Models.SearchResult searchResults;
-            using (var fs = new FileStream(DirectoryPath + @"\" + currentImageName, FileMode.Open))
+            if(videoTypes.Contains(currentImage.Extension) || currentImage.Extension == ".gif")
             {
-                searchResults = await api.SearchFile(fs);
-            }
-            if (!searchResults.IsFound)
-            {
-                MessageBox.Show("Image was not found on Any Booru");
+                MessageBox.Show("Cannot search booru for gifs or videos.");
             }
             else
             {
-                Iqdb_Results IR = new Iqdb_Results(searchResults, db, data, imagetagged, currentImageName, DirectoryPath, currentImageHeight, currentImageWidth, currentImage, currentImageIndex);
-                IR.ShowDialog();
-                if (IR.Tagged)
+                IIqdbClient api = new IqdbClient();
+                IqdbApi.Models.SearchResult searchResults;
+                using (var fs = new FileStream(DirectoryPath + @"\" + currentImageName, FileMode.Open))
                 {
-                    ImagesTaggedCurrentRun += 1;
-                    DirectoryProgress.Value = ImagesTaggedfromCurrentDirectory + ImagesTaggedCurrentRun;
-                    DirectoryProgress.Tag = (ImagesTaggedfromCurrentDirectory + ImagesTaggedCurrentRun).ToString() + "/" + FI.Count.ToString();
+                    searchResults = await api.SearchFile(fs);
                 }
-                UpdateTagDisplay();
-            }
+                if (!searchResults.IsFound)
+                {
+                    MessageBox.Show("Image was not found on any booru");
+                }
+                else
+                {
+                    Iqdb_Results IR = new Iqdb_Results(searchResults, db, data, imagetagged, currentImageName, DirectoryPath, currentImageHeight, currentImageWidth, currentImage, currentImageIndex);
+                    IR.ShowDialog();
+                    if (IR.Tagged)
+                    {
+                        ImagesTaggedCurrentRun += 1;
+                        DirectoryProgress.Value = ImagesTaggedfromCurrentDirectory + ImagesTaggedCurrentRun;
+                        DirectoryProgress.Tag = (ImagesTaggedfromCurrentDirectory + ImagesTaggedCurrentRun).ToString() + "/" + FI.Count.ToString();
+                    }
+                    UpdateTagDisplay();
+                }
+            }            
         }
 
         private void SearchOnIQDBCanExecute(object sender, CanExecuteRoutedEventArgs e)
