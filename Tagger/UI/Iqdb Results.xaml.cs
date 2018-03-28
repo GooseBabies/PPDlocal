@@ -332,5 +332,13 @@ namespace Tagger
         {
             return System.Windows.Forms.Screen.FromHandle(new System.Windows.Interop.WindowInteropHelper(window).Handle);
         }
+
+        private void Window_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Escape)
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Minimized;
+            }
+        }
     }
 }

@@ -76,6 +76,7 @@ namespace Tagger.UI
                 PreviewMedia.LoadMedia(new Uri(mediafile));
                 ss = settings;                
                 Returnposition = position;
+                PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Repeat;
 
                 if (mediaplay)
                 {
@@ -104,15 +105,6 @@ namespace Tagger.UI
         {
             PreviewMedia.Position = Returnposition;
             PreviewMedia.Volume = ss.Volume;
-
-            if (PreviewMedia.Length.TotalSeconds < 10)
-            {
-                PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Repeat;
-            }
-            else
-            {
-                PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Stop;
-            }
         }
 
         private void PreviewMedia_TimeChanged(object sender, EventArgs e)
@@ -261,7 +253,7 @@ namespace Tagger.UI
                     PreviewMedia.Stop();
                     this.Close();
                 }
-                else if (e.Key == Key.D1)
+                else if (e.Key == Key.F1)
                 {
                     if (EventControls.Children.Count - 1 >= 0)
                     {
@@ -269,7 +261,7 @@ namespace Tagger.UI
                         EventKey(eventindex);
                     }
                 }
-                else if (e.Key == Key.D2)
+                else if (e.Key == Key.F2)
                 {
                     if (EventControls.Children.Count - 1 >= 1)
                     {
@@ -277,7 +269,7 @@ namespace Tagger.UI
                         EventKey(eventindex);
                     }
                 }
-                else if (e.Key == Key.D3)
+                else if (e.Key == Key.F3)
                 {
                     if (EventControls.Children.Count - 1 >= 2)
                     {
@@ -285,7 +277,7 @@ namespace Tagger.UI
                         EventKey(eventindex);
                     }
                 }
-                else if (e.Key == Key.D4)
+                else if (e.Key == Key.F4)
                 {
                     if (EventControls.Children.Count - 1 >= 3)
                     {
@@ -293,7 +285,7 @@ namespace Tagger.UI
                         EventKey(eventindex);
                     }
                 }
-                else if (e.Key == Key.D5)
+                else if (e.Key == Key.F5)
                 {
                     if (EventControls.Children.Count - 1 >= 4)
                     {
@@ -301,7 +293,7 @@ namespace Tagger.UI
                         EventKey(eventindex);
                     }
                 }
-                else if (e.Key == Key.D6)
+                else if (e.Key == Key.F6)
                 {
                     if (EventControls.Children.Count - 1 >= 5)
                     {
@@ -309,7 +301,7 @@ namespace Tagger.UI
                         EventKey(eventindex);
                     }
                 }
-                else if (e.Key == Key.D7)
+                else if (e.Key == Key.F7)
                 {
                     if (EventControls.Children.Count - 1 >= 6)
                     {
@@ -317,7 +309,7 @@ namespace Tagger.UI
                         EventKey(eventindex);
                     }
                 }
-                else if (e.Key == Key.D8)
+                else if (e.Key == Key.F8)
                 {
                     if (EventControls.Children.Count - 1 >= 7)
                     {
@@ -325,7 +317,7 @@ namespace Tagger.UI
                         EventKey(eventindex);
                     }
                 }
-                else if (e.Key == Key.D9)
+                else if (e.Key == Key.F9)
                 {
                     if (EventControls.Children.Count - 1 >= 8)
                     {
@@ -333,11 +325,27 @@ namespace Tagger.UI
                         EventKey(eventindex);
                     }
                 }
-                else if (e.Key == Key.D0)
+                else if (e.Key == Key.F10)
                 {
                     if (EventControls.Children.Count - 1 >= 9)
                     {
                         eventindex = 9;
+                        EventKey(eventindex);
+                    }
+                }
+                else if (e.Key == Key.F11)
+                {
+                    if (EventControls.Children.Count - 1 >= 10)
+                    {
+                        eventindex = 10;
+                        EventKey(eventindex);
+                    }
+                }
+                else if (e.Key == Key.F12)
+                {
+                    if (EventControls.Children.Count - 1 >= 11)
+                    {
+                        eventindex = 11;
                         EventKey(eventindex);
                     }
                 }
@@ -520,6 +528,36 @@ namespace Tagger.UI
         public System.Windows.Forms.Screen GetWindowScreen(Window window)
         {
             return System.Windows.Forms.Screen.FromHandle(new System.Windows.Interop.WindowInteropHelper(window).Handle);
+        }
+
+        private void RepeatButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(PreviewMedia.EndBehavior == Meta.Vlc.Wpf.EndBehavior.Repeat)
+            {
+                PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Stop;
+            }
+            else
+            {
+                PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Repeat;
+            }
+        }
+
+        private void MuteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PreviewMedia.IsMute)
+            {
+                PreviewMedia.IsMute = false;
+                bar1sym.Visibility = Visibility.Visible;
+                bar2sym.Visibility = Visibility.Visible;
+                mutesym.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                PreviewMedia.IsMute = true;
+                bar1sym.Visibility = Visibility.Hidden;
+                bar2sym.Visibility = Visibility.Hidden;
+                mutesym.Visibility = Visibility.Visible;
+            }
         }
     }
 }

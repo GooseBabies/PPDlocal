@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tagger"
         mc:Ignorable="d"
-        Title="IQDB Results" SizeToContent="WidthAndHeight" WindowState="Normal" WindowStartupLocation="Manual" ShowInTaskbar="False" Loaded="Window_Loaded" MaxHeight="900">
+        Title="IQDB Results" SizeToContent="WidthAndHeight" WindowState="Normal" WindowStartupLocation="Manual" ShowInTaskbar="False" Loaded="Window_Loaded"  MaxHeight="900" PreviewKeyUp="Window_PreviewKeyUp">
     <Grid x:Name="ExpanderGrid">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             
