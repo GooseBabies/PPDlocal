@@ -73,6 +73,8 @@ namespace Tagger
             mkv.IsChecked = Savesettings.VideoFileTypes.Contains(".mkv");
             avi.IsChecked = Savesettings.VideoFileTypes.Contains(".avi");
             wmv.IsChecked = Savesettings.VideoFileTypes.Contains(".wmv");
+            flv.IsChecked = Savesettings.VideoFileTypes.Contains(".flv");
+            webm.IsChecked = Savesettings.VideoFileTypes.Contains(".webm");
             MouseDelay.Text = Savesettings.Mousedisappeardelay.ToString();
             VisibleNav.IsChecked = Savesettings.VisibleNav;
             Booru.SelectedIndex = Savesettings.BooruSource;
@@ -91,7 +93,7 @@ namespace Tagger
             Savesettings.Slideshowinterval = Convert.ToInt32(SlideshowInterval.Text);
             Savesettings.ViewCat = (bool)ViewCategories.IsChecked;
             Savesettings.ImageFileTypes = ((bool)png.IsChecked ? ".png," : "") + ((bool)jpeg.IsChecked ? ".jpeg," : "") + ((bool)jpg.IsChecked ? ".jpg," : "") + ((bool)bmp.IsChecked ? ".bmp," : "") + ((bool)gif.IsChecked ? ".gif," : "");
-            Savesettings.VideoFileTypes = ((bool)mp4.IsChecked ? ".mp4," : "") + ((bool)mpg.IsChecked ? ".mpg," : "") + ((bool)mkv.IsChecked ? ".mkv," : "") + ((bool)avi.IsChecked ? ".avi," : "") + ((bool)wmv.IsChecked ? ".wmv," : "");
+            Savesettings.VideoFileTypes = ((bool)mp4.IsChecked ? ".mp4," : "") + ((bool)mpg.IsChecked ? ".mpg," : "") + ((bool)mkv.IsChecked ? ".mkv," : "") + ((bool)avi.IsChecked ? ".avi," : "") + ((bool)wmv.IsChecked ? ".wmv," : "") + ((bool)webm.IsChecked ? ".webm," : "") + ((bool)flv.IsChecked ? ".flv," : "");
             //Savesettings.Png = (bool)png.IsChecked;
             //Savesettings.Jpeg = (bool)jpeg.IsChecked;
             //Savesettings.Jpg = (bool)jpg.IsChecked;
@@ -128,6 +130,8 @@ namespace Tagger
             mkv.IsChecked = true;
             avi.IsChecked = true;
             wmv.IsChecked = true;
+            flv.IsChecked = true;
+            webm.IsChecked = true;
             MouseDelay.Text = "4";
             VisibleNav.IsChecked = true;
             Booru.SelectedIndex = 0;
@@ -138,7 +142,7 @@ namespace Tagger
             Savesettings.Slideshowinterval = Convert.ToInt32(SlideshowInterval.Text);
             Savesettings.ViewCat = (bool)ViewCategories.IsChecked;
             Savesettings.ImageFileTypes = ((bool)png.IsChecked ? ".png," : "") + ((bool)jpeg.IsChecked ? ".jpeg," : "") + ((bool)jpg.IsChecked ? ".jpg," : "") + ((bool)bmp.IsChecked ? ".bmp," : "") + ((bool)gif.IsChecked ? ".gif," : "");
-            Savesettings.VideoFileTypes = ((bool)mp4.IsChecked ? ".mp4," : "") + ((bool)mpg.IsChecked ? ".mpg," : "") + ((bool)mkv.IsChecked ? ".mkv," : "") + ((bool)avi.IsChecked ? ".avi," : "") + ((bool)wmv.IsChecked ? ".wmv," : "");
+            Savesettings.VideoFileTypes = ((bool)mp4.IsChecked ? ".mp4," : "") + ((bool)mpg.IsChecked ? ".mpg," : "") + ((bool)mkv.IsChecked ? ".mkv," : "") + ((bool)avi.IsChecked ? ".avi," : "") + ((bool)wmv.IsChecked ? ".wmv," : "") + ((bool)webm.IsChecked ? ".webm," : "") + ((bool)flv.IsChecked ? ".flv," : "");
             //Savesettings.Png = (bool)png.IsChecked;
             //Savesettings.Jpeg = (bool)jpeg.IsChecked;
             //Savesettings.Jpg = (bool)jpg.IsChecked;

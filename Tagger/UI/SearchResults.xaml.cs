@@ -21,6 +21,8 @@ namespace Tagger.UI
     /// </summary>
     public partial class SearchResults : Window
     {
+        private static string appfilelocation = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Tagger", "Thumbs");
+
         DatabaseUtil.DBTable Data;
         DatabaseUtil db = new DatabaseUtil();
         ErrorHandling Error = new ErrorHandling();
@@ -714,12 +716,6 @@ namespace Tagger.UI
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            //int[] bools = HandleOrs();
-            //List<string> ands = new List<string>();
-            //List<string> nots = new List<string>();
-            //List<string[]> oars = new List<string[]>();
-            //string ors = "";
-
             string search = "";            
 
             try
@@ -734,125 +730,7 @@ namespace Tagger.UI
             catch(Exception ex)
             {
                 Error.WriteToLog(ex);
-            }
-
-            //try
-            //{
-            //    BooleanSearchResults.Clear();
-
-            //    string[] seperateors;
-
-            //    if (bools.Length == 2)
-            //    {
-            //        p = (Grid)SearchPanel.Children[1];
-            //        h = (Label)p.Children[3];
-            //        BooleanSearchResults = db.SearchForFiles(Data, h.Content.ToString());
-            //        AddSearchResults(BooleanSearchResults);
-            //        return;
-            //    }
-            //    else if (bools.Length == 1)
-            //    {
-            //        BooleanSearchResults = db.SearchForFiles(Data, SearchBar.Text);
-            //        AddSearchResults(BooleanSearchResults);
-            //        return;
-            //    }
-
-            //    for (int n = 2; n <= bools.Length - 1; n++)
-            //    {
-            //        if (bools[n] == 1 && bools[n - 1] == 1)
-            //        {
-            //            p = (Grid)SearchPanel.Children[n - 1];
-            //            h = (Label)p.Children[3];
-            //            ors += h.Content.ToString() + ";";
-            //        }
-            //        else if (bools[n] == 1 && bools[n - 1] == 2)
-            //        {
-            //            p = (Grid)SearchPanel.Children[n - 1];
-            //            h = (Label)p.Children[3];
-            //            ors += "|" + h.Content.ToString() + ";";
-            //        }
-            //        else if (bools[n] == 1 && bools[n - 1] == 3)
-            //        {
-            //            p = (Grid)SearchPanel.Children[n - 1];
-            //            h = (Label)p.Children[3];
-            //            ors += "|" + h.Content.ToString() + ";";
-            //        }
-            //        else if (bools[n] == 2 && bools[n - 1] == 1)
-            //        {
-            //            p = (Grid)SearchPanel.Children[n - 1];
-            //            h = (Label)p.Children[3];
-            //            ors += h.Content.ToString() + ";";
-            //        }
-            //        else if (bools[n] == 2 && bools[n - 1] == 2)
-            //        {
-            //            p = (Grid)SearchPanel.Children[n - 1];
-            //            h = (Label)p.Children[3];
-            //            ands.Add(h.Content.ToString());
-            //        }
-            //        else if (bools[n] == 2 && bools[n - 1] == 3)
-            //        {
-            //            p = (Grid)SearchPanel.Children[n - 1];
-            //            h = (Label)p.Children[3];
-            //            nots.Add(h.Content.ToString());
-            //        }
-            //        else if (bools[n] == 3 && bools[n - 1] == 1)
-            //        {
-            //            p = (Grid)SearchPanel.Children[n - 1];
-            //            h = (Label)p.Children[3];
-            //            ors += h.Content.ToString() + ";";
-            //        }
-            //        else if (bools[n] == 3 && bools[n - 1] == 2)
-            //        {
-            //            p = (Grid)SearchPanel.Children[n - 1];
-            //            h = (Label)p.Children[3];
-            //            ands.Add(h.Content.ToString());
-            //        }
-            //        else if (bools[n] == 3 && bools[n - 1] == 3)
-            //        {
-            //            p = (Grid)SearchPanel.Children[n - 1];
-            //            h = (Label)p.Children[3];
-            //            nots.Add(h.Content.ToString());
-            //        }
-
-            //    }
-            //    if (bools[bools.Length - 1] == 3)
-            //    {
-            //        p = (Grid)SearchPanel.Children[bools.Length - 1];
-            //        h = (Label)p.Children[3];
-            //        nots.Add(h.Content.ToString());
-            //    }
-            //    else if (bools[bools.Length - 1] == 2)
-            //    {
-            //        p = (Grid)SearchPanel.Children[bools.Length - 1];
-            //        h = (Label)p.Children[3];
-            //        ands.Add(h.Content.ToString());
-            //    }
-            //    else if (bools[bools.Length - 1] == 1)
-            //    {
-            //        p = (Grid)SearchPanel.Children[bools.Length - 1];
-            //        h = (Label)p.Children[3];
-            //        ors += h.Content.ToString() + ";";
-            //    }
-            //    //else if (bools[bools.Length - 1] == 1 && bools[bools.Length - 2] != 1)
-            //    //{
-            //    //    p = (Grid)SearchPanel.Children[bools.Length - 1];
-            //    //    h = (Label)p.Children[3];
-            //    //    ors += "|" + h.Content.ToString() + ";";
-            //    //}
-            //    seperateors = ors.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
-            //    foreach (string bitch in seperateors)
-            //    {
-            //        oars.Add(bitch.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries));
-            //    }
-
-            //    BooleanSearchResults = db.BooleanSearch(Data, oars, ands, nots);
-            //    AddSearchResults(BooleanSearchResults);
-            //}
-            //catch(Exception ex)
-            //{
-            //    MessageBox.Show("Error with search.");
-            //    Error.WriteToLog(ex);
-            //}           
+            }          
         }
 
         private void SubitSearchParameter_Click(object sender, RoutedEventArgs e)
@@ -967,18 +845,18 @@ namespace Tagger.UI
                             Button FileGet = new Button() { Tag = SR[p], Background = Brushes.Black };
                             FileGet.Click += new RoutedEventHandler(FileSelect);
 
-                            if ((bool)!db.IsVideo(Data, SR[p]))
+                            if (true) //(bool)!db.IsVideo(Data, SR[p]))
                             {
                                 Image thumb = new Image() { Width = 100, Height = 80 };
-                                ImageInstance = BitmapImageFromFile(filepath, thumb);
+                                ImageInstance = BitmapImageFromFile(System.IO.Path.Combine(appfilelocation, SR[p] + ".bmp"), thumb);
                                 thumb.Source = ImageInstance;
                                 FileGet.Content = thumb;
 
                             }
                             else
                             {
-                                Label thumb2 = new Label() { Content = "No Thumbnail", Foreground = Brushes.White };
-                                FileGet.Content = thumb2;
+                                //Label thumb2 = new Label() { Content = "No Thumbnail", Foreground = Brushes.White };
+                                //FileGet.Content = thumb2;
                             }
                             Grid.SetColumn(FileGet, 0);
                             Result1.Children.Add(FileGet);

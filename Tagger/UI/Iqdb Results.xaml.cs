@@ -69,7 +69,7 @@ namespace Tagger
                     {
                         var rowdef = new RowDefinition { Height = GridLength.Auto };
                         ExpanderGrid.RowDefinitions.Add(rowdef);
-                        Expander Match = new Expander { Header = results.Matches[index].Source.ToString() + ": " + results.Matches[index].Similarity.ToString() + " - " + results.Matches[index].Resolution.Height + "x" + results.Matches[index].Resolution.Width + (results.Matches[index].MatchType == IqdbApi.Enums.MatchType.Best ? " - Best" : ""), Margin = new Thickness(3), MaxHeight = 860 - (index * 30) };
+                        Expander Match = new Expander { Header = results.Matches[index].Source.ToString() + " (" + results.Matches[index].Tags.Count.ToString() + "): " + results.Matches[index].Similarity.ToString() + " - " + results.Matches[index].Resolution.Height + "x" + results.Matches[index].Resolution.Width + (results.Matches[index].MatchType == IqdbApi.Enums.MatchType.Best ? " - Best" : ""), Margin = new Thickness(3), MaxHeight = 860 - (index * 30) };
                         Grid.SetRow(Match, index);
                         Grid.SetColumn(Match, 0);
                         ExpanderGrid.Children.Add(Match);

@@ -77,20 +77,12 @@ namespace Tagger.UI
                 ss = settings;                
                 Returnposition = position;
                 PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Repeat;
+                RepeatPoly.Stroke = Brushes.RoyalBlue;
+                RepeatPoly.Fill = Brushes.RoyalBlue;
 
                 if (mediaplay)
                 {
                     PreviewMedia.Play();
-                    Play.Visibility = Visibility.Hidden;
-                    Pause.Visibility = Visibility.Visible;
-                    Pause2.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    //mediaplaying = false;
-                    Play.Visibility = Visibility.Visible;
-                    Pause.Visibility = Visibility.Hidden;
-                    Pause2.Visibility = Visibility.Hidden;
                 }
             }
             catch(Exception ex)
@@ -140,16 +132,10 @@ namespace Tagger.UI
             {
                 if (PreviewMedia.State != Meta.Vlc.Interop.Media.MediaState.Playing)
                 {
-                    Play.Visibility = Visibility.Hidden;
-                    Pause.Visibility = Visibility.Visible;
-                    Pause2.Visibility = Visibility.Visible;
                     PreviewMedia.Play();
                 }
                 else
                 {
-                    Pause.Visibility = Visibility.Hidden;
-                    Pause2.Visibility = Visibility.Hidden;
-                    Play.Visibility = Visibility.Visible;
                     PreviewMedia.Pause();
                 }
             }
@@ -163,9 +149,6 @@ namespace Tagger.UI
         {
             try
             {
-                Pause.Visibility = Visibility.Hidden;
-                Pause2.Visibility = Visibility.Hidden;
-                Play.Visibility = Visibility.Visible;
                 PreviewMedia.Stop();
                 VideoProgress.Value = 0;
                 RemainingMediaTime.Text = "00:00:00";
@@ -535,10 +518,14 @@ namespace Tagger.UI
             if(PreviewMedia.EndBehavior == Meta.Vlc.Wpf.EndBehavior.Repeat)
             {
                 PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Stop;
+                RepeatPoly.Stroke = Brushes.Black;
+                RepeatPoly.Fill = Brushes.Gray;
             }
             else
             {
                 PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Repeat;
+                RepeatPoly.Stroke = Brushes.RoyalBlue;
+                RepeatPoly.Fill = Brushes.RoyalBlue;
             }
         }
 
@@ -557,6 +544,40 @@ namespace Tagger.UI
                 bar1sym.Visibility = Visibility.Hidden;
                 bar2sym.Visibility = Visibility.Hidden;
                 mutesym.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void PreviewMedia_StateChanged(object sender, Meta.Vlc.ObjectEventArgs<Meta.Vlc.Interop.Media.MediaState> e)
+        {
+            if(PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Ended)
+            {
+                Play.Visibility = Visibility.Visible;
+                Pause.Visibility = Visibility.Hidden;
+                Pause2.Visibility = Visibility.Hidden;
+            }
+            else if(PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Playing)
+            {
+                Play.Visibility = Visibility.Hidden;
+                Pause.Visibility = Visibility.Visible;
+                Pause2.Visibility = Visibility.Visible;
+            }
+            else if(PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Paused)
+            {
+                Play.Visibility = Visibility.Visible;
+                Pause.Visibility = Visibility.Hidden;
+                Pause2.Visibility = Visibility.Hidden;
+            }
+            else if(PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Stopped)
+            {
+                Play.Visibility = Visibility.Visible;
+                Pause.Visibility = Visibility.Hidden;
+                Pause2.Visibility = Visibility.Hidden;
+            }
+            else if (PreviewMedia.State == Meta.Vlc.Interop.Media.MediaState.Opening)
+            {
+                Play.Visibility = Visibility.Hidden;
+                Pause.Visibility = Visibility.Visible;
+                Pause2.Visibility = Visibility.Visible;
             }
         }
     }

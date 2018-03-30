@@ -78,6 +78,8 @@
                         <CheckBox Name="mpg" Content=".mpg" VerticalAlignment="Center" Margin="20,1,1,1" IsChecked="True"/>
                         <CheckBox Name="mkv" Content=".mkv" VerticalAlignment="Center" Margin="1" IsChecked="True"/>
                         <CheckBox Name="wmv" Content=".wmv" VerticalAlignment="Center" Margin="1" IsChecked="True"/>
+                        <CheckBox Name="flv" Content=".flv" VerticalAlignment="Center" Margin="1" IsChecked="True"/>
+                        <CheckBox Name="webm" Content=".webm" VerticalAlignment="Center" Margin="1" IsChecked="True"/>
                     </WrapPanel>
                     <DockPanel Grid.Row="8" Margin="20,0,0,0">
                         <Label Content="Mouse Disappear Delay: " HorizontalAlignment="Left"  VerticalAlignment="Center"/>
