@@ -688,13 +688,17 @@ namespace Tagger.UI
                                 break;
                             case 4: // Tag
                                 h = (Label)p.Children[j];
-                                if (h.Content.ToString().StartsWith("Rating:"))
+                                if (h.Content.ToString().ToLower().StartsWith("rating:"))
                                 {
-                                    search += "Rating" + like + h.Content.ToString().Replace("Rating: ", "").Replace(@"'", "''") + " ";
+                                    search += "Rating = " + h.Content.ToString().Replace("Rating: ", "").Replace(@"'", "''") + " ";
                                 }
-                                else if (h.Content.ToString().StartsWith("Extension:"))
+                                else if (h.Content.ToString().ToLower().StartsWith("extension:"))
                                 {
                                     search += "Filetype" + like + "'%" + h.Content.ToString().Replace("Extension: ", "").Replace(@"'", "''") + "' ";
+                                }
+                                else if (h.Content.ToString().ToLower().StartsWith("rating>:"))
+                                {
+                                    search += "Rating > " + h.Content.ToString().Replace("Rating>: ", "").Replace(@"'", "''") + " ";
                                 }
                                 else
                                 {

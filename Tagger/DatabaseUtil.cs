@@ -588,13 +588,27 @@ namespace Tagger
 
         public List<string> GetTagsContaining(DBTable db, string chars, int limit)
         {
+            List<string> output = new List<string>();
             try
             {
-                var query = from Tags in db.Tags where Tags.Tag.Contains(chars.ApostrepheFix()) select Tags.Tag.ApostrepheDefix();
+                var query0 = from Tags in db.Tags where Tags.Tag == chars.ApostrepheFix() select Tags.Tag.ApostrepheDefix();
+                var query = from Tags in db.Tags where Tags.Tag.Contains(chars.ApostrepheFix()) && Tags.Tag != chars.ApostrepheFix() select Tags.Tag.ApostrepheDefix();
 
+                if(query0.Count() > 0)
+                {
+                    output.Add(query0.First());
+                }
                 if(query.Count() > 0)
                 {
-                    return query.Take(limit).ToList();
+                    if(output.Count > 0)
+                    {
+                        output.AddRange(query.Take(limit - 1).ToList());
+                        return output;
+                    }
+                    else
+                    {
+                        return query.Take(limit).ToList();
+                    }                    
                 }
                 else
                 {

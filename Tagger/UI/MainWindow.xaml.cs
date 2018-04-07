@@ -17,6 +17,7 @@ using IqdbApi;
 using XamlAnimatedGif;
 using System.ComponentModel;
 using Meta.Vlc;
+using System.Runtime.InteropServices;
 
 
 // Tagger Software
@@ -95,6 +96,7 @@ namespace Tagger
         bool cycleVideo = false;
         bool IQDBLoopRunning = false;
         int EventIndex = 0;
+        bool IQDBInProgress = false;
 
         string[] allTypes;
         string[] videoTypes;
@@ -671,9 +673,9 @@ namespace Tagger
                 EventExpander.Visibility = Visibility.Visible;
                 currentImageWidth = (short)PreviewMedia.ActualHeight;
                 currentImageHeight = (short)PreviewMedia.ActualWidth;
-                FileHeight.Content = "H: " + PreviewMedia.ActualHeight.ToString();
-                FileWidth.Content = "W: " + PreviewMedia.ActualHeight.ToString();
-                PreviewMedia.LoadMedia(new Uri(currentImage.FullName));              
+                FileHeight.Content = "H: " + PreviewMedia.MaxHeight.ToString();
+                FileWidth.Content = "W: " + PreviewMedia.MaxWidth.ToString();
+                PreviewMedia.LoadMedia(new Uri(currentImage.FullName));
                 MediaIsVideo = true;
 
             }
@@ -858,6 +860,9 @@ namespace Tagger
         private void PreviewMedia_LengthChanged(object sender, EventArgs e)
         {
             //PreviewMedia.Rate = 1.0F;
+            FileHeight.Content = "H: " + PreviewMedia.Height.ToString();
+            FileWidth.Content = "W: " + PreviewMedia.Width.ToString();
+
             if (PreviewMedia.Length.TotalSeconds < 10)
             {
                 PreviewMedia.EndBehavior = Meta.Vlc.Wpf.EndBehavior.Repeat;
@@ -2355,30 +2360,47 @@ namespace Tagger
             {
                 MessageBox.Show("Cannot search booru for gifs or videos.");
             }
+            else if((currentImageHeight >= 7500 & currentImageWidth >= 7500) || currentImage.Length > 8324000)
+            {
+                MessageBox.Show("Cannot search booru for images larger than 7Mb.");
+            }
+            else if(IQDBInProgress)
+            {
+                MessageBox.Show("Already searching for an image.");
+            }
             else
             {
-                IIqdbClient api = new IqdbClient();
-                IqdbApi.Models.SearchResult searchResults;
-                using (var fs = new FileStream(DirectoryPath + @"\" + currentImageName, FileMode.Open))
+                try
                 {
-                    searchResults = await api.SearchFile(fs);
-                }
-                if (!searchResults.IsFound)
-                {
-                    MessageBox.Show("Image was not found on any booru");
-                }
-                else
-                {
-                    Iqdb_Results IR = new Iqdb_Results(searchResults, db, data, imagetagged, currentImageName, DirectoryPath, currentImageHeight, currentImageWidth, currentImage, currentImageIndex);
-                    IR.ShowDialog();
-                    if (IR.Tagged)
+                    IQDBInProgress = true;
+                    IIqdbClient api = new IqdbClient();
+                    IqdbApi.Models.SearchResult searchResults;
+                    using (var fs = new FileStream(DirectoryPath + @"\" + currentImageName, FileMode.Open))
                     {
-                        ImagesTaggedCurrentRun += 1;
-                        DirectoryProgress.Value = ImagesTaggedfromCurrentDirectory + ImagesTaggedCurrentRun;
-                        DirectoryProgress.Tag = (ImagesTaggedfromCurrentDirectory + ImagesTaggedCurrentRun).ToString() + "/" + FI.Count.ToString();
+                        searchResults = await api.SearchFile(fs);
                     }
-                    UpdateTagDisplay();
+                    if (!searchResults.IsFound)
+                    {
+                        MessageBox.Show("Image was not found on any booru");
+                    }
+                    else
+                    {
+                        Iqdb_Results IR = new Iqdb_Results(searchResults, db, data, imagetagged, currentImageName, DirectoryPath, currentImageHeight, currentImageWidth, currentImage, currentImageIndex);
+                        IR.ShowDialog();
+                        if (IR.Tagged)
+                        {
+                            ImagesTaggedCurrentRun += 1;
+                            DirectoryProgress.Value = ImagesTaggedfromCurrentDirectory + ImagesTaggedCurrentRun;
+                            DirectoryProgress.Tag = (ImagesTaggedfromCurrentDirectory + ImagesTaggedCurrentRun).ToString() + "/" + FI.Count.ToString();
+                        }
+                        UpdateTagDisplay();
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Already searching for an image.");
+                }                
+                IQDBInProgress = false;
             }            
         }
 
@@ -2720,6 +2742,11 @@ namespace Tagger
 
         private void Goto_Click(object sender, RoutedEventArgs e)
         {
+            GotoImage();
+        }
+
+        private void GotoImage()
+        {
             if (ToNum.Text != "")
             {
                 try
@@ -2876,6 +2903,57 @@ namespace Tagger
             db.DeleteImageData(data, currentImageName);
             UpdateTagDisplay();
             TagAdd.Focus();
+
+            ////test
+            //IShellItem ppsi = null;
+            //IntPtr hbitmap = IntPtr.Zero;
+            //// GUID of IShellItem.
+            //Guid uuid = new Guid("43826d1e-e718-42ee-bc55-a1e261c37bfe");
+            //SHCreateItemFromParsingName(filename, IntPtr.Zero, uuid, out ppsi);
+            //((IShellItemImageFactory)ppsi).GetImage(new SIZE(256, 256), 0x0, out hbitmap);
         }
+
+        private void ToNum_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                GotoImage();
+            }
+        }
+
+        //[Flags]
+        //public enum SIIGBF
+        //{
+        //    SIIGBF_RESIZETOFIT = 0x00,
+        //    SIIGBF_BIGGERSIZEOK = 0x01,
+        //    SIIGBF_MEMORYONLY = 0x02,
+        //    SIIGBF_ICONONLY = 0x04,
+        //    SIIGBF_THUMBNAILONLY = 0x08,
+        //    SIIGBF_INCACHEONLY = 0x10,
+        //}
+
+        //[StructLayout(LayoutKind.Sequential)]
+        //public struct SIZE
+        //{
+        //    public int cx;
+        //    public int cy;
+
+        //    public SIZE(int cx, int cy)
+        //    {
+        //        this.cx = cx;
+        //        this.cy = cy;
+        //    }
+        //}
+
+        //[ComImportAttribute()]
+        //[GuidAttribute("bcc18b79-ba16-442f-80c4-8a59c30c463b")]
+        //[InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+        //public interface IShellItemImageFactory
+        //{
+        //    void GetImage(
+        //    [In, MarshalAs(UnmanagedType.Struct)] SIZE size,
+        //    [In] SIIGBF flags,
+        //    [Out] out IntPtr phbm);
+        //}
     }
 }

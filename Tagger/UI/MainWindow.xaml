@@ -6,6 +6,7 @@
         xmlns:behavs="clr-namespace:Tagger"
         xmlns:wpf="clr-namespace:Meta.Vlc.Wpf;assembly=Meta.Vlc.Wpf"
         mc:Ignorable="d"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         x:Name="CurrentWindow"
         Title="PPD" Height="900" Width="1200" WindowState="Maximized" Closing="Window_Closing" behavs:InputBindingsBehavior.TakesInputBindingPrecedence="True" Loaded="Window_Loaded" MouseWheel="Window_MouseWheel">
     <Window.Resources>
@@ -82,6 +83,13 @@
 
         <RoutedUICommand x:Key="MinimizeCommand" Text="Minimize Application"/>
         <RoutedUICommand x:Key="CloseCommand" Text="Close Application"/>
+        <x:Array Type="{x:Type sys:String}" x:Key="VlcOptions">
+            <sys:String>-I</sys:String>
+            <sys:String>--dummy-quiet</sys:String>
+            <sys:String>--ignore-config</sys:String>
+            <sys:String>--no-video-title</sys:String>
+            <sys:String>--no-sub-autodetect-file</sys:String>
+        </x:Array>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="{StaticResource NextFileCommand}" Executed="NextFileExecuted" CanExecute="NextFileCanExecute"/>
@@ -393,7 +401,7 @@
                         <RadioButton x:Name="Rating3" Content="../resources/starEmpty.png" Style="{StaticResource Star}" Height="30" Width="30" IsTabStop="False" Grid.Column="3" Command="{StaticResource Rating3Command}"/>
                         <RadioButton x:Name="Rating4" Content="../resources/starEmpty.png" Style="{StaticResource Star}" Height="30" Width="30" IsTabStop="False" Grid.Column="4" Command="{StaticResource Rating4Command}"/>
                         <RadioButton x:Name="Rating5" Content="../resources/starEmpty.png" Style="{StaticResource Star}" Height="30" Width="30" IsTabStop="False" Grid.Column="5" Command="{StaticResource Rating5Command}"/>
-                        <TextBox x:Name="ToNum" Height="26" HorizontalAlignment="Stretch" Grid.Column="6" IsTabStop="False" FontSize="12" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,0"/>
+                        <TextBox x:Name="ToNum" Height="26" HorizontalAlignment="Stretch" Grid.Column="6" IsTabStop="False" FontSize="12" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,0" PreviewKeyUp="ToNum_PreviewKeyUp"/>
                         <Button x:Name="Goto" Content="GOTO" Height="26" HorizontalAlignment="Stretch" Grid.Column="7" IsTabStop="False" Margin="5,0" Click="Goto_Click"/>
                     </Grid>
                 </DockPanel>
@@ -525,7 +533,7 @@
                     </StackPanel>                        
                         <Border x:Name="MediaBorder" BorderBrush="Black" BorderThickness="2" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MouseEnter="PreviewMedia_MouseEnter" MouseLeave="PreviewMedia_MouseLeave" Panel.ZIndex="1">
                         <!--<MediaElement x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrubbingEnabled="True" Margin="0,0,0,0" LoadedBehavior="Manual" MediaOpened="PreviewMedia_MediaOpened" MediaEnded="PreviewMedia_MediaEnded"/>-->
-                        <wpf:VlcPlayer x:Name="PreviewMedia" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LibVlcPath="..\..\libvlc" LengthChanged="PreviewMedia_LengthChanged" TimeChanged="PreviewMedia_TimeChanged">
+                        <wpf:VlcPlayer x:Name="PreviewMedia" VlcOption="{StaticResource VlcOptions}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LibVlcPath="..\..\libvlc" LengthChanged="PreviewMedia_LengthChanged" TimeChanged="PreviewMedia_TimeChanged">
                             <wpf:VlcPlayer.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem x:Name="ContextPlayButton" Header="Play" IsTabStop="False" InputGestureText="Ctrl+Space" Command="{StaticResource PlayPauseCommand}"/>
