@@ -226,8 +226,8 @@ namespace Tagger.UI
                 else
                 {
                     ChooseFiles();
-                }
-                scroller.ScrollToTop();
+                    scroller.ScrollToTop();
+                }                
             }
             catch(Exception ex)
             {
@@ -250,9 +250,9 @@ namespace Tagger.UI
                 }
                 else
                 {
-                    ChooseFiles();                   
-                }
-                scroller.ScrollToTop();
+                    ChooseFiles();
+                    scroller.ScrollToTop();
+                }                
             }
             catch (Exception ex)
             {
@@ -267,8 +267,12 @@ namespace Tagger.UI
             int TempIndex = PageIndex;
             try
             {
-                PageIndex = 1;
-                ChooseFiles();
+                if(PageIndex != 1)
+                {
+                    PageIndex = 1;
+                    ChooseFiles();
+                    scroller.ScrollToTop();
+                }                
             }
             catch(Exception ex)
             {
@@ -282,8 +286,12 @@ namespace Tagger.UI
             int TempIndex = PageIndex;
             try
             {
-                PageIndex = MaxPageCount;
-                ChooseFiles();
+                if(PageIndex != MaxPageCount)
+                {
+                    PageIndex = MaxPageCount;
+                    ChooseFiles();
+                    scroller.ScrollToTop();
+                }                
             }
             catch (Exception ex)
             {

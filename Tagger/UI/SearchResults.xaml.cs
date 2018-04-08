@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
-using WpfAnimatedGif;
 
 namespace Tagger.UI
 {
@@ -21,7 +20,7 @@ namespace Tagger.UI
     /// </summary>
     public partial class SearchResults : Window
     {
-        private static string appfilelocation = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Tagger", "Thumbs");
+        private static string appfilelocation = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Tagger", "Thumbs");
 
         DatabaseUtil.DBTable Data;
         DatabaseUtil db = new DatabaseUtil();
@@ -33,8 +32,9 @@ namespace Tagger.UI
         List<string> Tags = new List<string>();
         public string ReturnFile { get; set; }
         public List<string> SearchResultsField { get; set; }
-        int pageindex = 1;
-        int resultsperpage = 20;
+        double PageAmount = 0.0;
+        int PageIndex = 1;
+        int ResultsPerPage = 20;
         BitmapImage ImageInstance;
 
         Point Up1 = new Point(0, 10);
@@ -63,6 +63,7 @@ namespace Tagger.UI
         Point Down4 = new Point(12, 0);
         Point Down5 = new Point(16, 0);
         Point Down6 = new Point(8, 10);
+        string[] keywords = new string[] { "!Rating:", "!Rating>:", "!Rating<:", "!Rating>=:", "!Rating<=:", "!Extension:", "!Height:", "!Height>:", "!Height<:", "!Width:", "!Width>:", "!Width<:", "!Name:", "!Image", "!Video", "!Size:", "!Size>:", "!Size<:", "!TagCount:", "!TagCount>:", "!TagCount<:" };
         
 
         public SearchResults(DatabaseUtil DB, DatabaseUtil.DBTable data, XMLUtil.SaveSettings ss, string profilename, List<string> SRS)
@@ -96,6 +97,17 @@ namespace Tagger.UI
                     SearchBar.IsDropDownOpen = false;
                     Tags.Clear();
                     SearchBar.Items.Clear();
+                }
+                else if (SearchBar.Text.StartsWith("!"))
+                {
+                    SearchBar.IsDropDownOpen = true;
+                    if(SearchBar.SelectedIndex == -1)
+                    {
+                        foreach(string keyboi in keywords)
+                        {
+                            SearchBar.Items.Add(keyboi);
+                        }
+                    }                    
                 }
                 else
                 {
@@ -647,6 +659,7 @@ namespace Tagger.UI
             Label h;
             Button b;
             Button n;
+            string inputTag;
             string like = "";
 
             string search = "select * from dbo.ImageData where ";
@@ -686,23 +699,96 @@ namespace Tagger.UI
                                     like = " Not Like ";
                                 }
                                 break;
-                            case 4: // Tag
+                            case 4: // Tag                                
                                 h = (Label)p.Children[j];
-                                if (h.Content.ToString().ToLower().StartsWith("rating:"))
+                                inputTag = h.Content.ToString();
+                                if (inputTag.ToLower().StartsWith("!rating:"))  //Rating Equals
                                 {
-                                    search += "Rating = " + h.Content.ToString().Replace("Rating: ", "").Replace(@"'", "''") + " ";
+                                    search += "Rating = " + inputTag.ToLower().Replace(" ","").Replace("!rating:", "").Replace(@"'", "''") + " ";
                                 }
-                                else if (h.Content.ToString().ToLower().StartsWith("extension:"))
+                                else if (inputTag.ToLower().StartsWith("!rating>:"))    //Rating Greater than
                                 {
-                                    search += "Filetype" + like + "'%" + h.Content.ToString().Replace("Extension: ", "").Replace(@"'", "''") + "' ";
+                                    search += "Rating > " + inputTag.ToLower().Replace(" ", "").Replace("!rating>:", "").Replace(@"'", "''") + " ";
                                 }
-                                else if (h.Content.ToString().ToLower().StartsWith("rating>:"))
+                                else if (inputTag.ToLower().StartsWith("!rating<:"))    //Rating less than
                                 {
-                                    search += "Rating > " + h.Content.ToString().Replace("Rating>: ", "").Replace(@"'", "''") + " ";
+                                    search += "Rating < " + inputTag.ToLower().Replace(" ", "").Replace("!rating<:", "").Replace(@"'", "''") + " ";
                                 }
-                                else
+                                else if (inputTag.ToLower().StartsWith("!rating>=:"))   //Rating greater than or equal to
                                 {
-                                    search += "Tags" + like + "'%;" + h.Content.ToString().Replace(@"'", "''") + ";%' ";
+                                    search += "Rating >= " + inputTag.ToLower().Replace(" ", "").Replace("!rating>=:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!rating<=:"))   //Rating less than or equal to
+                                {
+                                    search += "Rating <= " + inputTag.ToLower().Replace(" ", "").Replace("!rating<=:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!extension:"))   //Extension equals
+                                {
+                                    search += "Filetype" + like + "'%" + inputTag.ToLower().Replace(" ","").Replace("!extension:", "").Replace(@"'", "''") + "' ";
+                                }
+                                else if(inputTag.ToLower().StartsWith("!height:"))      //Image Height equals
+                                {
+                                    search += "Height = " + inputTag.ToLower().Replace(" ", "").Replace("!height:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!height>:"))    //Image Height Greater than
+                                {
+                                    search += "Height > " + inputTag.ToLower().Replace(" ", "").Replace("!height>:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!rating<:"))    //Image Height less than
+                                {
+                                    search += "Height < " + inputTag.ToLower().Replace(" ", "").Replace("!height<:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!width:"))      //Image Width Equals
+                                {
+                                    search += "Width = " + inputTag.ToLower().Replace(" ", "").Replace("!width:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!width>:"))    //Image Width Greater than
+                                {
+                                    search += "Width > " + inputTag.ToLower().Replace(" ", "").Replace("!width>:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!width<:"))    //Image Width less than
+                                {
+                                    search += "Width < " + inputTag.ToLower().Replace(" ", "").Replace("!width<:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!name:"))      //Image Width Equals
+                                {
+                                    search += "FileName Like " + inputTag.ToLower().Replace(" ", "").Replace("!width:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!video"))    //Image Width Greater than
+                                {
+                                    search += "(Filetype = '.mp4' or Filetype = '.mpg' or Filetype= '.mkv' or Filetype = '.wmv' or Filetype = '.avi' or Filetype = '.flv' or Filetype = '.webm') ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!image"))    //Image Width less than
+                                {
+                                    search += "(Filetype = '.jpg' or Filetype = '.jpeg' or Filetype= '.png' or Filetype = '.bmp' or Filetype = '.gif') ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!size:"))      //Image Width Equals
+                                {
+                                    search += "Filesize = " + inputTag.ToLower().Replace(" ", "").Replace("!size:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!size>:"))    //Image Width Greater than
+                                {
+                                    search += "Filesize > " + inputTag.ToLower().Replace(" ", "").Replace("!size>:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!size<:"))    //Image Width less than
+                                {
+                                    search += "Filesize < " + inputTag.ToLower().Replace(" ", "").Replace("!size<:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!tagcount:"))      //Image Width Equals
+                                {
+                                    search += "ImageTagCount = " + inputTag.ToLower().Replace(" ", "").Replace("!tagcount:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!tagcount>:"))    //Image Width Greater than
+                                {
+                                    search += "ImageTagCount > " + inputTag.ToLower().Replace(" ", "").Replace("!tagcount>:", "").Replace(@"'", "''") + " ";
+                                }
+                                else if (inputTag.ToLower().StartsWith("!tagcount<:"))    //Image Width less than
+                                {
+                                    search += "ImageTagCount < " + inputTag.ToLower().Replace(" ", "").Replace("!tagcount<:", "").Replace(@"'", "''") + " ";
+                                }
+                                else    //Default Tag search
+                                {
+                                    search += "Tags" + like + "'%;" + inputTag.Replace(@"'", "''") + ";%' ";
                                 }
                                 break;
                             case 5: // Close Paren
@@ -790,29 +876,67 @@ namespace Tagger.UI
             string filepath = "";
             try
             {
-                double PageAmount = (double)SR.Count / resultsperpage;
+                PageAmount = (double)SR.Count / ResultsPerPage;
                 if (SR.Count > 0)
                 {
-                    if (Math.Ceiling(PageAmount) <= pageindex)
-                    {
-                        NextPage.IsEnabled = false;
-                    }
-                    else
-                    {
-                        NextPage.IsEnabled = true;
+                    Grid NavGridTop = new Grid();
+                    ColumnDefinition ColDef1 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef2 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef3 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef4 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef5 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
 
-                    }
-                    if (pageindex >= 2)
-                    {
-                        PrevPage.IsEnabled = true;
-                    }
-                    else
-                    {
-                        PrevPage.IsEnabled = false;
-                    }
-                    PageCount.Content = pageindex.ToString() + "/" + Math.Ceiling(PageAmount).ToString() + " (" + SR.Count.ToString() + ")";
+                    NavGridTop.ColumnDefinitions.Add(ColDef1);
+                    NavGridTop.ColumnDefinitions.Add(ColDef2);
+                    NavGridTop.ColumnDefinitions.Add(ColDef3);
+                    NavGridTop.ColumnDefinitions.Add(ColDef4);
+                    NavGridTop.ColumnDefinitions.Add(ColDef5);
 
-                    for (int p = ((pageindex - 1) * resultsperpage); (p <= (resultsperpage * pageindex) - 1) && (p <= SR.Count - 1); p++)
+                    Button FirstPageTop = new Button()
+                    {
+                        Content = "First"
+                    };
+                    FirstPageTop.Click += new RoutedEventHandler(FirstPage_Clicked);
+
+                    Button PrevPageTop = new Button()
+                    {
+                        Content = "Previous"
+                    };
+                    PrevPageTop.Click += new RoutedEventHandler(PrevPage_Clicked);
+
+                    Label PageCountTop = new Label()
+                    {
+                        Content = PageIndex.ToString() + "/" + Math.Ceiling(PageAmount).ToString() + " (" + SR.Count.ToString() + ")",
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
+
+                    Button NextPageTop = new Button()
+                    {
+                        Content = "Next"
+                    };
+                    NextPageTop.Click += new RoutedEventHandler(NextPage_Clicked);
+
+                    Button LastPageTop = new Button()
+                    {
+                        Content = "Last Page"
+                    };
+                    LastPageTop.Click += new RoutedEventHandler(LastPage_Clicked);
+
+                    Grid.SetColumn(FirstPageTop, 0);
+                    Grid.SetColumn(PrevPageTop, 1);
+                    Grid.SetColumn(PageCountTop, 2);
+                    Grid.SetColumn(NextPageTop, 3);
+                    Grid.SetColumn(LastPageTop, 4);
+
+                    NavGridTop.Children.Add(FirstPageTop);
+                    NavGridTop.Children.Add(PrevPageTop);
+                    NavGridTop.Children.Add(PageCountTop);
+                    NavGridTop.Children.Add(NextPageTop);
+                    NavGridTop.Children.Add(LastPageTop);
+                    ResultsPanel.Children.Add(NavGridTop);
+
+                    for (int p = ((PageIndex - 1) * ResultsPerPage); (p <= (ResultsPerPage * PageIndex) - 1) && (p <= SR.Count - 1); p++)
                     {
                         filepath = System.IO.Path.Combine(db.GetImageDirectory(Data, SR[p]), SR[p]);
                         if (File.Exists(filepath))
@@ -822,12 +946,10 @@ namespace Tagger.UI
                             RowDefinition rd1 = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };
                             RowDefinition rd2 = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };
                             RowDefinition rd3 = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };
-                            //RowDefinition rd4 = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };
                             Result2.RowDefinitions.Add(rd1);
                             Result2.RowDefinitions.Add(rd2);
                             Result2.RowDefinitions.Add(rd3);
-                            //Result2.RowDefinitions.Add(rd4);
-                            ColumnDefinition cd1 = new ColumnDefinition() { Width = new GridLength(3, GridUnitType.Star) };
+                            ColumnDefinition cd1 = new ColumnDefinition() { Width = new GridLength(2, GridUnitType.Star) };
                             ColumnDefinition cd2 = new ColumnDefinition() { Width = new GridLength(6, GridUnitType.Star) };
                             ColumnDefinition cd3 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
                             Result1.ColumnDefinitions.Add(cd1);
@@ -849,18 +971,18 @@ namespace Tagger.UI
                             Button FileGet = new Button() { Tag = SR[p], Background = Brushes.Black };
                             FileGet.Click += new RoutedEventHandler(FileSelect);
 
-                            if (true) //(bool)!db.IsVideo(Data, SR[p]))
+                            if (File.Exists(System.IO.Path.Combine(appfilelocation, SR[p])))
                             {
                                 Image thumb = new Image() { Width = 100, Height = 80 };
-                                ImageInstance = BitmapImageFromFile(System.IO.Path.Combine(appfilelocation, SR[p] + ".bmp"), thumb);
+                                ImageInstance = BitmapImageFromFile(System.IO.Path.Combine(appfilelocation, SR[p]), thumb);
                                 thumb.Source = ImageInstance;
                                 FileGet.Content = thumb;
 
                             }
                             else
                             {
-                                //Label thumb2 = new Label() { Content = "No Thumbnail", Foreground = Brushes.White };
-                                //FileGet.Content = thumb2;
+                                Label AbsentThumb = new Label() { Content = "No Thumbnail", Foreground = Brushes.White };
+                                FileGet.Content = AbsentThumb;
                             }
                             Grid.SetColumn(FileGet, 0);
                             Result1.Children.Add(FileGet);
@@ -869,20 +991,20 @@ namespace Tagger.UI
                             Result1.Children.Add(Result2);
 
                             PointCollection RemoveCollection = new PointCollection
-                    {
-                        Remove1,
-                        Remove2,
-                        Remove3,
-                        Remove4,
-                        Remove5,
-                        Remove6,
-                        Remove7,
-                        Remove8,
-                        Remove9,
-                        Remove10,
-                        Remove11,
-                        Remove12
-                    };
+                            {
+                                Remove1,
+                                Remove2,
+                                Remove3,
+                                Remove4,
+                                Remove5,
+                                Remove6,
+                                Remove7,
+                                Remove8,
+                                Remove9,
+                                Remove10,
+                                Remove11,
+                                Remove12
+                            };
                             Button RemoveResult = new Button() { Tag = SR[p], Content = new Polygon() { Points = RemoveCollection, Fill = Brushes.Red }, Width = 30, Height = 30, VerticalAlignment = VerticalAlignment.Top, HorizontalAlignment = HorizontalAlignment.Right };
                             RemoveResult.Click += new RoutedEventHandler(RemoveResult_Click);
 
@@ -894,6 +1016,63 @@ namespace Tagger.UI
                             ResultsPanel.Children.Add(Result1);
                         }
                     }
+
+                    Grid NavGridBottom = new Grid();
+                    ColumnDefinition ColDef6 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef7 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef8 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef9 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef10 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+
+                    NavGridBottom.ColumnDefinitions.Add(ColDef6);
+                    NavGridBottom.ColumnDefinitions.Add(ColDef7);
+                    NavGridBottom.ColumnDefinitions.Add(ColDef8);
+                    NavGridBottom.ColumnDefinitions.Add(ColDef9);
+                    NavGridBottom.ColumnDefinitions.Add(ColDef10);
+
+                    Button FirstPageBottom = new Button()
+                    {
+                        Content = "First"
+                    };
+                    FirstPageTop.Click += new RoutedEventHandler(FirstPage_Clicked);
+
+                    Button PrevPageBottom = new Button()
+                    {
+                        Content = "Previous"
+                    };
+                    PrevPageBottom.Click += new RoutedEventHandler(PrevPage_Clicked);
+
+                    Label PageCountBottom = new Label()
+                    {
+                        Content = PageIndex.ToString() + "/" + Math.Ceiling(PageAmount).ToString() + " (" + SR.Count.ToString() + ")",
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
+
+                    Button NextPageBottom = new Button()
+                    {
+                        Content = "Next"
+                    };
+                    NextPageBottom.Click += new RoutedEventHandler(NextPage_Clicked);
+
+                    Button LastPageBottom = new Button()
+                    {
+                        Content = "Last Page"
+                    };
+                    LastPageBottom.Click += new RoutedEventHandler(LastPage_Clicked);
+
+                    Grid.SetColumn(FirstPageBottom, 0);
+                    Grid.SetColumn(PrevPageBottom, 1);
+                    Grid.SetColumn(PageCountBottom, 2);
+                    Grid.SetColumn(NextPageBottom, 3);
+                    Grid.SetColumn(LastPageBottom, 4);
+                    NavGridBottom.Children.Add(FirstPageBottom);
+                    NavGridBottom.Children.Add(PrevPageBottom);
+                    NavGridBottom.Children.Add(PageCountBottom);
+                    NavGridBottom.Children.Add(NextPageBottom);
+                    NavGridBottom.Children.Add(LastPageBottom);
+
+                    ResultsPanel.Children.Add(NavGridBottom);
                 }
                 else
                 {
@@ -921,16 +1100,92 @@ namespace Tagger.UI
             }            
         }
 
-        private void NextPage_Click(object sender, RoutedEventArgs e)
+        private void NextPage_Clicked(object sender, RoutedEventArgs e)
         {
-            pageindex++;
-            AddSearchResults(BooleanSearchResults);
+            int TempIndex = PageIndex;
+
+            try
+            {
+                PageIndex++;    //increment page index
+                if (PageIndex > PageAmount) //make sure page index didn't go over max number of pages
+                {
+                    PageIndex = (int)Math.Ceiling(PageAmount);    //if pag index went over max number of pages set page index back to max number of pages
+                }
+                else
+                {
+                    AddSearchResults(BooleanSearchResults);
+                    Scroller.ScrollToTop();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error moving to next page. - " + ex.Message);
+                Error.WriteToLog(ex);
+                PageIndex = TempIndex;
+            }
         }
 
-        private void PrevPage_Click(object sender, RoutedEventArgs e)
+        private void PrevPage_Clicked(object sender, RoutedEventArgs e)
         {
-            pageindex--;
-            AddSearchResults(BooleanSearchResults);
+            int TempIndex = PageIndex;
+
+            try
+            {
+                PageIndex--;
+                if (PageIndex < 1)
+                {
+                    PageIndex = 1;
+                }
+                else
+                {
+                    AddSearchResults(BooleanSearchResults);
+                    Scroller.ScrollToTop();
+                }                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error moving to next page. - " + ex.Message);
+                Error.WriteToLog(ex);
+                PageIndex = TempIndex;
+            }
+        }
+
+        private void FirstPage_Clicked(object sender, RoutedEventArgs e)
+        {
+            int TempIndex = PageIndex;
+            try
+            {
+                if(PageIndex != 1)
+                {
+                    PageIndex = 1;
+                    AddSearchResults(BooleanSearchResults);
+                    Scroller.ScrollToTop();
+                }                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error moving to first page. - " + ex.Message);
+                Error.WriteToLog(ex);
+            }
+        }
+
+        private void LastPage_Clicked(object sender, RoutedEventArgs e)
+        {
+            int TempIndex = PageIndex;
+            try
+            {
+                if(PageIndex != (int)Math.Ceiling(PageAmount))
+                {
+                    PageIndex = (int)Math.Ceiling(PageAmount);
+                    AddSearchResults(BooleanSearchResults);
+                    Scroller.ScrollToTop();
+                }                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error moving to first page. - " + ex.Message);
+                Error.WriteToLog(ex);
+            }
         }
 
         private void RemoveResult_Click(object sender, RoutedEventArgs e)
@@ -952,14 +1207,11 @@ namespace Tagger.UI
             try
             {
                 BooleanSearchResults.Clear();
-                pageindex = 1;
+                PageIndex = 1;
                 Tags.Clear();
                 ReturnFile = "";
                 ResultsPanel.Children.Clear();
                 SearchPanel.Children.RemoveRange(1, SearchPanel.Children.Count - 1);
-                NextPage.IsEnabled = false;
-                PrevPage.IsEnabled = false;
-                PageCount.Content = "0/0 (0)";
                 SearchBar.Text = "";
                 AdvancedSearch.Text = "";
                 ResultsCountLabel.Content = "Results Count: 0";
@@ -972,7 +1224,7 @@ namespace Tagger.UI
 
         private static BitmapImage BitmapImageFromFile(string path, Image img)
         {
-            BitmapImage bi = new BitmapImage() { DecodePixelHeight = 80, DecodePixelWidth = 100 };
+            BitmapImage bi = new BitmapImage() { DecodePixelHeight = 80 };
 
             try
             {

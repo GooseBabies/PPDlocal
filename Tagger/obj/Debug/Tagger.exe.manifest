@@ -138,74 +138,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Tagger.exe" size="267776">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Tagger.exe" size="281088">
       <assemblyIdentity name="Tagger" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YAdu5GOw5Rcn0wOMgHwJoahUh60xE6+4uAZU4TXn8MU=</dsig:DigestValue>
+        <dsig:DigestValue>P8BbQfW5IKfnU24rR1bfEifepHBUirS3SuqN8BDct1E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Vlc.DotNet.Core.dll" size="55296">
-      <assemblyIdentity name="Vlc.DotNet.Core" version="2.2.1.0" publicKeyToken="84529DA31F4EB963" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ThumbnailSharp.dll" size="11776">
+      <assemblyIdentity name="ThumbnailSharp" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>qBlKF35wtLhTFB+HSTfsc/FNhecXiloOirV53iQjIKU=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Vlc.DotNet.Core.Interops.dll" size="63488">
-      <assemblyIdentity name="Vlc.DotNet.Core.Interops" version="2.2.1.0" publicKeyToken="84529DA31F4EB963" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>69AMezJiZYd6Q3W0+FWN1ysFpe/xpXi7Oyw7vYXx0sw=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Vlc.DotNet.Forms.dll" size="23552">
-      <assemblyIdentity name="Vlc.DotNet.Forms" version="2.2.1.0" publicKeyToken="84529DA31F4EB963" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6NJInXdRH0Rm5Z8o3Tzt7N71jt1Qq4WU5grUW8EjWMU=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Vlc.DotNet.Wpf.dll" size="5632">
-      <assemblyIdentity name="Vlc.DotNet.Wpf" version="2.2.1.0" publicKeyToken="84529DA31F4EB963" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>00PqmRAfNfJOd2r6TkocV/w/bRtjabxBByyiaDVX1ro=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WpfAnimatedGif.dll" size="39936">
-      <assemblyIdentity name="WpfAnimatedGif" version="1.4.15.0" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zo74JfwQ5aMmW9OkxBjnASreH2G7637ZRZwTEeTmuRc=</dsig:DigestValue>
+        <dsig:DigestValue>6EusHojhi/Za+auzhsYz2i4/bsxXrhDe03GGakelotY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

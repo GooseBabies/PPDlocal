@@ -270,6 +270,7 @@
                     <Separator IsTabStop="False"/>
                     <MenuItem x:Name="SelectFile" Header="Open Containing Folder" IsTabStop="False" InputGestureText="Windows+O" Command="{StaticResource OpenFileLocationCommand}"/>
                     <MenuItem x:Name="HideNav" Header="Hide Navigation Buttons" IsTabStop="False" InputGestureText="Ctrl+H" Command="{StaticResource HideNavigationCommand}" />
+                    <MenuItem x:Name="ThumbGen" Header="Generate Thumbnails" IsTabStop="False" Click="ThumbGen_Click"/>
                     <Separator IsTabStop="False"/>
                     <MenuItem x:Name="Options" Header="Options..." IsTabStop="False" InputGestureText="Ctrl+O" Command="{StaticResource OptionsCommand}"/>                                                     
                 </MenuItem>

@@ -111,25 +111,13 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Vlc.DotNet.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vlc.DotNet.Core.2.2.1\lib\net45\Vlc.DotNet.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Vlc.DotNet.Core.Interops, Version=2.2.1.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vlc.DotNet.Core.Interops.2.2.1\lib\net45\Vlc.DotNet.Core.Interops.dll</HintPath>
-    </Reference>
-    <Reference Include="Vlc.DotNet.Forms, Version=2.2.1.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vlc.DotNet.Forms.2.2.1\lib\net45\Vlc.DotNet.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="Vlc.DotNet.Wpf, Version=2.2.1.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vlc.DotNet.Wpf.2.2.1\lib\net45\Vlc.DotNet.Wpf.dll</HintPath>
+    <Reference Include="ThumbnailSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ThumbnailSharp.1.0.0\lib\net45\ThumbnailSharp.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsFormsIntegration" />
-    <Reference Include="WpfAnimatedGif, Version=1.4.15.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WpfAnimatedGif.1.4.15\lib\net\WpfAnimatedGif.dll</HintPath>
-    </Reference>
     <Reference Include="XamlAnimatedGif, Version=1.1.10.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\XamlAnimatedGif.1.1.10\lib\net45\XamlAnimatedGif.dll</HintPath>
     </Reference>
@@ -142,6 +130,7 @@
     <Compile Include="DatabaseUtil.cs" />
     <Compile Include="ErrorHandling.cs" />
     <Compile Include="InputBindingsBehavior.cs" />
+    <Compile Include="ThumbnailCreator.cs" />
     <Compile Include="UI\ImportDatabase.xaml.cs">
       <DependentUpon>ImportDatabase.xaml</DependentUpon>
     </Compile>

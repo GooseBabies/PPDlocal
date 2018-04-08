@@ -42,25 +42,8 @@
             </Grid>
             
         </StackPanel>
-        <ScrollViewer Grid.Row="0" Grid.Column="1" Height="565">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="28"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <Button x:Name="NextPage" Grid.Column="2" Content="Next" Margin="2" Click="NextPage_Click"/>
-                    <Label x:Name="PageCount" Grid.Column="1" Content="0/0 (0)" HorizontalAlignment="Center" Margin="2"/>
-                    <Button x:Name="PrevPage" Grid.Column="0" Content="Previous" Click="PrevPage_Click" IsEnabled="False" Margin="2"/>
-                </Grid>
-                <DockPanel x:Name="ResultsPanel" Grid.Row="1">
-                </DockPanel>
-            </Grid>            
+        <ScrollViewer x:Name="Scroller" Grid.Row="0" Grid.Column="1" Height="565">
+            <StackPanel x:Name="ResultsPanel" Grid.Row="1"/>
         </ScrollViewer>
         <Button x:Name="Slideshow" Content="Slideshow" Grid.Column="2" Height="24" VerticalAlignment="Top" Margin="2" Click="Slideshow_Click" />
         <DockPanel x:Name="AdvancedPanel" Grid.Row="1" Grid.ColumnSpan="2">

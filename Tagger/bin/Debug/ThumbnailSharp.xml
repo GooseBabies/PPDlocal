@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ThumbnailSharp</name>
+    </assembly>
+    <members>
+        <member name="T:ThumbnailSharp.Format">
+            <summary>
+            Image format to use when creating a thumbnail.
+            </summary>
+        </member>
+        <member name="T:ThumbnailSharp.ThumbnailCreator">
+            <summary>
+            Thumbnail class that holds various methods to create an image thumbnail.
+            </summary>
+        </member>
+        <member name="M:ThumbnailSharp.ThumbnailCreator.CreateThumbnailStream(System.UInt32,System.String,ThumbnailSharp.Format)">
+            <summary>
+            Create a thumbnail from file and returns as stream.
+            </summary>
+            <param name="thumbnailSize">Thumbnail size. For portrait image, thumbnail size must be less than its height. 
+            For landscape image, thumbnail size must be less than its width. For the same size image (Proportional), thumbnail size must be less than its width and height.</param>
+            <param name="imageFileLocation">Correct image file location.</param>
+            <param name="imageFormat">Image format to use.</param>
+            <returns>A thumbnail image as stream. Returns null if it fails.</returns>
+            <exception cref="T:System.ArgumentNullException">'imageFileLocation' is null.</exception>
+            <exception cref="T:System.IO.FileNotFoundException">'imageFileLocation' does not exist.</exception>
+        </member>
+        <member name="M:ThumbnailSharp.ThumbnailCreator.CreateThumbnailStream(System.UInt32,System.IO.Stream,ThumbnailSharp.Format)">
+            <summary>
+            Create a thumbnail from image stream and returns as stream.
+            </summary>
+            <param name="thumbnailSize">Thumbnail size. For portrait image, thumbnail size must be less than its height. 
+            For landscape image, thumbnail size must be less than its width. For the same size image (Proportional), thumbnail size must be less than its width and height.</param>
+            <param name="imageStream">Valid image stream object.</param>
+            <param name="imageFormat">Image format to use.</param>
+            <returns>A thumbnail image as stream. Returns null if it fails.</returns>
+            <exception cref="T:System.ArgumentNullException">'imageStream' is null.</exception>
+        </member>
+        <member name="M:ThumbnailSharp.ThumbnailCreator.CreateThumbnailStream(System.UInt32,System.Byte[],ThumbnailSharp.Format)">
+            <summary>
+            Create a thumbnail from image in bytes and returns as stream.
+            </summary>
+            <param name="thumbnailSize">Thumbnail size. For portrait image, thumbnail size must be less than its height. 
+            For landscape image, thumbnail size must be less than its width. For the same size image (Proportional), thumbnail size must be less than its width and height.</param>
+            <param name="imageBytes">Valid image bytes array.</param>
+            <param name="imageFormat">Image format to use.</param>
+            <returns>A thumbnail image as stream. Returns null if it fails.</returns>
+            <exception cref="T:System.ArgumentNullException">'imageBytes' is null.</exception>
+        </member>
+        <member name="M:ThumbnailSharp.ThumbnailCreator.CreateThumbnailBytes(System.UInt32,System.String,ThumbnailSharp.Format)">
+            <summary>
+            Create a thumbnail from file and returns as bytes.
+            </summary>
+            <param name="thumbnailSize">Thumbnail size. For portrait image, thumbnail size must be less than its height. 
+            For landscape image, thumbnail size must be less than its width. For the same size image (Proportional), thumbnail size must be less than its width and height.</param>
+            <param name="imageFileLocation">Correct image file location.</param>
+            <param name="imageFormat">Image format to use.</param>
+            <returns>A thumbnail image as bytes. Returns null if it fails.</returns>
+            <exception cref="T:System.ArgumentNullException">'imageFileLocation' is null.</exception>
+            <exception cref="T:System.IO.FileNotFoundException">'imageFileLocation' does not exist.</exception>
+        </member>
+        <member name="M:ThumbnailSharp.ThumbnailCreator.CreateThumbnailBytes(System.UInt32,System.IO.Stream,ThumbnailSharp.Format)">
+            <summary>
+            Create a thumbnail from image stream and returns as bytes.
+            </summary>
+            <param name="thumbnailSize">Thumbnail size. For portrait image, thumbnail size must be less than its height. 
+            For landscape image, thumbnail size must be less than its width. For the same size image (Proportional), thumbnail size must be less than its width and height.</param>
+            <param name="imageStream">Valid image stream object.</param>
+            <param name="imageFormat">Image format to use.</param>
+            <returns>A thumbnail image as bytes. Returns null if it fails.</returns>
+            <exception cref="T:System.ArgumentNullException">'imageStream' is null.</exception>
+        </member>
+        <member name="M:ThumbnailSharp.ThumbnailCreator.CreateThumbnailBytes(System.UInt32,System.Byte[],ThumbnailSharp.Format)">
+            <summary>
+            Create a thumbnail from image in bytes and returns as bytes.
+            </summary>
+            <param name="thumbnailSize">Thumbnail size. For portrait image, thumbnail size must be less than its height. 
+            For landscape image, thumbnail size must be less than its width. For the same size image (Proportional), thumbnail size must be less than its width and height.</param>
+            <param name="imageBytes">Valid image bytes array.</param>
+            <param name="imageFormat">Image format to use.</param>
+            <returns>A thumbnail image as bytes. Returns null if it fails.</returns>
+            <exception cref="T:System.ArgumentNullException">'imageBytes' is null.</exception>
+        </member>
+        <member name="M:ThumbnailSharp.ThumbnailCreator.CreateThumbnailStreamAsync(System.UInt32,System.Uri,ThumbnailSharp.Format)">
+            <summary>
+            Create a thumbnail from valid image url asynchronously.
+            </summary>
+            <param name="thumbnailSize">Thumbnail size. For portrait image, thumbnail size must be less than its height. 
+            For landscape image, thumbnail size must be less than its width. For the same size image (Proportional), thumbnail size must be less than its width and height.</param>
+            <param name="urlAddress">Valid absolute url address with proper scheme.</param>
+            <param name="imageFormat">Image format to use.</param>
+            <returns>A thumbnail image as stream. Returns null if it fails.</returns>
+            <exception cref="T:System.ArgumentNullException">'urlAddress' is null.</exception>
+        </member>
+        <member name="M:ThumbnailSharp.ThumbnailCreator.CreateThumbnailBytesAsync(System.UInt32,System.Uri,ThumbnailSharp.Format)">
+            <summary>
+            Create a thumbnail from valid image url asynchronously.
+            </summary>
+            <param name="thumbnailSize">Thumbnail size. For portrait image, thumbnail size must be less than its height. 
+            For landscape image, thumbnail size must be less than its width. For the same size image (Proportional), thumbnail size must be less than its width and height.</param>
+            <param name="urlAddress">Valid absolute url address with proper scheme.</param>
+            <param name="imageFormat">Image format to use.</param>
+            <returns>A thumbnail image as bytes. Returns null if it fails.</returns>
+            <exception cref="T:System.ArgumentNullException">'urlAddress' is null.</exception>
+        </member>
+    </members>
+</doc>

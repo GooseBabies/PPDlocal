@@ -33,6 +33,7 @@ namespace Tagger
     {
         //Relative Constants
         private static string appfilelocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Tagger");
+        private static string thumbslocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Tagger");
         private static string appfolderpath = System.Reflection.Assembly.GetExecutingAssembly().Location;
         private static string ResourceLocation = Path.Combine(Directory.GetParent(appfolderpath).Parent.FullName, "..", "Resources");
         private string settingsfile = Path.Combine(appfilelocation, "taggersettings.xml");
@@ -104,6 +105,7 @@ namespace Tagger
 
         IIqdbClient api = new IqdbClient();
         IqdbApi.Models.SearchResult searchResults;
+        ThumbnailCreator thumbMaker = new ThumbnailCreator();
 
         public MainWindow()
         {
@@ -696,12 +698,33 @@ namespace Tagger
             }
             else
             {
+                if(!File.Exists(Path.Combine(thumbslocation, "Thumbs", currentImage.Name + currentImage.Extension)))
+                {
+                    using (Stream sourceStream = thumbMaker.CreateThumbnailStream(120, currentImage.FullName, Format.Jpeg))
+                    {
+                        if (sourceStream != null)
+                        {
+                            if (!Directory.Exists(thumbslocation))
+                            {
+                                Directory.CreateDirectory(Path.Combine(thumbslocation, "Thumbs"));
+                            }
+                            using (FileStream fs = new FileStream(Path.Combine(thumbslocation, "Thumbs", currentImage.Name), FileMode.Create, FileAccess.Write))
+                            {
+                                if (sourceStream.Position != 0)
+                                {
+                                    sourceStream.Position = 0;
+                                }
+                                sourceStream.CopyTo(fs);
+                            }
+                        }
+                    }
+                }                
                 PreviewImage.Visibility = Visibility.Visible;
                 PreviewMedia.Visibility = Visibility.Hidden;
                 ImageBorder.Visibility = Visibility.Visible;
                 MediaBorder.Visibility = Visibility.Hidden;
                 EventExpander.Visibility = Visibility.Collapsed;
-                ImageInstance = BitmapImageFromFile(currentImage.FullName, PreviewImage);
+                ImageInstance = BitmapImageFromFile(currentImage.FullName, PreviewImage, (int)PreviewImage.ActualHeight);
                 currentImageWidth = (short)ImageInstance.PixelWidth;
                 currentImageHeight = (short)ImageInstance.PixelHeight;
                 FileHeight.Content = "H: " + currentImageHeight.ToString();
@@ -787,20 +810,30 @@ namespace Tagger
 
         }
 
-        private static BitmapImage BitmapImageFromFile(string path, Image img)
+        private static BitmapImage BitmapImageFromFile(string path, Image img, int height)
         {
             var bi = new BitmapImage();
+            //double AspectRatio;
 
-            using (var fs = new FileStream(path, FileMode.Open))
+            try
             {
-                bi.BeginInit();
-                bi.StreamSource = fs;
-                bi.CacheOption = BitmapCacheOption.OnLoad;                
-                bi.EndInit();
+                using (var fs = new FileStream(path, FileMode.Open))
+                {                    
+                    bi.BeginInit();
+                    bi.DecodePixelHeight = height;
+                    bi.StreamSource = fs;
+                    bi.CacheOption = BitmapCacheOption.OnLoad;                    
+                    bi.EndInit();
+                    //AnimationBehavior.SetSourceUri(img, bi.BaseUri);
+                }
+
+                bi.Freeze();
+
             }
+            catch (FileFormatException ex)
+            {
 
-            bi.Freeze();
-
+            }
             return bi;
         }
 
@@ -2919,6 +2952,38 @@ namespace Tagger
             {
                 GotoImage();
             }
+        }
+
+        private void ThumbGen_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(FileInfo im in FI)
+            {
+                if(!videoTypes.Contains(im.Extension) && im.Extension != ".gif")
+                {
+                    if (!File.Exists(Path.Combine(thumbslocation, "Thumbs", im.Name + im.Extension)) && (thumbslocation + "Thumbs" + im.Name + im.Extension).Length < 260)
+                    {
+                        using (Stream sourceStream = thumbMaker.CreateThumbnailStream(120, im.FullName, Format.Jpeg))
+                        {
+                            if (sourceStream != null)
+                            {
+                                if (!Directory.Exists(thumbslocation))
+                                {
+                                    Directory.CreateDirectory(Path.Combine(thumbslocation, "Thumbs"));
+                                }
+                                using (FileStream fs = new FileStream(Path.Combine(thumbslocation, "Thumbs", im.Name), FileMode.Create, FileAccess.Write))
+                                {
+                                    if (sourceStream.Position != 0)
+                                    {
+                                        sourceStream.Position = 0;
+                                    }
+                                    sourceStream.CopyTo(fs);
+                                }
+                            }
+                        }
+                    }
+                }                
+            }
+            MessageBox.Show("Complete");
         }
 
         //[Flags]

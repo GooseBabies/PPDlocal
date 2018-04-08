@@ -612,7 +612,14 @@ namespace Tagger
                 }
                 else
                 {
-                    return new List<string>();
+                    if(query0.Count() > 0)
+                    {
+                        return output;
+                    }
+                    else
+                    {
+                        return new List<string>();
+                    }                    
                 }
             }
             catch(Exception ex)

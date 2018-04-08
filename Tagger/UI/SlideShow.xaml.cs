@@ -7,7 +7,6 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using System.IO;
-using WpfAnimatedGif;
 using XamlAnimatedGif;
 
 namespace Tagger
@@ -121,23 +120,30 @@ namespace Tagger
 
         }
 
-        private static BitmapImage BitmapImageFromFile(string path, Image img)
+        private static BitmapImage BitmapImageFromFile(string path, Image img, int height)
         {
             var bi = new BitmapImage();
 
-            using (var fs = new FileStream(path, FileMode.Open))
+            try
             {
-                bi.BeginInit();
-                bi.StreamSource = fs;
-                bi.CacheOption = BitmapCacheOption.OnLoad;
-                bi.EndInit();
-                AnimationBehavior.SetSourceUri(img, bi.BaseUri);
-                //ImageBehavior.SetAnimatedSource(img, bi);
+                using (var fs = new FileStream(path, FileMode.Open))
+                {
+                    bi.BeginInit();
+                    bi.StreamSource = fs;
+                    bi.CacheOption = BitmapCacheOption.OnLoad;
+                    bi.DecodePixelHeight = height;
+                    bi.EndInit();
+                    AnimationBehavior.SetSourceUri(img, bi.BaseUri);
+                }
+
+                bi.Freeze();
+                
             }
-
-            bi.Freeze();
-
-            return bi;
+            catch(FileFormatException ex)
+            {
+                
+            }
+            return bi;         
         }
 
         private void Randomize(ref string[] bitch)
@@ -311,7 +317,7 @@ namespace Tagger
             }
             else
             {
-                Dispic = BitmapImageFromFile(files[index], myImage);
+                Dispic = BitmapImageFromFile(files[index], myImage, (int)myImage.ActualHeight);
                 myImage.Source = Dispic;
                 timerImageChange.Start();
             }
@@ -326,7 +332,7 @@ namespace Tagger
             }
             else
             {
-                Dispic = BitmapImageFromFile(files[index].FullName, myImage);
+                Dispic = BitmapImageFromFile(files[index].FullName, myImage, (int)myImage.ActualHeight);
                 myImage.Source = Dispic;
                 timerImageChange.Start();
             }
