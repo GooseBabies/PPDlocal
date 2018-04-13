@@ -678,6 +678,7 @@ namespace Tagger
                 FileHeight.Content = "H: " + PreviewMedia.MaxHeight.ToString();
                 FileWidth.Content = "W: " + PreviewMedia.MaxWidth.ToString();
                 PreviewMedia.LoadMedia(new Uri(currentImage.FullName));
+                //PreviewMedia.TakeSnapshot("", Meta.Vlc.Wpf.SnapshotFormat.JPG, 100);
                 MediaIsVideo = true;
 
             }
@@ -893,8 +894,13 @@ namespace Tagger
         private void PreviewMedia_LengthChanged(object sender, EventArgs e)
         {
             //PreviewMedia.Rate = 1.0F;
-            FileHeight.Content = "H: " + PreviewMedia.Height.ToString();
-            FileWidth.Content = "W: " + PreviewMedia.Width.ToString();
+            FileHeight.Content = "H: " + PreviewMedia.ActualHeight.ToString();
+            FileWidth.Content = "W: " + PreviewMedia.ActualWidth.ToString();
+
+            if ((bool)db.IsFileinImageData(data, currentImageName))
+            {
+                db.AddVideoLength(data, currentImageName, PreviewMedia.Length.TotalMilliseconds);
+            }
 
             if (PreviewMedia.Length.TotalSeconds < 10)
             {

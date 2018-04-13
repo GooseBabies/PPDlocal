@@ -40,6 +40,10 @@ namespace Tagger
             public bool BetterOnBooru;
             [Column]
             public int BooruSimilarityScore;
+            [Column]
+            public double VideoLength;
+            [Column]
+            public string Pools;
 
         }
 
@@ -69,13 +73,15 @@ namespace Tagger
             public string Directory;
             [Column]
             public string FileName;
+            [Column]
+            public DateTime LastBackupDate;
         }
 
         public class DBTable : DataContext
         {
             public Table<ImageDataTableDef> ImageData;
             public Table<TagsTableDef> Tags;
-            public Table<SaveInfoTableDef> SaveInfo;
+            public Table<SaveInfoTableDef> SaveInfo;            
             public DBTable(string connection) : base(connection) { }
         }
 
@@ -390,6 +396,33 @@ namespace Tagger
                 }                
             }
             catch (Exception ex)
+            {
+                Error.WriteToLog(ex);
+                return false;
+            }
+        }
+
+        public bool AddVideoLength(DBTable db, string filename, double Length)
+        {
+            try
+            {
+                var query = from ImageData in db.ImageData where ImageData.Filename == filename.ApostrepheFix() select ImageData;
+
+                if(query.Count() > 0)
+                {
+                    foreach(ImageDataTableDef ImageData in query)
+                    {
+                        ImageData.VideoLength = Length;
+                    }
+                    db.SubmitChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception ex)
             {
                 Error.WriteToLog(ex);
                 return false;
@@ -998,6 +1031,7 @@ namespace Tagger
                         Savetime = DateTime.Now,
                         Directory = directory.ApostrepheFix(),
                         FileName = filename,
+                        LastBackupDate = DateTime.Now
                     };
                     db.SaveInfo.InsertOnSubmit(Saveinfo);
                 }

@@ -28,7 +28,7 @@
                             <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">0</sys:Double>
                         </ComboBox.Resources>
                     </ComboBox>
-                    <Button x:Name="SubitSearchParameter" Grid.Column="1" Content="Add" Margin="2" Click="SubitSearchParameter_Click"/>
+                    <Button x:Name="SubmitSearchParameter" Grid.Column="1" Content="Add" Margin="2" Click="SubmitSearchParameter_Click"/>
                 </Grid>
             </StackPanel>
             <Label x:Name="ResultsCountLabel" Content="Results Count: 0" Margin="2"/>

@@ -7,17 +7,10 @@
         mc:Ignorable="d"
         Title="Tag Manager" Loaded="Window_Loaded" SizeToContent="WidthAndHeight" WindowStartupLocation="Manual" ShowInTaskbar="False" MaxHeight="800" KeyUp="Window_KeyUp">
     <Grid>
-        <ScrollViewer x:Name="scroller" VerticalScrollBarVisibility="Auto">
-            <Grid x:Name="TagList" Height="Auto" Width="Auto">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-            </Grid>
+        <ScrollViewer x:Name="Scroller" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="TagList" Height="Auto" Width="Auto">
+                
+            </StackPanel>
         </ScrollViewer>
         
     </Grid>

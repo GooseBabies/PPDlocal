@@ -25,7 +25,9 @@ namespace Tagger
         string fileName = "";       //Filename of associated file (Empty string if all tags)
         List<string> TagNames;      //List for scanning through Tags
         List<string> FileNames;     //List for scanning through files associated with a selected tag
-        int pageindex = 1;          //Index of Page
+        int PageIndex = 1;          //Index of Page
+        int TagsperPage = 500;
+        double PageAmount = 0.0;
 
         public TagManager(DatabaseUtil db, DatabaseUtil.DBTable data)
         {
@@ -56,9 +58,6 @@ namespace Tagger
 
         private void UpdateUI()
         {
-            short Counter = 0;
-            double PageAmount = 0.0;
-
             try
             {
                 //If there is no filename we want all of the tags
@@ -81,56 +80,153 @@ namespace Tagger
                 }
                 if (TagNames.Count > 0) //If image has at least one tag
                 {
-                    PageAmount = (double)TagNames.Count / 500;  //set the page amount so there are 500 rows per page
+                    PageAmount = (double)TagNames.Count / TagsperPage;  //set the page amount so there are 500 rows per page
                     TagList.Children.Clear();                   //clear the grid for updating
-                    for (int p = ((pageindex - 1) * 500); (p <= (500 * pageindex) - 1) && (p <= TagNames.Count - 1); p++)   //loop through tag names up to 500 or end of list which ever comes first
+
+                    Grid NavGridTop = new Grid();
+                    ColumnDefinition ColDef1 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef2 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef3 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef4 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef5 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+
+                    NavGridTop.ColumnDefinitions.Add(ColDef1);
+                    NavGridTop.ColumnDefinitions.Add(ColDef2);
+                    NavGridTop.ColumnDefinitions.Add(ColDef3);
+                    NavGridTop.ColumnDefinitions.Add(ColDef4);
+                    NavGridTop.ColumnDefinitions.Add(ColDef5);
+
+                    Button FirstPageTop = new Button()
                     {
-                        var rowdef = new RowDefinition() { Height = GridLength.Auto };  //create auto height row
-                        TagList.RowDefinitions.Add(rowdef);                             //add row to grid
-                        Label TagLabel = new Label { Content = (p + 1).ToString() + ": " + TagNames[p], Tag = TagNames[p], Margin = new Thickness(1) }; //create label for each tag
+                        Content = "First"
+                    };
+                    FirstPageTop.Click += new RoutedEventHandler(FirstPage_Clicked);
+
+                    Button PrevPageTop = new Button()
+                    {
+                        Content = "Previous"
+                    };
+                    PrevPageTop.Click += new RoutedEventHandler(PrevPage_Clicked);
+
+                    Label PageCountTop = new Label()
+                    {
+                        Content = PageIndex.ToString() + "/" + Math.Ceiling(PageAmount).ToString() + " (" + TagNames.Count.ToString() + ")",
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
+
+                    Button NextPageTop = new Button()
+                    {
+                        Content = "Next"
+                    };
+                    NextPageTop.Click += new RoutedEventHandler(NextPage_Clicked);
+
+                    Button LastPageTop = new Button()
+                    {
+                        Content = "Last Page"
+                    };
+                    LastPageTop.Click += new RoutedEventHandler(LastPage_Clicked);
+
+                    Grid.SetColumn(FirstPageTop, 0);
+                    Grid.SetColumn(PrevPageTop, 1);
+                    Grid.SetColumn(PageCountTop, 2);
+                    Grid.SetColumn(NextPageTop, 3);
+                    Grid.SetColumn(LastPageTop, 4);
+
+                    NavGridTop.Children.Add(FirstPageTop);
+                    NavGridTop.Children.Add(PrevPageTop);
+                    NavGridTop.Children.Add(PageCountTop);
+                    NavGridTop.Children.Add(NextPageTop);
+                    NavGridTop.Children.Add(LastPageTop);
+                    TagList.Children.Add(NavGridTop);
+
+                    for (int p = ((PageIndex - 1) * TagsperPage); (p <= (TagsperPage * PageIndex) - 1) && (p <= TagNames.Count - 1); p++)   //loop through tag names up to 500 or end of list which ever comes first
+                    {
+                        Grid TagItemGrid = new Grid();
+                        ColumnDefinition ColDefA = new ColumnDefinition() { Width = new GridLength(8, GridUnitType.Star) };
+                        ColumnDefinition ColDefB = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                        ColumnDefinition ColDefC = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                        ColumnDefinition ColDefD = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                        TagItemGrid.ColumnDefinitions.Add(ColDefD);
+                        TagItemGrid.ColumnDefinitions.Add(ColDefA);
+                        TagItemGrid.ColumnDefinitions.Add(ColDefB);
+                        TagItemGrid.ColumnDefinitions.Add(ColDefC);
+
+                        TextBlock TagNumber = new TextBlock { Text = (p + 1).ToString() + ": ", Margin = new Thickness(1), VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Right };
+                        TextBlock TagLabel = new TextBlock { Text = TagNames[p], Tag = TagNames[p], Margin = new Thickness(1), Width = 360, ToolTip = TagNames[p], TextWrapping = TextWrapping.Wrap }; //create label for each tag
                         Button EditButton = new Button { Content = "Edit", Tag = TagNames[p], Margin = new Thickness(1) };                              //create edit button for each tag
                         Button RemoveButton = new Button { Content = "Remove", Tag = TagNames[p], Margin = new Thickness(1) };                          //create remove button for each tag
                         EditButton.Click += new RoutedEventHandler(Edit_Click);         //create click event for edit button
                         RemoveButton.Click += new RoutedEventHandler(Remove_Click);     //create click event for remove button
 
-                        Grid.SetColumn(TagLabel, 0);        //set column and row for tag label                                
-                        Grid.SetRow(TagLabel, Counter);
+                        Grid.SetColumn(TagNumber, 0);
+                        Grid.SetColumn(TagLabel, 1);        //set column and row for tag label
+                        Grid.SetColumn(EditButton, 2);      //set column and row for edit button
+                        Grid.SetColumn(RemoveButton, 3);    //set column and row for remove button                        
 
-                        Grid.SetColumn(RemoveButton, 2);    //set column and row for remove button
-                        Grid.SetRow(RemoveButton, Counter);
-
-                        Grid.SetColumn(EditButton, 1);      //set column and row for edit button
-                        Grid.SetRow(EditButton, Counter);
-
-                        TagList.Children.Add(TagLabel);     //add tag Label, edit button, and remove button to grid
-                        TagList.Children.Add(RemoveButton);
-                        TagList.Children.Add(EditButton);
-                        Counter++;                          //increment counter
+                        TagItemGrid.Children.Add(TagNumber);
+                        TagItemGrid.Children.Add(TagLabel);     //add tag Label, edit button, and remove button to grid
+                        TagItemGrid.Children.Add(RemoveButton);
+                        TagItemGrid.Children.Add(EditButton);
+                        TagList.Children.Add(TagItemGrid);
                     }
-                    Grid navpanel = new Grid();             //create new grid for next and previous buttons
-                    var coldef1 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };  //create 3 column definitions all the same width
-                    var coldef2 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
-                    var coldef3 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
-                    navpanel.ColumnDefinitions.Add(coldef1);    //add each column definition to the grid
-                    navpanel.ColumnDefinitions.Add(coldef2);
-                    navpanel.ColumnDefinitions.Add(coldef3);
-                    Label PageCount = new Label() { Content = pageindex.ToString() + "/" + Math.Ceiling(PageAmount).ToString() + " (" + TagNames.Count.ToString() + ")" };  //create page number label
-                    Button Next = new Button() { Content = "Next" };        //create next button
-                    Next.Click += new RoutedEventHandler(NextPage_Click);   //create click event for next button
-                    Button Prev = new Button() { Content = "Previous" };    //create previous button
-                    Prev.Click += new RoutedEventHandler(PrevPage_Click);   //create click event for previous button
 
-                    Grid.SetColumn(Prev, 0);    //set columns for page number label, previous button, and next button
-                    Grid.SetColumn(Next, 2);
-                    Grid.SetColumn(PageCount, 1);
+                    Grid NavGridBottom = new Grid();
+                    ColumnDefinition ColDef6 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef7 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef8 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef9 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
+                    ColumnDefinition ColDef10 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
 
-                    Grid.SetRow(navpanel, Counter); //set row and column of the navigation grid
-                    Grid.SetColumn(navpanel, 0);
-                    navpanel.Children.Add(Prev);        //add page number label, next button, and previous button to navigation grid
-                    navpanel.Children.Add(PageCount);
-                    navpanel.Children.Add(Next);
+                    NavGridBottom.ColumnDefinitions.Add(ColDef6);
+                    NavGridBottom.ColumnDefinitions.Add(ColDef7);
+                    NavGridBottom.ColumnDefinitions.Add(ColDef8);
+                    NavGridBottom.ColumnDefinitions.Add(ColDef9);
+                    NavGridBottom.ColumnDefinitions.Add(ColDef10);
 
-                    TagList.Children.Add(navpanel);     //add navigation grid to tag list grid
+                    Button FirstPageBottom = new Button()
+                    {
+                        Content = "First"
+                    };
+                    FirstPageTop.Click += new RoutedEventHandler(FirstPage_Clicked);
+
+                    Button PrevPageBottom = new Button()
+                    {
+                        Content = "Previous"
+                    };
+                    PrevPageBottom.Click += new RoutedEventHandler(PrevPage_Clicked);
+
+                    Label PageCountBottom = new Label()
+                    {
+                        Content = PageIndex.ToString() + "/" + Math.Ceiling(PageAmount).ToString() + " (" + TagNames.Count.ToString() + ")",
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
+
+                    Button NextPageBottom = new Button()
+                    {
+                        Content = "Next"
+                    };
+                    NextPageBottom.Click += new RoutedEventHandler(NextPage_Clicked);
+
+                    Button LastPageBottom = new Button()
+                    {
+                        Content = "Last Page"
+                    };
+                    LastPageBottom.Click += new RoutedEventHandler(LastPage_Clicked);
+
+                    Grid.SetColumn(FirstPageBottom, 0);
+                    Grid.SetColumn(PrevPageBottom, 1);
+                    Grid.SetColumn(PageCountBottom, 2);
+                    Grid.SetColumn(NextPageBottom, 3);
+                    Grid.SetColumn(LastPageBottom, 4);
+                    NavGridBottom.Children.Add(FirstPageBottom);
+                    NavGridBottom.Children.Add(PrevPageBottom);
+                    NavGridBottom.Children.Add(PageCountBottom);
+                    NavGridBottom.Children.Add(NextPageBottom);
+                    NavGridBottom.Children.Add(LastPageBottom);
+
+                    TagList.Children.Add(NavGridBottom);     //add navigation grid to tag list grid
                 }
             }
             catch(Exception ex)
@@ -141,52 +237,92 @@ namespace Tagger
             }            
         }
 
-        private void NextPage_Click(object sender, RoutedEventArgs e)
+        private void NextPage_Clicked(object sender, RoutedEventArgs e)
         {
-            int tempindex = pageindex;  //record current page index
+            int TempIndex = PageIndex;
 
             try
             {
-                pageindex++;    //increment page index
-                if (pageindex > Math.Ceiling((double)TagNames.Count / 500)) //make sure page index didn't go over max number of pages
+                PageIndex++;    //increment page index
+                if (PageIndex > PageAmount) //make sure page index didn't go over max number of pages
                 {
-                    pageindex = (int)Math.Ceiling((double)TagNames.Count / 500);    //if pag index went over max number of pages set page index back to max number of pages
+                    PageIndex = (int)Math.Ceiling(PageAmount);    //if pag index went over max number of pages set page index back to max number of pages
                 }
                 else
                 {
                     UpdateUI();
+                    Scroller.ScrollToTop();
                 }
             }
-            catch(Exception ex) //If error don't increment page index
+            catch (Exception ex)
             {
-                MessageBox.Show("Error moving to next Page. - " + ex.Message);
+                MessageBox.Show("Error moving to next page. - " + ex.Message);
                 Error.WriteToLog(ex);
-                pageindex = tempindex;
-            }           
+                PageIndex = TempIndex;
+            }
         }
 
-        private void PrevPage_Click(object sender, RoutedEventArgs e)
+        private void PrevPage_Clicked(object sender, RoutedEventArgs e)
         {
-            int tempindex = pageindex;  //record current page index
+            int TempIndex = PageIndex;
 
             try
             {
-                pageindex--;        //decrement page index
-                if (pageindex < 1)  //make sure page index didnt go below first page;
+                PageIndex--;
+                if (PageIndex < 1)
                 {
-                    pageindex = 1;  //set page index to first page if lower than first page
+                    PageIndex = 1;
                 }
                 else
                 {
                     UpdateUI();
+                    Scroller.ScrollToTop();
                 }
             }
-            catch(Exception ex) //if error don't decrement page index
+            catch (Exception ex)
             {
-                MessageBox.Show("Error moving to previous page. - " + ex.Message);
+                MessageBox.Show("Error moving to next page. - " + ex.Message);
                 Error.WriteToLog(ex);
-                pageindex = tempindex;
-            }                       
+                PageIndex = TempIndex;
+            }
+        }
+
+        private void FirstPage_Clicked(object sender, RoutedEventArgs e)
+        {
+            int TempIndex = PageIndex;
+            try
+            {
+                if (PageIndex != 1)
+                {
+                    PageIndex = 1;
+                    UpdateUI();
+                    Scroller.ScrollToTop();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error moving to first page. - " + ex.Message);
+                Error.WriteToLog(ex);
+            }
+        }
+
+        private void LastPage_Clicked(object sender, RoutedEventArgs e)
+        {
+            int TempIndex = PageIndex;
+            try
+            {
+                if (PageIndex != (int)Math.Ceiling(PageAmount))
+                {
+                    PageIndex = (int)Math.Ceiling(PageAmount);
+                    UpdateUI();
+                    Scroller.ScrollToTop();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error moving to first page. - " + ex.Message);
+                Error.WriteToLog(ex);
+            }
         }
 
         private void Remove_Click(object sender, RoutedEventArgs e)
@@ -371,7 +507,7 @@ namespace Tagger
                         if (u.Tag.ToString().StartsWith(e.Key.ToString().ToUpper()) || u.Tag.ToString().StartsWith(e.Key.ToString().ToLower())) 
                         {
                             var point = h.TranslatePoint(new Point(), TagList); //grab the point in the scroll viewer associated with found element
-                            scroller.ScrollToVerticalOffset(point.Y - 3);       //scroll the scroll viewer to that element
+                            Scroller.ScrollToVerticalOffset(point.Y - 3);       //scroll the scroll viewer to that element
                             return;
                         }
                     }

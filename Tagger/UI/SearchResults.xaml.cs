@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -20,22 +15,23 @@ namespace Tagger.UI
     /// </summary>
     public partial class SearchResults : Window
     {
-        private static string appfilelocation = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Tagger", "Thumbs");
+        private static string thumbnaillocation = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Tagger", "Thumbs");
 
         DatabaseUtil.DBTable Data;
         DatabaseUtil db = new DatabaseUtil();
         ErrorHandling Error = new ErrorHandling();
-        XMLUtil.SaveSettings SaveSettings;
-        string ProfileName = "";
+        XMLUtil.SaveSettings SaveSettings;        
 
         List<string> BooleanSearchResults = new List<string>();
         List<string> Tags = new List<string>();
-        public string ReturnFile { get; set; }
         public List<string> SearchResultsField { get; set; }
+
+        public string ReturnFile { get; set; }
+
+        string ProfileName = "";
         double PageAmount = 0.0;
         int PageIndex = 1;
         int ResultsPerPage = 20;
-        BitmapImage ImageInstance;
 
         Point Up1 = new Point(0, 10);
         Point Up2 = new Point(8, 0);
@@ -63,6 +59,7 @@ namespace Tagger.UI
         Point Down4 = new Point(12, 0);
         Point Down5 = new Point(16, 0);
         Point Down6 = new Point(8, 10);
+
         string[] keywords = new string[] { "!Rating:", "!Rating>:", "!Rating<:", "!Rating>=:", "!Rating<=:", "!Extension:", "!Height:", "!Height>:", "!Height<:", "!Width:", "!Width>:", "!Width<:", "!Name:", "!Image", "!Video", "!Size:", "!Size>:", "!Size<:", "!TagCount:", "!TagCount>:", "!TagCount<:" };
         
 
@@ -73,32 +70,36 @@ namespace Tagger.UI
             SetWindowScreen(this, GetWindowScreen(App.Current.MainWindow));
             SearchBar.AddHandler(System.Windows.Controls.Primitives.TextBoxBase.TextChangedEvent, new TextChangedEventHandler(ComboBox_TextChanged));
 
+            //Handle input variables
             Data = data;
-            db = DB;
-            ReturnFile = "";
+            db = DB;            
             ProfileName = profilename;
             SaveSettings = ss;
             BooleanSearchResults = SRS;
+
+            //Update Search Results 
             if(BooleanSearchResults != null)
             {
                 if (BooleanSearchResults.Count > 0)
                 {
                     AddSearchResults(BooleanSearchResults);
                 }
-            }                     
+            }
+
+            ReturnFile = "";
         }
 
         private void ComboBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
             {
-                if (SearchBar.Text == "" || SearchBar.Text == " ")
+                if (SearchBar.Text == "" || SearchBar.Text == " ")  //Clear dropdown if empty search
                 {
                     SearchBar.IsDropDownOpen = false;
                     Tags.Clear();
                     SearchBar.Items.Clear();
                 }
-                else if (SearchBar.Text.StartsWith("!"))
+                else if (SearchBar.Text.StartsWith("!"))    //fill drop down with serach keywords
                 {
                     SearchBar.IsDropDownOpen = true;
                     if(SearchBar.SelectedIndex == -1)
@@ -109,7 +110,7 @@ namespace Tagger.UI
                         }
                     }                    
                 }
-                else
+                else    //fill dropdown with similar tags
                 {
                     SearchBar.IsDropDownOpen = true;
                     if (SearchBar.SelectedIndex == -1)
@@ -155,30 +156,25 @@ namespace Tagger.UI
         {
             try
             {
-                Button b = (Button)sender;
-                Grid u;
-                u = (Grid)b.Parent;
+                Button BooleanButton = (Button)sender;
+                Grid SearchParameterGrid = (Grid)BooleanButton.Parent;
 
-                int rownum = Convert.ToInt32(u.Tag);
+                int rownum = Convert.ToInt32(SearchParameterGrid.Tag);
 
-                switch (b.Content.ToString())
+                switch (BooleanButton.Content.ToString())
                 {
                     case "And":
-                        b.Content = "Or";
-                        int[] y = HandleOrs();
-                        HandleParens(y);
+                        BooleanButton.Content = "Or";
                         break;
                     case "Or":
-                        b.Content = "And";
-                        int[] x = HandleOrs();
-                        HandleParens(x);
+                        BooleanButton.Content = "And";
                         break;
                     default:
-                        b.Content = "And";
-                        int[] zz = HandleOrs();
-                        HandleParens(zz);
+                        BooleanButton.Content = "And";                        
                         break;
                 }
+                HandleParens(HandleOrs());
+
                 string search = CreateSearchString();
                 ResultsCountLabel.Content = "Results Count: " + db.SearchCount(Data, search);
                 AdvancedSearch.Text = search;
@@ -193,22 +189,21 @@ namespace Tagger.UI
         {
             try
             {
-                Button b = (Button)sender;
-                Grid u;
-                u = (Grid)b.Parent;
+                Button NotButton = (Button)sender;
+                Grid SearchParameterGrid = (Grid)NotButton.Parent;
 
-                int rownum = Convert.ToInt32(u.Tag);
+                int rownum = Convert.ToInt32(SearchParameterGrid.Tag);
 
-                switch (b.Content.ToString())
+                switch (NotButton.Content.ToString())
                 {
                     case "":
-                        b.Content = "Not";
+                        NotButton.Content = "Not";
                         break;
                     case "Not":
-                        b.Content = "";
+                        NotButton.Content = "";
                         break;
                     default:
-                        b.Content = "";
+                        NotButton.Content = "";
                         break;
                 }
                 string search = CreateSearchString();
@@ -225,97 +220,101 @@ namespace Tagger.UI
         {
             try
             {
-                Grid l;
-                Button k;
-                int[] y = new int[SearchPanel.Children.Count];
+                Grid SearchParameterGrid;
+                Button BooleanButton;
+                int[] BooleanSearchOrArray = new int[SearchPanel.Children.Count];
 
-                for (int h = 1; h <= SearchPanel.Children.Count - 1; h++)
+                for (int SearchParameter = 1; SearchParameter <= SearchPanel.Children.Count - 1; SearchParameter++)
                 {
-                    if (SearchPanel.Children[h] is Grid)
+                    if (SearchPanel.Children[SearchParameter] is Grid)
                     {
-                        l = (Grid)SearchPanel.Children[h];
-                        k = (Button)l.Children[1];
-                        if (k.Content.ToString() == "Or")
+                        SearchParameterGrid = (Grid)SearchPanel.Children[SearchParameter];
+                        BooleanButton = (Button)SearchParameterGrid.Children[1];
+                        if (BooleanButton.Content.ToString() == "Or")
                         {
-                            y[h] = 1;
+                            BooleanSearchOrArray[SearchParameter] = 1;
                         }
-                        else if (k.Content.ToString() == "And")
+                        else if (BooleanButton.Content.ToString() == "And")
                         {
-                            y[h] = 2;
-                        }
-                        else if (k.Content.ToString() == "Not")
-                        {
-                            y[h] = 3;
+                            BooleanSearchOrArray[SearchParameter] = 2;
                         }
                         else
                         {
-                            y[h] = -1;
+                            BooleanSearchOrArray[SearchParameter] = -1;
                         }
                     }
                 }
 
-                return y;
+                return BooleanSearchOrArray;
             }
             catch(Exception ex)
             {
                 Error.WriteToLog(ex);
                 return new int[] { };
-            }
-            
+            }            
         }
 
-        private void HandleParens(int[] y)
+        private void HandleParens(int[] BooleanSearchOrArray)
         {
             try
             {
-                Grid j;
-                Grid k;
-                bool boolisor = false;
+                Grid PreviousSearchParameterGrid;
+                Grid SearchParameterGrid;
+                bool BoolisOr = false;
 
-                for (int m = 2; m <= y.Length - 1; m++)
+                if(BooleanSearchOrArray.Length < 3)
                 {
-
-                    if (y[m] == 1 && boolisor == false) //if current row is or and previous row is not
-                    {
-                        //make previous row open paren visible
-                        j = (Grid)SearchPanel.Children[m - 1];
-                        k = (Grid)SearchPanel.Children[m];
-                        j.Children[2].Visibility = Visibility.Visible;
-                        j.Children[5].Visibility = Visibility.Hidden;
-                        k.Children[5].Visibility = Visibility.Visible;
-                        boolisor = true;
-                    }
-                    else if (y[m] != 1 && boolisor == false)    //if current row isn't or and previous row is not
-                    {
-                        //make previous row open paren hidden
-                        j = (Grid)SearchPanel.Children[m - 1];
-                        k = (Grid)SearchPanel.Children[m];
-                        j.Children[2].Visibility = Visibility.Hidden;
-                        j.Children[5].Visibility = Visibility.Hidden;
-                        k.Children[5].Visibility = Visibility.Hidden;
-                        boolisor = false;
-                    }
-                    else if (y[m] == 1 && boolisor == true)     //if current row is or and previous row is
-                    {
-                        //Do Nothing
-                        j = (Grid)SearchPanel.Children[m - 1];
-                        k = (Grid)SearchPanel.Children[m];
-                        j.Children[2].Visibility = Visibility.Hidden;
-                        j.Children[5].Visibility = Visibility.Hidden;
-                        k.Children[5].Visibility = Visibility.Visible;
-                        boolisor = true;
-                    }
-                    else if (y[m] != 1 && boolisor == true)     //if current row isn't or and previous row is
-                    {
-                        //make prev row close paren visible
-                        j = (Grid)SearchPanel.Children[m - 1];
-                        k = (Grid)SearchPanel.Children[m];
-                        j.Children[2].Visibility = Visibility.Hidden;
-                        j.Children[5].Visibility = Visibility.Visible;
-                        k.Children[5].Visibility = Visibility.Hidden;
-                        boolisor = false;
-                    }
+                    SearchParameterGrid = (Grid)SearchPanel.Children[1];
+                    SearchParameterGrid.Children[2].Visibility = Visibility.Hidden;
+                    SearchParameterGrid.Children[5].Visibility = Visibility.Hidden;
                 }
+                else
+                {
+                    for (int OrArrayIndex = 2; OrArrayIndex <= BooleanSearchOrArray.Length - 1; OrArrayIndex++)
+                    {
+
+                        if (BooleanSearchOrArray[OrArrayIndex] == 1 && BoolisOr == false) //if current row is or and previous row is not
+                        {
+                            //make previous row open paren visible
+                            PreviousSearchParameterGrid = (Grid)SearchPanel.Children[OrArrayIndex - 1];
+                            SearchParameterGrid = (Grid)SearchPanel.Children[OrArrayIndex];
+                            PreviousSearchParameterGrid.Children[2].Visibility = Visibility.Visible;
+                            PreviousSearchParameterGrid.Children[5].Visibility = Visibility.Hidden;
+                            SearchParameterGrid.Children[5].Visibility = Visibility.Visible;
+                            BoolisOr = true;
+                        }
+                        else if (BooleanSearchOrArray[OrArrayIndex] != 1 && BoolisOr == false)    //if current row isn't or and previous row is not
+                        {
+                            //make previous row open paren hidden
+                            PreviousSearchParameterGrid = (Grid)SearchPanel.Children[OrArrayIndex - 1];
+                            SearchParameterGrid = (Grid)SearchPanel.Children[OrArrayIndex];
+                            PreviousSearchParameterGrid.Children[2].Visibility = Visibility.Hidden;
+                            PreviousSearchParameterGrid.Children[5].Visibility = Visibility.Hidden;
+                            SearchParameterGrid.Children[5].Visibility = Visibility.Hidden;
+                            BoolisOr = false;
+                        }
+                        else if (BooleanSearchOrArray[OrArrayIndex] == 1 && BoolisOr == true)     //if current row is or and previous row is
+                        {
+                            //Do Nothing
+                            PreviousSearchParameterGrid = (Grid)SearchPanel.Children[OrArrayIndex - 1];
+                            SearchParameterGrid = (Grid)SearchPanel.Children[OrArrayIndex];
+                            PreviousSearchParameterGrid.Children[2].Visibility = Visibility.Hidden;
+                            PreviousSearchParameterGrid.Children[5].Visibility = Visibility.Hidden;
+                            SearchParameterGrid.Children[5].Visibility = Visibility.Visible;
+                            BoolisOr = true;
+                        }
+                        else if (BooleanSearchOrArray[OrArrayIndex] != 1 && BoolisOr == true)     //if current row isn't or and previous row is
+                        {
+                            //make prev row close paren visible
+                            PreviousSearchParameterGrid = (Grid)SearchPanel.Children[OrArrayIndex - 1];
+                            SearchParameterGrid = (Grid)SearchPanel.Children[OrArrayIndex];
+                            PreviousSearchParameterGrid.Children[2].Visibility = Visibility.Hidden;
+                            PreviousSearchParameterGrid.Children[5].Visibility = Visibility.Visible;
+                            SearchParameterGrid.Children[5].Visibility = Visibility.Hidden;
+                            BoolisOr = false;
+                        }
+                    }
+                }                
             }
             catch(Exception ex)
             {
@@ -327,11 +326,10 @@ namespace Tagger.UI
         {
             try
             {
-                Button r = (Button)sender;
-                Grid u;
-                u = (Grid)r.Parent;
-                Polygon t;
-                int rownum = Convert.ToInt32(u.Tag);
+                Button RemoveButton = (Button)sender;
+                Grid SearchParameterGrid = (Grid)RemoveButton.Parent;
+                Polygon RemovePolygon;
+                int rownum = Convert.ToInt32(SearchParameterGrid.Tag);
 
                 //Remove tag row
                 SearchPanel.Children.RemoveAt(rownum);
@@ -339,14 +337,14 @@ namespace Tagger.UI
                 //update all rownums after removed to to reflect current row
                 if (SearchPanel.Children.Count >= rownum)
                 {
-                    foreach (UIElement h in SearchPanel.Children)
+                    foreach (UIElement SearchParameterIndex in SearchPanel.Children)
                     {
-                        if (h is Grid)
+                        if (SearchParameterIndex is Grid)
                         {
-                            u = (Grid)h;
-                            if (Convert.ToInt32(u.Tag) > rownum)
+                            SearchParameterGrid = (Grid)SearchParameterIndex;
+                            if (Convert.ToInt32(SearchParameterGrid.Tag) > rownum)
                             {
-                                u.Tag = Convert.ToUInt32(u.Tag) - 1;
+                                SearchParameterGrid.Tag = Convert.ToUInt32(SearchParameterGrid.Tag) - 1;
                             }
                         }
                     }
@@ -356,12 +354,12 @@ namespace Tagger.UI
                 {
                     if (SearchPanel.Children.Count > 1)
                     {
-                        u = (Grid)SearchPanel.Children[1];
-                        u.Children[0].IsEnabled = false;
-                        u.Children[1].Visibility = Visibility.Hidden;
-                        r = (Button)u.Children[0];
-                        t = (Polygon)r.Content;
-                        t.Fill = Brushes.LightGray;
+                        SearchParameterGrid = (Grid)SearchPanel.Children[1];
+                        SearchParameterGrid.Children[0].IsEnabled = false;
+                        SearchParameterGrid.Children[1].Visibility = Visibility.Hidden;
+                        RemoveButton = (Button)SearchParameterGrid.Children[0];
+                        RemovePolygon = (Polygon)RemoveButton.Content;
+                        RemovePolygon.Fill = Brushes.LightGray;
                     }
                 }
 
@@ -369,16 +367,15 @@ namespace Tagger.UI
                 {
                     if (SearchPanel.Children.Count > 1)
                     {
-                        u = (Grid)SearchPanel.Children[SearchPanel.Children.Count - 1];
-                        u.Children[7].IsEnabled = false;
-                        r = (Button)u.Children[7];
-                        t = (Polygon)r.Content;
-                        t.Fill = Brushes.LightGray;
+                        SearchParameterGrid = (Grid)SearchPanel.Children[SearchPanel.Children.Count - 1];
+                        SearchParameterGrid.Children[7].IsEnabled = false;
+                        RemoveButton = (Button)SearchParameterGrid.Children[7];
+                        RemovePolygon = (Polygon)RemoveButton.Content;
+                        RemovePolygon.Fill = Brushes.LightGray;
                     }
                 }
-
-                int[] y = HandleOrs();
-                HandleParens(y);
+                
+                HandleParens(HandleOrs());
                 string search = CreateSearchString();
                 ResultsCountLabel.Content = "Results Count: " + db.SearchCount(Data, search);
                 AdvancedSearch.Text = search;
@@ -394,39 +391,38 @@ namespace Tagger.UI
         {
             try
             {
-                Button r = (Button)sender;
-                Grid u;
-                u = (Grid)r.Parent;
-                Polygon t;
-                int rownum = Convert.ToInt32(u.Tag);
+                Button TagUpButton = (Button)sender;
+                Grid SearchParameterGrid = (Grid)TagUpButton.Parent;
+                Polygon TagUpPolygon;
+                int rownum = Convert.ToInt32(SearchParameterGrid.Tag);
 
                 //move tag
                 SearchPanel.Children.RemoveAt(rownum);
-                SearchPanel.Children.Insert(rownum - 1, u);
+                SearchPanel.Children.Insert(rownum - 1, SearchParameterGrid);
 
                 //Update tag
-                u = (Grid)SearchPanel.Children[rownum];
-                u.Tag = Convert.ToInt32(u.Tag) + 1;
+                SearchParameterGrid = (Grid)SearchPanel.Children[rownum];
+                SearchParameterGrid.Tag = Convert.ToInt32(SearchParameterGrid.Tag) + 1;
 
-                u = (Grid)SearchPanel.Children[rownum - 1];
-                u.Tag = Convert.ToInt32(u.Tag) - 1;
+                SearchParameterGrid = (Grid)SearchPanel.Children[rownum - 1];
+                SearchParameterGrid.Tag = Convert.ToInt32(SearchParameterGrid.Tag) - 1;
 
                 //if tag to move is in last row
                 if (rownum == SearchPanel.Children.Count - 1) //If removing last row
                 {
                     if (SearchPanel.Children.Count > 1)
                     {
-                        u = (Grid)SearchPanel.Children[SearchPanel.Children.Count - 2];
-                        u.Children[7].IsEnabled = true;
-                        r = (Button)u.Children[7];
-                        t = (Polygon)r.Content;
-                        t.Fill = Brushes.Black;
+                        SearchParameterGrid = (Grid)SearchPanel.Children[SearchPanel.Children.Count - 2];
+                        SearchParameterGrid.Children[7].IsEnabled = true;
+                        TagUpButton = (Button)SearchParameterGrid.Children[7];
+                        TagUpPolygon = (Polygon)TagUpButton.Content;
+                        TagUpPolygon.Fill = Brushes.Black;
 
-                        u = (Grid)SearchPanel.Children[SearchPanel.Children.Count - 1];
-                        u.Children[7].IsEnabled = false;
-                        r = (Button)u.Children[7];
-                        t = (Polygon)r.Content;
-                        t.Fill = Brushes.LightGray;
+                        SearchParameterGrid = (Grid)SearchPanel.Children[SearchPanel.Children.Count - 1];
+                        SearchParameterGrid.Children[7].IsEnabled = false;
+                        TagUpButton = (Button)SearchParameterGrid.Children[7];
+                        TagUpPolygon = (Polygon)TagUpButton.Content;
+                        TagUpPolygon.Fill = Brushes.LightGray;
                     }
                 }
 
@@ -435,24 +431,23 @@ namespace Tagger.UI
                 {
                     if (SearchPanel.Children.Count > 1)
                     {
-                        u = (Grid)SearchPanel.Children[1];
-                        u.Children[0].IsEnabled = false;
-                        u.Children[1].Visibility = Visibility.Hidden;
-                        r = (Button)u.Children[0];
-                        t = (Polygon)r.Content;
-                        t.Fill = Brushes.LightGray;
+                        SearchParameterGrid = (Grid)SearchPanel.Children[1];
+                        SearchParameterGrid.Children[0].IsEnabled = false;
+                        SearchParameterGrid.Children[1].Visibility = Visibility.Hidden;
+                        TagUpButton = (Button)SearchParameterGrid.Children[0];
+                        TagUpPolygon = (Polygon)TagUpButton.Content;
+                        TagUpPolygon.Fill = Brushes.LightGray;
 
-                        u = (Grid)SearchPanel.Children[2];
-                        u.Children[0].IsEnabled = true;
-                        u.Children[1].Visibility = Visibility.Visible;
-                        r = (Button)u.Children[0];
-                        t = (Polygon)r.Content;
-                        t.Fill = Brushes.Black;
+                        SearchParameterGrid = (Grid)SearchPanel.Children[2];
+                        SearchParameterGrid.Children[0].IsEnabled = true;
+                        SearchParameterGrid.Children[1].Visibility = Visibility.Visible;
+                        TagUpButton = (Button)SearchParameterGrid.Children[0];
+                        TagUpPolygon = (Polygon)TagUpButton.Content;
+                        TagUpPolygon.Fill = Brushes.Black;
                     }
                 }
-
-                int[] y = HandleOrs();
-                HandleParens(y);
+                
+                HandleParens(HandleOrs());
                 string search = CreateSearchString();
                 ResultsCountLabel.Content = "Results Count: " + db.SearchCount(Data, search);
                 AdvancedSearch.Text = search;
@@ -468,39 +463,38 @@ namespace Tagger.UI
         {
             try
             {
-                Button r = (Button)sender;
-                Grid u;
-                u = (Grid)r.Parent;
-                Polygon t;
-                int rownum = Convert.ToInt32(u.Tag);
+                Button TagDownButton = (Button)sender;
+                Grid SearchParameterGrid = (Grid)TagDownButton.Parent;
+                Polygon TagDownPolygon;
+                int rownum = Convert.ToInt32(SearchParameterGrid.Tag);
 
                 //move tag
                 SearchPanel.Children.RemoveAt(rownum);
-                SearchPanel.Children.Insert(rownum + 1, u);
+                SearchPanel.Children.Insert(rownum + 1, SearchParameterGrid);
 
                 //Update tag
-                u = (Grid)SearchPanel.Children[rownum];
-                u.Tag = Convert.ToInt32(u.Tag) - 1;
+                SearchParameterGrid = (Grid)SearchPanel.Children[rownum];
+                SearchParameterGrid.Tag = Convert.ToInt32(SearchParameterGrid.Tag) - 1;
 
-                u = (Grid)SearchPanel.Children[rownum + 1];
-                u.Tag = Convert.ToInt32(u.Tag) + 1;
+                SearchParameterGrid = (Grid)SearchPanel.Children[rownum + 1];
+                SearchParameterGrid.Tag = Convert.ToInt32(SearchParameterGrid.Tag) + 1;
 
                 //if tag to move is in second last row
                 if (rownum == SearchPanel.Children.Count - 2) //If removing last row
                 {
                     if (SearchPanel.Children.Count > 1)
                     {
-                        u = (Grid)SearchPanel.Children[SearchPanel.Children.Count - 2];
-                        u.Children[7].IsEnabled = true;
-                        r = (Button)u.Children[7];
-                        t = (Polygon)r.Content;
-                        t.Fill = Brushes.Black;
+                        SearchParameterGrid = (Grid)SearchPanel.Children[SearchPanel.Children.Count - 2];
+                        SearchParameterGrid.Children[7].IsEnabled = true;
+                        TagDownButton = (Button)SearchParameterGrid.Children[7];
+                        TagDownPolygon = (Polygon)TagDownButton.Content;
+                        TagDownPolygon.Fill = Brushes.Black;
 
-                        u = (Grid)SearchPanel.Children[SearchPanel.Children.Count - 1];
-                        u.Children[7].IsEnabled = false;
-                        r = (Button)u.Children[7];
-                        t = (Polygon)r.Content;
-                        t.Fill = Brushes.LightGray;
+                        SearchParameterGrid = (Grid)SearchPanel.Children[SearchPanel.Children.Count - 1];
+                        SearchParameterGrid.Children[7].IsEnabled = false;
+                        TagDownButton = (Button)SearchParameterGrid.Children[7];
+                        TagDownPolygon = (Polygon)TagDownButton.Content;
+                        TagDownPolygon.Fill = Brushes.LightGray;
                     }
                 }
 
@@ -509,24 +503,23 @@ namespace Tagger.UI
                 {
                     if (SearchPanel.Children.Count > 1)
                     {
-                        u = (Grid)SearchPanel.Children[1];
-                        u.Children[0].IsEnabled = false;
-                        u.Children[1].Visibility = Visibility.Hidden;
-                        r = (Button)u.Children[0];
-                        t = (Polygon)r.Content;
-                        t.Fill = Brushes.LightGray;
+                        SearchParameterGrid = (Grid)SearchPanel.Children[1];
+                        SearchParameterGrid.Children[0].IsEnabled = false;
+                        SearchParameterGrid.Children[1].Visibility = Visibility.Hidden;
+                        TagDownButton = (Button)SearchParameterGrid.Children[0];
+                        TagDownPolygon = (Polygon)TagDownButton.Content;
+                        TagDownPolygon.Fill = Brushes.LightGray;
 
-                        u = (Grid)SearchPanel.Children[2];
-                        u.Children[0].IsEnabled = true;
-                        u.Children[1].Visibility = Visibility.Visible;
-                        r = (Button)u.Children[0];
-                        t = (Polygon)r.Content;
-                        t.Fill = Brushes.Black;
+                        SearchParameterGrid = (Grid)SearchPanel.Children[2];
+                        SearchParameterGrid.Children[0].IsEnabled = true;
+                        SearchParameterGrid.Children[1].Visibility = Visibility.Visible;
+                        TagDownButton = (Button)SearchParameterGrid.Children[0];
+                        TagDownPolygon = (Polygon)TagDownButton.Content;
+                        TagDownPolygon.Fill = Brushes.Black;
                     }
                 }
-
-                int[] y = HandleOrs();
-                HandleParens(y);
+                
+                HandleParens(HandleOrs());
                 string search = CreateSearchString();
                 ResultsCountLabel.Content = "Results Count: " + db.SearchCount(Data, search);
                 AdvancedSearch.Text = search;
@@ -655,27 +648,27 @@ namespace Tagger.UI
 
         private string CreateSearchString()
         {
-            Grid p;
-            Label h;
-            Button b;
-            Button n;
+            Grid SearchParameterGrid;
+            Label SearchContentLabel;
+            Button BooleanButton;
+            Button NotButton;
             string inputTag;
             string like = "";
 
             string search = "select * from dbo.ImageData where ";
 
-            for (int i = 1; i <= SearchPanel.Children.Count - 1; i++)
+            for (int SearchParameterIndex = 1; SearchParameterIndex <= SearchPanel.Children.Count - 1; SearchParameterIndex++)
             {
-                p = (Grid)SearchPanel.Children[i];
-                b = (Button)p.Children[1];
-                for (int j = 1; j <= 5; j++)
+                SearchParameterGrid = (Grid)SearchPanel.Children[SearchParameterIndex];
+                BooleanButton = (Button)SearchParameterGrid.Children[1];
+                for (int GridIndex = 1; GridIndex <= 5; GridIndex++)
                 {
-                    if (p.Children[j].Visibility == Visibility.Visible)
+                    if (SearchParameterGrid.Children[GridIndex].Visibility == Visibility.Visible)
                     {
-                        switch (j)
+                        switch (GridIndex)
                         {
                             case 1: // Operator
-                                if (b.Content.ToString() == "Or")
+                                if (BooleanButton.Content.ToString() == "Or")
                                 {
                                     search += "Or ";
                                 }
@@ -684,13 +677,15 @@ namespace Tagger.UI
                                     search += "And ";
                                 }
                                 break;
+
                             case 2: // Open Paren
-                                h = (Label)p.Children[j];
-                                search += h.Content.ToString();
+                                SearchContentLabel = (Label)SearchParameterGrid.Children[GridIndex];
+                                search += SearchContentLabel.Content.ToString();
                                 break;
-                            case 3:
-                                n = (Button)p.Children[j];
-                                if (n.Content.ToString() == "")
+
+                            case 3: // Not
+                                NotButton = (Button)SearchParameterGrid.Children[GridIndex];
+                                if (NotButton.Content.ToString() == "")
                                 {
                                     like = " Like ";
                                 }
@@ -699,9 +694,10 @@ namespace Tagger.UI
                                     like = " Not Like ";
                                 }
                                 break;
+
                             case 4: // Tag                                
-                                h = (Label)p.Children[j];
-                                inputTag = h.Content.ToString();
+                                SearchContentLabel = (Label)SearchParameterGrid.Children[GridIndex];
+                                inputTag = SearchContentLabel.Content.ToString();
                                 if (inputTag.ToLower().StartsWith("!rating:"))  //Rating Equals
                                 {
                                     search += "Rating = " + inputTag.ToLower().Replace(" ","").Replace("!rating:", "").Replace(@"'", "''") + " ";
@@ -752,7 +748,7 @@ namespace Tagger.UI
                                 }
                                 else if (inputTag.ToLower().StartsWith("!name:"))      //Image Width Equals
                                 {
-                                    search += "FileName Like " + inputTag.ToLower().Replace(" ", "").Replace("!width:", "").Replace(@"'", "''") + " ";
+                                    search += "FileName" + like + "'%" + inputTag.ToLower().Replace(" ", "").Replace("!width:", "").Replace(@"'", "''") + "%' ";
                                 }
                                 else if (inputTag.ToLower().StartsWith("!video"))    //Image Width Greater than
                                 {
@@ -791,10 +787,12 @@ namespace Tagger.UI
                                     search += "Tags" + like + "'%;" + inputTag.Replace(@"'", "''") + ";%' ";
                                 }
                                 break;
+
                             case 5: // Close Paren
-                                h = (Label)p.Children[j];
-                                search += h.Content.ToString() + " ";
+                                SearchContentLabel = (Label)SearchParameterGrid.Children[GridIndex];
+                                search += SearchContentLabel.Content.ToString() + " ";
                                 break;
+
                             default:
                                 break;
                         }
@@ -823,7 +821,7 @@ namespace Tagger.UI
             }          
         }
 
-        private void SubitSearchParameter_Click(object sender, RoutedEventArgs e)
+        private void SubmitSearchParameter_Click(object sender, RoutedEventArgs e)
         {
             AddSearchParameter();
         }
@@ -832,7 +830,7 @@ namespace Tagger.UI
         {
             try
             {
-                if (SearchBar.Text != "")
+                if (SearchBar.Text != "" && SearchBar.Text != " ")
                 {
                     SearchPanel.Children.Add(CreateTagRow(SearchPanel.Children.Count));
                     SearchBar.Text = "";
@@ -840,20 +838,20 @@ namespace Tagger.UI
                     //enable down button on prev row when adding row
                     if (SearchPanel.Children.Count > 2)
                     {
-                        Grid l;
-                        Polygon t;
-                        Button r;
-                        foreach (UIElement u in SearchPanel.Children)
+                        Grid SearchParameterGrid;
+                        Polygon TagDownPolygon;
+                        Button TagDownButton;
+                        foreach (UIElement SearchParameterIndex in SearchPanel.Children)
                         {
-                            if (u is Grid)
+                            if (SearchParameterIndex is Grid)
                             {
-                                l = (Grid)u;
-                                if (Convert.ToInt32(l.Tag) == SearchPanel.Children.Count - 2)
+                                SearchParameterGrid = (Grid)SearchParameterIndex;
+                                if (Convert.ToInt32(SearchParameterGrid.Tag) == SearchPanel.Children.Count - 2)
                                 {
-                                    l.Children[7].IsEnabled = true;
-                                    r = (Button)l.Children[7];
-                                    t = (Polygon)r.Content;
-                                    t.Fill = Brushes.Black;
+                                    SearchParameterGrid.Children[7].IsEnabled = true;
+                                    TagDownButton = (Button)SearchParameterGrid.Children[7];
+                                    TagDownPolygon = (Polygon)TagDownButton.Content;
+                                    TagDownPolygon.Fill = Brushes.Black;
                                 }
                             }
                         }
@@ -869,15 +867,15 @@ namespace Tagger.UI
             }            
         }
 
-        private void AddSearchResults(List<string> SR)
+        private void AddSearchResults(List<string> ResultsList)
         {
             ResultsPanel.Children.Clear();
             GC.Collect();
             string filepath = "";
             try
             {
-                PageAmount = (double)SR.Count / ResultsPerPage;
-                if (SR.Count > 0)
+                PageAmount = (double)ResultsList.Count / ResultsPerPage;
+                if (ResultsList.Count > 0)
                 {
                     Grid NavGridTop = new Grid();
                     ColumnDefinition ColDef1 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
@@ -906,7 +904,7 @@ namespace Tagger.UI
 
                     Label PageCountTop = new Label()
                     {
-                        Content = PageIndex.ToString() + "/" + Math.Ceiling(PageAmount).ToString() + " (" + SR.Count.ToString() + ")",
+                        Content = PageIndex.ToString() + "/" + Math.Ceiling(PageAmount).ToString() + " (" + ResultsList.Count.ToString() + ")",
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center
                     };
@@ -936,48 +934,48 @@ namespace Tagger.UI
                     NavGridTop.Children.Add(LastPageTop);
                     ResultsPanel.Children.Add(NavGridTop);
 
-                    for (int p = ((PageIndex - 1) * ResultsPerPage); (p <= (ResultsPerPage * PageIndex) - 1) && (p <= SR.Count - 1); p++)
+                    for (int ResultIndex = ((PageIndex - 1) * ResultsPerPage); (ResultIndex <= (ResultsPerPage * PageIndex) - 1) && (ResultIndex <= ResultsList.Count - 1); ResultIndex++)
                     {
-                        filepath = System.IO.Path.Combine(db.GetImageDirectory(Data, SR[p]), SR[p]);
+                        filepath = System.IO.Path.Combine(db.GetImageDirectory(Data, ResultsList[ResultIndex]), ResultsList[ResultIndex]);
                         if (File.Exists(filepath))
                         {
-                            Grid Result1 = new Grid() { Margin = new Thickness(2) };
-                            Grid Result2 = new Grid() { Margin = new Thickness(2) };
-                            RowDefinition rd1 = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };
-                            RowDefinition rd2 = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };
-                            RowDefinition rd3 = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };
-                            Result2.RowDefinitions.Add(rd1);
-                            Result2.RowDefinitions.Add(rd2);
-                            Result2.RowDefinitions.Add(rd3);
-                            ColumnDefinition cd1 = new ColumnDefinition() { Width = new GridLength(2, GridUnitType.Star) };
-                            ColumnDefinition cd2 = new ColumnDefinition() { Width = new GridLength(6, GridUnitType.Star) };
-                            ColumnDefinition cd3 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) };
-                            Result1.ColumnDefinitions.Add(cd1);
-                            Result1.ColumnDefinitions.Add(cd2);
-                            Result1.ColumnDefinitions.Add(cd3);
+                            Grid ResultGrid = new Grid() { Margin = new Thickness(2) };
+                            Grid ResultDataGrid = new Grid() { Margin = new Thickness(2) };
 
-                            Label filename = new Label() { Content = SR[p] };
+                            RowDefinition rd1 = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };  //filename
+                            RowDefinition rd2 = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };  //rating      
+                            RowDefinition rd3 = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };  //Dimensions
+                            ResultDataGrid.RowDefinitions.Add(rd1);
+                            ResultDataGrid.RowDefinitions.Add(rd2);
+                            ResultDataGrid.RowDefinitions.Add(rd3);
+
+                            ColumnDefinition cd1 = new ColumnDefinition() { Width = new GridLength(2, GridUnitType.Star) }; //Thumbnail
+                            ColumnDefinition cd2 = new ColumnDefinition() { Width = new GridLength(6, GridUnitType.Star) }; //Data
+                            ColumnDefinition cd3 = new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) }; //RemoveButton
+                            ResultGrid.ColumnDefinitions.Add(cd1);
+                            ResultGrid.ColumnDefinitions.Add(cd2);
+                            ResultGrid.ColumnDefinitions.Add(cd3);
+
+                            Label filename = new Label() { Content = ResultsList[ResultIndex] };
                             Grid.SetRow(filename, 0);
-                            Result2.Children.Add(filename);
+                            ResultDataGrid.Children.Add(filename);
 
-                            Label rating = new Label() { Content = "Rating: " + db.GetRating(Data, SR[p]).ToString() };
+                            Label rating = new Label() { Content = "Rating: " + db.GetRating(Data, ResultsList[ResultIndex]).ToString() };
                             Grid.SetRow(rating, 1);
-                            Result2.Children.Add(rating);
+                            ResultDataGrid.Children.Add(rating);
 
-                            Label Dimensions = new Label() { Content = db.GetImageHeight(Data, SR[p]).ToString() + " x " + db.GetImageWidth(Data, SR[p]).ToString() };
+                            Label Dimensions = new Label() { Content = db.GetImageHeight(Data, ResultsList[ResultIndex]).ToString() + " x " + db.GetImageWidth(Data, ResultsList[ResultIndex]).ToString() };
                             Grid.SetRow(Dimensions, 2);
-                            Result2.Children.Add(Dimensions);
+                            ResultDataGrid.Children.Add(Dimensions);
 
-                            Button FileGet = new Button() { Tag = SR[p], Background = Brushes.Black };
+                            Button FileGet = new Button() { Tag = ResultsList[ResultIndex], Background = Brushes.Black };
                             FileGet.Click += new RoutedEventHandler(FileSelect);
 
-                            if (File.Exists(System.IO.Path.Combine(appfilelocation, SR[p])))
+                            if (File.Exists(System.IO.Path.Combine(thumbnaillocation, ResultsList[ResultIndex])))
                             {
                                 Image thumb = new Image() { Width = 100, Height = 80 };
-                                ImageInstance = BitmapImageFromFile(System.IO.Path.Combine(appfilelocation, SR[p]), thumb);
-                                thumb.Source = ImageInstance;
+                                thumb.Source = BitmapImageFromFile(System.IO.Path.Combine(thumbnaillocation, ResultsList[ResultIndex]), thumb);                                
                                 FileGet.Content = thumb;
-
                             }
                             else
                             {
@@ -985,10 +983,10 @@ namespace Tagger.UI
                                 FileGet.Content = AbsentThumb;
                             }
                             Grid.SetColumn(FileGet, 0);
-                            Result1.Children.Add(FileGet);
+                            ResultGrid.Children.Add(FileGet);
 
-                            Grid.SetColumn(Result2, 1);
-                            Result1.Children.Add(Result2);
+                            Grid.SetColumn(ResultDataGrid, 1);
+                            ResultGrid.Children.Add(ResultDataGrid);
 
                             PointCollection RemoveCollection = new PointCollection
                             {
@@ -1005,15 +1003,13 @@ namespace Tagger.UI
                                 Remove11,
                                 Remove12
                             };
-                            Button RemoveResult = new Button() { Tag = SR[p], Content = new Polygon() { Points = RemoveCollection, Fill = Brushes.Red }, Width = 30, Height = 30, VerticalAlignment = VerticalAlignment.Top, HorizontalAlignment = HorizontalAlignment.Right };
+                            Button RemoveResult = new Button() { Tag = ResultsList[ResultIndex], Content = new Polygon() { Points = RemoveCollection, Fill = Brushes.Red }, Width = 30, Height = 30, VerticalAlignment = VerticalAlignment.Top, HorizontalAlignment = HorizontalAlignment.Right };
                             RemoveResult.Click += new RoutedEventHandler(RemoveResult_Click);
 
                             Grid.SetColumn(RemoveResult, 2);
-                            Result1.Children.Add(RemoveResult);
+                            ResultGrid.Children.Add(RemoveResult);
 
-                            DockPanel.SetDock(Result1, Dock.Top);
-
-                            ResultsPanel.Children.Add(Result1);
+                            ResultsPanel.Children.Add(ResultGrid);
                         }
                     }
 
@@ -1044,7 +1040,7 @@ namespace Tagger.UI
 
                     Label PageCountBottom = new Label()
                     {
-                        Content = PageIndex.ToString() + "/" + Math.Ceiling(PageAmount).ToString() + " (" + SR.Count.ToString() + ")",
+                        Content = PageIndex.ToString() + "/" + Math.Ceiling(PageAmount).ToString() + " (" + ResultsList.Count.ToString() + ")",
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center
                     };
@@ -1090,8 +1086,8 @@ namespace Tagger.UI
         {
             try
             {
-                Button a = (Button)sender;
-                ReturnFile = a.Tag.ToString();
+                Button ThumbnailButton = (Button)sender;
+                ReturnFile = ThumbnailButton.Tag.ToString();
                 this.Close();
             }
             catch(Exception ex)
@@ -1271,6 +1267,16 @@ namespace Tagger.UI
             SearchResultsField = BooleanSearchResults;
         }
 
+        private void AdvancedSearchGo_Click(object sender, RoutedEventArgs e)
+        {
+            if (AdvancedSearch.Text != "")
+            {
+                BooleanSearchResults.Clear();
+                BooleanSearchResults = db.MainSearch(Data, AdvancedSearch.Text);
+                AddSearchResults(BooleanSearchResults);
+            }
+        }
+
         private void SearchBar_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1304,16 +1310,6 @@ namespace Tagger.UI
         public System.Windows.Forms.Screen GetWindowScreen(Window window)
         {
             return System.Windows.Forms.Screen.FromHandle(new System.Windows.Interop.WindowInteropHelper(window).Handle);
-        }
-
-        private void AdvancedSearchGo_Click(object sender, RoutedEventArgs e)
-        {
-            if(AdvancedSearch.Text != "")
-            {
-                BooleanSearchResults.Clear();
-                BooleanSearchResults = db.MainSearch(Data, AdvancedSearch.Text);
-                AddSearchResults(BooleanSearchResults);
-            }            
         }
     }  
 }

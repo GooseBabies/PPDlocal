@@ -138,26 +138,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Tagger.exe" size="281088">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Tagger.exe" size="282624">
       <assemblyIdentity name="Tagger" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>P8BbQfW5IKfnU24rR1bfEifepHBUirS3SuqN8BDct1E=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ThumbnailSharp.dll" size="11776">
-      <assemblyIdentity name="ThumbnailSharp" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6EusHojhi/Za+auzhsYz2i4/bsxXrhDe03GGakelotY=</dsig:DigestValue>
+        <dsig:DigestValue>egPu/5C80U5WJhmtVkA1F7JCkq6p9b0B3feYlr/bP+8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
